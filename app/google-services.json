@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "573828410837",
+    "firebase_url": "https://wastesort-322c2.firebaseio.com",
+    "project_id": "wastesort-322c2",
+    "storage_bucket": "wastesort-322c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:573828410837:android:6e53abea35d35515b9a15c",
+        "android_client_info": {
+          "package_name": "com.example.wastesortapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "573828410837-j0abob763p9sfh876n4qomrigts02jha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wastesortapp",
+            "certificate_hash": "c59bfec6000b8b6c21d97135f390a1e772c51223"
+          }
+        },
+        {
+          "client_id": "573828410837-j47sae443uvdramg2hu1mfcbgk2klm1m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_6dWX2yUlCvIiOvgNQ84V6s8Lb9kGlOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "573828410837-j47sae443uvdramg2hu1mfcbgk2klm1m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
