@@ -3,4 +3,6 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="UniversityGreen">#007C41</color>
+    <color name="UniversityGold">#FFDB05</color>
 </resources>
