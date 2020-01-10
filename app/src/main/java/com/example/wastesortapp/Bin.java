@@ -9,8 +9,8 @@ import android.icu.text.IDNA.Info;
  * to see if the information matches
  */
 public class Bin {
-  private String color = "";
-  private String info = "";
+  public String color = "";
+  public String info = "";
 
   public Bin(String color, String info){
     this.color = color;
