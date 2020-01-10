@@ -14,5 +14,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        final Button customButton = findViewById(R.id.button);
+
+        customButton.setOnClickListener(new CompoundButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                customButton.setEnabled(true);
+            }
+        });
+
     }
 }
