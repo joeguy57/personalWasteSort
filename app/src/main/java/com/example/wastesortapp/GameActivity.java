@@ -9,25 +9,32 @@
  */
 package com.example.wastesortapp;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipData.Item;
 import android.content.ClipDescription;
+import android.content.DialogInterface.OnClickListener;
 import android.media.Image;
+import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.DragShadowBuilder;
+import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements ImageView.OnTouchListener {
+
   public static Bin[] theBins = new Bin[5];
 
   private ImageView apple;
-  private ViewGroup mainLayout;
-  private int xDelta;
-  private int yDelta;
+  private ImageView blackBin;
+  private ImageView blueBin;
+  private ImageView greenBin;
+  private ImageView yellowBin;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +46,28 @@ public class GameActivity extends AppCompatActivity {
     theBins[3] = new Bin("Black", "Landfill");
     theBins[4] = new Bin("Gray", "None of the above");
 
+    apple = findViewById(R.id.testApple);
+    blackBin = findViewById(R.id.blackBin);
+    blueBin = findViewById(R.id.blueBin);
+    greenBin = findViewById(R.id.greenBin);
+    yellowBin = findViewById(R.id.yellowBin);
 
-     apple = findViewById(R.id.testApple);
+    apple.setOnTouchListener(this);
+
   }//onCreate
 
-    
+  @Override
+  public boolean onTouch(View v, MotionEvent event) {
+    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+          System.out.println("UP");
+          ClipData data = ClipData.newPlainText("", "");
+          DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+          v.startDrag(data, shadowBuilder, null, 0);
+          v.setVisibility(v.INVISIBLE);
+          return true;
+        } else {
+          return false;
+        }
+      }
+
 }//gameActivity
-
-
-
