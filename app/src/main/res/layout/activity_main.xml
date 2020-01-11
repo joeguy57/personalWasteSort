@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/background_main_page"
     tools:context=".MainActivity">
 
     <Button
@@ -48,7 +48,7 @@
         android:fontFamily="@font/holtwood_one_sc"
         android:gravity="center"
         android:text="URecycle"
-        android:textColor="#BC4FAF4C"
+        android:textColor="#944FAF4C"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
