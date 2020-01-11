@@ -1,111 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".game">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/ConstraintLayoutDrop"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/background"
+  tools:context=".game">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutBlue"
+      android:layout_width="78dp"
+      android:layout_height="113dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.925"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.478">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
-        android:id="@+id/timerBar"
-        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-        android:layout_width="179dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:max="100"
-        android:progress="0"
-        android:scrollbarSize="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/timerText"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02" />
+      android:id="@+id/timerBar"
+      style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+      android:layout_width="179dp"
+      android:layout_height="47dp"
+      android:layout_marginStart="16dp"
+      android:max="100"
+      android:progress="0"
+      android:scrollbarSize="10dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/timerText"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.02" />
 
     <TextView
-        android:id="@+id/timerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:text="Timer"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+      android:id="@+id/timerText"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="28dp"
+      android:text="Timer"
+      android:textSize="20sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.043" />
 
     <ImageView
-        android:id="@+id/beverageBin"
-        android:layout_width="76dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recycleBin"
-        app:layout_constraintStart_toEndOf="@+id/organicBin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/beveragebin" />
+      android:id="@+id/beverageBin"
+      android:layout_width="76dp"
+      android:layout_height="125dp"
+      android:layout_marginStart="35dp"
+      android:layout_marginEnd="20dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/recycleBin"
+      app:layout_constraintStart_toEndOf="@+id/organicBin"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.931"
+      app:srcCompat="@drawable/beveragebin" />
 
     <ImageView
-        android:id="@+id/trashCan"
-        android:layout_width="76dp"
-        android:layout_height="125dp"
-        android:layout_marginEnd="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/organicBin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/trashcan" />
+      android:id="@+id/trashCan"
+      android:layout_width="76dp"
+      android:layout_height="125dp"
+      android:layout_marginEnd="35dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/organicBin"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.931"
+      app:srcCompat="@drawable/trashcan" />
 
     <ImageView
-        android:id="@+id/organicBin"
-        android:layout_width="76dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/beverageBin"
-        app:layout_constraintStart_toEndOf="@+id/trashCan"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/organicbin" />
+      android:id="@+id/organicBin"
+      android:layout_width="76dp"
+      android:layout_height="125dp"
+      android:layout_marginStart="20dp"
+      android:layout_marginEnd="20dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/beverageBin"
+      app:layout_constraintStart_toEndOf="@+id/trashCan"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.931"
+      app:srcCompat="@drawable/organicbin" />
 
     <ImageView
-        android:id="@+id/recycleBin"
-        android:layout_width="76dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.397"
-        app:layout_constraintStart_toEndOf="@+id/beverageBin"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/recyclebin" />
+      android:id="@+id/recycleBin"
+      android:layout_width="76dp"
+      android:layout_height="125dp"
+      android:layout_marginStart="20dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.397"
+      app:layout_constraintStart_toEndOf="@+id/beverageBin"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.931"
+      app:srcCompat="@drawable/recyclebin" />
 
     <TextView
-        android:id="@+id/score"
-        android:layout_width="61dp"
-        android:layout_height="33dp"
-        android:fontFamily="@font/oxygen_light"
-        android:text="Score"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.644"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
-    <LinearLayout
-      android:layout_width="107dp"
-      android:layout_height="116dp"
-      app:layout_constraintBottom_toBottomOf="@+id/organicBin"
-      app:layout_constraintEnd_toEndOf="@+id/organicBin"
-      app:layout_constraintHorizontal_bias="0.387"
-      app:layout_constraintStart_toStartOf="@+id/organicBin"
-      app:layout_constraintTop_toTopOf="@+id/organicBin"
-      app:layout_constraintVertical_bias="0.0" />
+      android:id="@+id/score"
+      android:layout_width="61dp"
+      android:layout_height="33dp"
+      android:fontFamily="@font/oxygen_light"
+      android:text="Score"
+      android:textSize="20sp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.644"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.019" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutGreen"
+      android:layout_width="78dp"
+      android:layout_height="113dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.363"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutYellow"
+      android:layout_width="78dp"
+      android:layout_height="113dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.662"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.478">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

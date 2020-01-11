@@ -9,22 +9,17 @@
  */
 package com.example.wastesortapp;
 
-import android.app.Activity;
 import android.content.ClipData;
-import android.content.ClipData.Item;
-import android.content.ClipDescription;
-import android.content.DialogInterface.OnClickListener;
-import android.media.Image;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
-import android.view.View.OnLongClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class game extends AppCompatActivity implements ImageView.OnTouchListener, ImageView.OnDragListener{
 
@@ -35,9 +30,11 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     private ImageView blueBin;
     private ImageView greenBin;
     private ImageView yellowBin;
-    private static final String IMAGE_VIEW_TAG = "LAUNCHER LOGO";
-    MotionEvent event;
-
+    private ConstraintLayout constraintLayout;
+    private ConstraintLayout dropLayoutGreen;
+    private ConstraintLayout dropLayoutBlue;
+    private ConstraintLayout dropLayoutYellow;
+  private static final String TAG = "MyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,27 +52,57 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
         yellowBin = findViewById(R.id.beverageBin);
         blackBin.setOnTouchListener(this);
         blackBin.setOnDragListener(this);
-        blackBin.setTag(IMAGE_VIEW_TAG);
+        constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
+        constraintLayout.setOnDragListener(this);
+        dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
+        dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
+        dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
+
+        dropLayoutGreen.setOnDragListener(this);
+      dropLayoutBlue.setOnDragListener(this);
+      dropLayoutYellow.setOnDragListener(this);
+
+
 
     }//onCreate
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
-        String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
-        ClipData data = new ClipData(v.getTag().toString(), mimeTypes, item);
+//        String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+//        ClipData data = new ClipData(v.getTag().toString(), mimeTypes, item);
         DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-        v.startDrag(data, shadowBuilder, null, 0);
+        v.startDrag(null, shadowBuilder, v, 0);
         v.setVisibility(v.INVISIBLE);
         return true;
     }
     public boolean onDrag(View v, DragEvent event) {
-        float x = 0;
-        float y = 0;
         switch (event.getAction()) {
-
+          case DragEvent.ACTION_DRAG_STARTED:
+            Log.d(TAG,"onDrag: ACTION_DRAG_STARTED ");
+            break;
+          case DragEvent.ACTION_DRAG_ENTERED:
+            Log.d(TAG, "onDrag: ACTION_DRAG_ENTERED ");
+            break;
+          case DragEvent.ACTION_DRAG_EXITED:
+            Log.d(TAG, "onDrag: ACTION_DRAG_EXITED ");
+            break;
+          case DragEvent.ACTION_DROP:
+            System.out.println(v.getX());
+            System.out.println(v.getY());
+            View view = (View) event.getLocalState();
+            ViewGroup owner = (ViewGroup) view.getParent();
+            owner.removeView(view);
+            ConstraintLayout container = (ConstraintLayout) v;
+            container.addView(view);
+            view.setVisibility(View.VISIBLE);
+            break;
+          case DragEvent.ACTION_DRAG_ENDED:
+            Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
+          default:
+            break;
         }//switch
+      return true;
 
-    return true;
-    }//onDrag
+  }
 }//gameActivity
