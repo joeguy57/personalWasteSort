@@ -1,38 +1,16 @@
 package com.example.wastesortapp;
 
-<<<<<<< HEAD
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class MainActivity extends AppCompatActivity {
-  private Bin bin1;
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
-
-  }
-  public void goToGame(View v){
-    Intent goToGame = new Intent(getApplicationContext(), GameActivity.class);
-    startActivity(goToGame);
-    finish();
-  }//GoToGame
-=======
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.view.animation.DecelerateInterpolator;
-
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private ObjectAnimator mAnimation;
@@ -84,5 +62,5 @@ public class MainActivity extends AppCompatActivity {
        });
 
     }
->>>>>>> 715974638b86016fa8610b264bb9aaa906bc3126
+
 }
