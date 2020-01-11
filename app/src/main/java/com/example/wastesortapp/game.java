@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 public class game extends AppCompatActivity {
     ImageView imageView;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference= firebaseDatabase.getReference();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private DatabaseReference first = databaseReference.child("image");
 
     @Override

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_main_page"
+    android:background="@drawable/gamebackground"
     tools:context=".game">
 
     <ProgressBar
@@ -36,17 +36,17 @@
         app:layout_constraintVertical_bias="0.043" />
 
     <ImageView
-        android:id="@+id/beverageBin"
+        android:id="@+id/recycleBin"
         android:layout_width="76dp"
         android:layout_height="125dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/recycleBin"
-        app:layout_constraintStart_toEndOf="@+id/organicBin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.397"
+        app:layout_constraintStart_toEndOf="@+id/beverageBin"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/beveragebin" />
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/recyclebin" />
 
     <ImageView
         android:id="@+id/trashCan"
@@ -57,7 +57,7 @@
         app:layout_constraintEnd_toStartOf="@+id/organicBin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
+        app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/trashcan" />
 
     <ImageView
@@ -70,21 +70,21 @@
         app:layout_constraintEnd_toStartOf="@+id/beverageBin"
         app:layout_constraintStart_toEndOf="@+id/trashCan"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
+        app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/organicbin" />
 
     <ImageView
-        android:id="@+id/recycleBin"
+        android:id="@+id/beverageBin"
         android:layout_width="76dp"
         android:layout_height="125dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.397"
-        app:layout_constraintStart_toEndOf="@+id/beverageBin"
+        app:layout_constraintEnd_toStartOf="@+id/recycleBin"
+        app:layout_constraintStart_toEndOf="@+id/organicBin"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.931"
-        app:srcCompat="@drawable/recyclebin" />
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/beveragebin" />
 
     <TextView
         android:id="@+id/score"
