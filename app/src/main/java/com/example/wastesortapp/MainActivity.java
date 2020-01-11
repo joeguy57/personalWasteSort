@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final Button customButton = findViewById(R.id.button);
-        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        final ProgressBar progressBar = findViewById(R.id.progressBar);
         Button goToGameButton = findViewById(R.id.button);
 
         customButton.setOnClickListener(new CompoundButton.OnClickListener() {
