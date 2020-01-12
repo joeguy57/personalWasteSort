@@ -39,7 +39,13 @@ public class garbageItems implements ImageView.OnTouchListener{
   public String getColor() {
     return color;
   }
-//HAVE TO DO POINT SCORE IN THIS CLASS
+
+  /**
+   * Allows for items with setOnTouchListener to be dragged around
+   * @param v the item that is being dragged
+   * @param event how it is being moved
+   * @return if the item has been dragged
+   */
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
