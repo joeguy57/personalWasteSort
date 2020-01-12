@@ -25,15 +25,16 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
 
     public static Bin[] theBins = new Bin[5];
 
-    private ImageView apple;
+    private ImageView garbageItem;
     private ImageView blackBin;
-    private ImageView blueBin;
-    private ImageView greenBin;
-    private ImageView yellowBin;
+    private int blueBin = 2131296314 ;
+    private int greenBin = 2131296315;
+    private int yellowBin = 2131296316;
     private ConstraintLayout constraintLayout;
     private ConstraintLayout dropLayoutGreen;
     private ConstraintLayout dropLayoutBlue;
     private ConstraintLayout dropLayoutYellow;
+
   private static final String TAG = "MyActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +46,11 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
         theBins[3] = new Bin("Black", "Landfill");
         theBins[4] = new Bin("Gray", "None of the above");
 
-
-        blackBin = findViewById(R.id.trashCan);
-        blueBin = findViewById(R.id.recycleBin);
-        greenBin = findViewById(R.id.organicBin);
-        yellowBin = findViewById(R.id.beverageBin);
+        garbageItem = findViewById(R.id.appleboy);
+         blackBin = findViewById(R.id.trashCan);
+//        blueBin = findViewById(R.id.recycleBin);
+//        greenBin = findViewById(R.id.organicBin);
+//        yellowBin = findViewById(R.id.beverageBin);
         blackBin.setOnTouchListener(this);
         blackBin.setOnDragListener(this);
         constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
@@ -59,8 +60,8 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
         dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
 
         dropLayoutGreen.setOnDragListener(this);
-      dropLayoutBlue.setOnDragListener(this);
-      dropLayoutYellow.setOnDragListener(this);
+        dropLayoutBlue.setOnDragListener(this);
+        dropLayoutYellow.setOnDragListener(this);
 
 
 
@@ -88,14 +89,18 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
             Log.d(TAG, "onDrag: ACTION_DRAG_EXITED ");
             break;
           case DragEvent.ACTION_DROP:
-            System.out.println(v.getX());
-            System.out.println(v.getY());
             View view = (View) event.getLocalState();
             ViewGroup owner = (ViewGroup) view.getParent();
             owner.removeView(view);
             ConstraintLayout container = (ConstraintLayout) v;
             container.addView(view);
             view.setVisibility(View.VISIBLE);
+            System.out.println("CONTAINER " + container.getId());
+            if (container.getId() == 0) {
+              System.out.println("CORRECT CHOICE");
+            } else {
+              System.out.println("WRONG CHOICE");
+            }
             break;
           case DragEvent.ACTION_DRAG_ENDED:
             Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
@@ -103,6 +108,9 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
             break;
         }//switch
       return true;
+
+  }
+  public void what(View v){
 
   }
 }//gameActivity

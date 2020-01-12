@@ -135,4 +135,24 @@
       app:layout_constraintVertical_bias="0.478">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+      android:id="@+id/appleboy"
+      android:layout_width="45dp"
+      android:layout_height="51dp"
+      android:src="@drawable/appletest"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.193" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="91dp"
+      android:layout_height="60dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.171">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
