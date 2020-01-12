@@ -19,67 +19,68 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class game extends AppCompatActivity {
-    ImageView imageView;
-    private ObjectAnimator mAnimation;
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private DatabaseReference first = databaseReference.child("image");
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+  ImageView imageView;
+  private ObjectAnimator mAnimation;
+  private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+  private DatabaseReference databaseReference = firebaseDatabase.getReference();
+  private DatabaseReference first = databaseReference.child("image");
 
-        imageView = findViewById(R.id.imageGet);
-        ImageView backBtn = findViewById(R.id.backBtn);
-        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.timerBar);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_game);
 
-        backBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        mAnimation = ObjectAnimator.ofInt(progressBar, "progress" , 100, 0);
-        mAnimation.setDuration(7000);
-        mAnimation.setInterpolator(new DecelerateInterpolator());
-        mAnimation.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
+    imageView = findViewById(R.id.imageGet);
+    ImageView backBtn = findViewById(R.id.backBtn);
+    final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
 
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                //do something when the countdown is complete
+    backBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
+    mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
+    mAnimation.setDuration(7000);
+    mAnimation.setInterpolator(new DecelerateInterpolator());
+    mAnimation.addListener(new Animator.AnimatorListener() {
+      @Override
+      public void onAnimationStart(Animator animator) {
+      }
 
-            }
+      @Override
+      public void onAnimationEnd(Animator animator) {
+        //do something when the countdown is complete
 
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
+      }
 
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-            }
-        });
-    }
+      @Override
+      public void onAnimationCancel(Animator animator) {
+      }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAnimation.start();
-        first.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+      @Override
+      public void onAnimationRepeat(Animator animator) {
+      }
+    });
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    mAnimation.start();
+    first.addValueEventListener(new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 //                String link = dataSnapshot.getValue(String.class);
 //                Picasso.get().load(link).into(imageView);
-            }
+      }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
-        });
+      }
+    });
 
-    }
+  }
 }
