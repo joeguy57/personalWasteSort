@@ -48,7 +48,7 @@
         android:fontFamily="@font/holtwood_one_sc"
         android:gravity="center"
         android:text="URecycle"
-        android:textColor="#944FAF4C"
+        android:textColor="#94228622"
         android:textSize="45sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
