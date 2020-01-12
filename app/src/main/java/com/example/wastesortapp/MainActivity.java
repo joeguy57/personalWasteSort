@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button customButton = findViewById(R.id.button);
+        final Button customButton = findViewById(R.id.gameBtn);
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        Button goToGameButton = findViewById(R.id.button);
+        Button goToGameButton = findViewById(R.id.gameBtn);
 
         customButton.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
