@@ -19,13 +19,13 @@ public class garbageItems implements ImageView.OnTouchListener{
   private Context context;
   private final String TAG = "myActivity";
   private game game;
-  ImageView item;
+
 
   public garbageItems(String color, String information, Context context, ConstraintLayout constraintLayout){
     this.color = color;
     this.information = information;
     this.context = context;
-    item = new ImageView(context);
+    ImageView item = new ImageView(context);
     item.setBackgroundResource(R.drawable.appletest);
     constraintLayout.addView(item);
     item.setOnTouchListener(this);

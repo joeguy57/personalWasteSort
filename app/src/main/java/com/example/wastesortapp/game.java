@@ -10,7 +10,6 @@ package com.example.wastesortapp;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.content.ClipData;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -21,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -45,7 +45,9 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
   private ConstraintLayout dropLayoutBlue;
   private ConstraintLayout dropLayoutYellow;
   private ConstraintLayout itemGet;
-
+  private String color;
+  private TextView scoreView;
+  private int score = 0;
   private static final String TAG = "MyActivity";
 
   @Override
@@ -101,8 +103,8 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
       }
     });
     findItems();
-    garbageItems item = new garbageItems("Green","NOTHING RN",this,itemGet);
-    //item.getImageView().setOnTouchListener(this);
+    grabNewItem();
+
   }//onCreate
 
   public void findItems() {
@@ -112,6 +114,7 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
     dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
     itemGet = findViewById(R.id.itemGet);
+    scoreView = findViewById(R.id.scoreView);
 
 //    theBins[0] = new Bin("Green", "Organics");
 //    theBins[1] = new Bin("Blue", "Recyclables");
@@ -131,7 +134,24 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
   }
-
+  public void checkForPoint(String binChoice){
+    if(binChoice == color){
+      System.out.println("POINT SCORED");
+      changeScore();
+    }//if
+    else{
+      System.out.println("POINT NOT SCORED");
+    }//else
+    grabNewItem();
+  }
+  public void changeScore(){
+    score += 1;
+    scoreView.setText(""+ score);
+  }//changeScore
+  public void grabNewItem(){
+    garbageItems item = new garbageItems("Green","N",this, itemGet);
+    color = item.getColor();
+  }
   @Override
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
@@ -158,7 +178,8 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
         ConstraintLayout container = (ConstraintLayout) v;
         container.addView(view);
         view.setVisibility(View.VISIBLE);
-        System.out.println("CONTAINER " + container.getTag() + " " + v.getTag());
+        System.out.println("CONTAINER " + container.getTag());
+        checkForPoint((String) container.getTag());
         break;
       case DragEvent.ACTION_DRAG_ENDED:
         Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
@@ -168,4 +189,5 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     return true;
 
   }
+
 }//gameActivity
