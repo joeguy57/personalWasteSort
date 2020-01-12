@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         final Button gameBtn = findViewById(R.id.gameBtn);
         Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
         Button moreInfo = findViewById(R.id.moreInfoBtn);
-        final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
 
         gameBtn.setOnClickListener(new CompoundButton.OnClickListener() {
@@ -31,28 +30,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 gameBtn.setEnabled(true);
                 mAnimation.start();
-            }
-        });
-        mAnimation = ObjectAnimator.ofInt(progressBar, "progress" , 100, 0);
-        mAnimation.setDuration(7000);
-        mAnimation.setInterpolator(new DecelerateInterpolator());
-        mAnimation.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                //do something when the countdown is complete
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
             }
         });
 
