@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button gameBtn = findViewById(R.id.gameBtn);
         Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
+        Button moreInfo = findViewById(R.id.moreInfoBtn);
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
 
 
@@ -70,6 +71,14 @@ public class MainActivity extends AppCompatActivity {
                startActivity(goToActivity);
            }
        });
+
+        moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goToActivity = new Intent(getApplicationContext(), ContactUs.class);
+                startActivity(goToActivity);
+            }
+        });
 
     }
 }
