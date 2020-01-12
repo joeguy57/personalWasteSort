@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:id="@+id/ConstraintLayoutDrop"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@drawable/background"
-  tools:context=".game">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/ConstraintLayoutDrop"
+    android:background="@drawable/gamebackground"
+    tools:context=".game">
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="28dp"
+        android:layout_height="33dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.053"
+        app:srcCompat="@drawable/backbutton" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutBlue"
@@ -21,83 +33,101 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
-      android:id="@+id/timerBar"
-      style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
-      android:layout_width="179dp"
-      android:layout_height="47dp"
-      android:layout_marginStart="16dp"
-      android:max="100"
-      android:progress="0"
-      android:scrollbarSize="10dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintStart_toEndOf="@+id/timerText"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.02" />
+        android:id="@+id/timerBar"
+        style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
+        android:layout_width="179dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:max="100"
+        android:progress="0"
+        android:scrollbarSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintStart_toEndOf="@+id/timerText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.044" />
 
     <TextView
-      android:id="@+id/timerText"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="28dp"
-      android:text="Timer"
-      android:textSize="20sp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.043" />
+        android:id="@+id/score2"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/oxygen_light"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toEndOf="@+id/score"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
+
+    <TextView
+        android:id="@+id/timerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:fontFamily="@font/oxygen_light"
+        android:text="Timer"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
 
     <ImageView
-      android:id="@+id/beverageBin"
-      android:layout_width="76dp"
-      android:layout_height="125dp"
-      android:layout_marginStart="35dp"
-      android:layout_marginEnd="20dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/recycleBin"
-      app:layout_constraintStart_toEndOf="@+id/organicBin"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.931"
-      app:srcCompat="@drawable/beveragebin" />
+        android:id="@+id/recycleBin"
+        android:layout_width="76dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.397"
+        app:layout_constraintStart_toEndOf="@+id/beverageBin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/recyclebin" />
 
     <ImageView
-      android:id="@+id/trashCan"
-      android:layout_width="76dp"
-      android:layout_height="125dp"
-      android:layout_marginEnd="35dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/organicBin"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.931"
-      app:srcCompat="@drawable/trashcan" />
+        android:id="@+id/trashCan"
+        android:layout_width="76dp"
+        android:layout_height="125dp"
+        android:layout_marginEnd="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/organicBin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/trashcan" />
 
     <ImageView
-      android:id="@+id/organicBin"
-      android:layout_width="76dp"
-      android:layout_height="125dp"
-      android:layout_marginStart="20dp"
-      android:layout_marginEnd="20dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toStartOf="@+id/beverageBin"
-      app:layout_constraintStart_toEndOf="@+id/trashCan"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.931"
-      app:srcCompat="@drawable/organicbin" />
+        android:id="@+id/organicBin"
+        android:layout_width="76dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/beverageBin"
+        app:layout_constraintStart_toEndOf="@+id/trashCan"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/organicbin" />
 
     <ImageView
-      android:id="@+id/recycleBin"
-      android:layout_width="76dp"
-      android:layout_height="125dp"
-      android:layout_marginStart="20dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.397"
-      app:layout_constraintStart_toEndOf="@+id/beverageBin"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.931"
-      app:srcCompat="@drawable/recyclebin" />
+        android:id="@+id/beverageBin"
+        android:layout_width="76dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/recycleBin"
+        app:layout_constraintStart_toEndOf="@+id/organicBin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9"
+        app:srcCompat="@drawable/beveragebin" />
 
     <TextView
       android:id="@+id/score"
@@ -135,24 +165,17 @@
       app:layout_constraintVertical_bias="0.478">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <ImageView
-      android:id="@+id/appleboy"
-      android:layout_width="45dp"
-      android:layout_height="51dp"
-      android:src="@drawable/appletest"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.193" />
     <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="91dp"
-      android:layout_height="60dp"
+      android:id="@+id/itemGet"
+      android:layout_width="72dp"
+      android:layout_height="48dp"
+      android:layout_marginBottom="216dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.499"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.171">
+      app:layout_constraintVertical_bias="0.691">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

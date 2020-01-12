@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.wastesortapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,10 +13,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".game"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".ContactUs"></activity>
+        <activity
+            android:name=".DisposableHelp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".game"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
