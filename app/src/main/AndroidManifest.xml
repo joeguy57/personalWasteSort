@@ -13,11 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".DisposableHelp"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".ContactUs"></activity>
+        <activity
+            android:name=".DisposableHelp"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".game"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
