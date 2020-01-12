@@ -47,7 +47,7 @@
         android:layout_height="136dp"
         android:fontFamily="@font/oxygen_light"
         android:gravity="center"
-        android:text="AUCSC320 _ Software Eng 2"
+        android:text="@string/aucsc320_software_eng_2"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

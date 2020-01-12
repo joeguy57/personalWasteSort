@@ -1,5 +1,8 @@
 package com.example.wastesortapp;
 
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 
 
@@ -15,20 +18,44 @@ public class GarbageItems extends game {
 	private DatabaseReference objectRef;
 	private DatabaseReference DataRef;
 	
-	private String Color;
-	private String itemName;
+	public String Color;
+	public String itemName;
 	
-	public GarbageItems() {
+	public GarbageItems(int itemNum) {
+		String itemId = String.valueOf(itemNum);
 		database = FirebaseDatabase.getInstance();
 		objectRef = database.getReference().child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk");
 		gameObjectRef =  objectRef.child("gameObjects");
 		
-		DataRef = gameObjectRef.child("1");
+		DataRef = gameObjectRef.child(itemId);
 		DatabaseReference colorDatabase = DataRef.child("Color");
 		
+		colorGrabber(colorDatabase);
+		DatabaseReference itemNameDatabase = DataRef.child("Item");
+		itemGrabber(itemNameDatabase);
+		
+	}//GarbageItems(Constructor)
+	
+	
+	
+	public String getColor() {
+		return Color;
+	}
+	public void setColor(String color) {
+		this.Color = color;
+	}
+	public String getItemName() {
+		return itemName;
+	}
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+		
+	}
+	
+	private void colorGrabber(DatabaseReference colorDatabase){
 		colorDatabase.addValueEventListener(new ValueEventListener() {
 			@Override
-			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+			public void onDataChange( DataSnapshot dataSnapshot) {
 				String Colors = dataSnapshot.getValue().toString();
 				setColor(Colors);
 			}
@@ -36,12 +63,11 @@ public class GarbageItems extends game {
 			public void onCancelled(@NonNull DatabaseError databaseError) {
 			}
 		});
-		
-		DatabaseReference itemNameDatabase = DataRef.child("Item");
-		
+	}
+	private void itemGrabber(DatabaseReference itemNameDatabase) {
 		itemNameDatabase.addValueEventListener(new ValueEventListener() {
 			@Override
-			public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+			public void onDataChange( DataSnapshot dataSnapshot) {
 				String itemName = dataSnapshot.getValue().toString();
 				setItemName(itemName);
 			}
@@ -49,20 +75,6 @@ public class GarbageItems extends game {
 			public void onCancelled(@NonNull DatabaseError databaseError) {
 			}
 		});
-		
-	}//GarbageItems(Constructor)
-	
-	public String getColor() {
-		return this.Color;
-	}
-	public void setColor(String color) {
-		this.Color = color;
-	}
-	public String getItemName() {
-		return this.itemName;
-	}
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
 	}
 	
 }//GarbageItems
