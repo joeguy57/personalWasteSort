@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,14 @@ public class game extends AppCompatActivity {
         setContentView(R.layout.activity_game);
 
         imageView = findViewById(R.id.imageGet);
+        ImageView backBtn = findViewById(R.id.backBtn);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
