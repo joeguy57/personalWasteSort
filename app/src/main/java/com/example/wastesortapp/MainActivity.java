@@ -20,14 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button customButton = findViewById(R.id.gameBtn);
+        final Button gameBtn = findViewById(R.id.gameBtn);
+        Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
         final ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
-        Button goToGameButton = findViewById(R.id.gameBtn);
 
-        customButton.setOnClickListener(new CompoundButton.OnClickListener() {
+
+        gameBtn.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
             public void onClick(View v) {
-                customButton.setEnabled(true);
+                gameBtn.setEnabled(true);
                 mAnimation.start();
             }
         });
@@ -54,10 +55,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       goToGameButton.setOnClickListener(new View.OnClickListener() {
+       gameBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                Intent goToActivity = new Intent(getApplicationContext(), game.class);
+               startActivity(goToActivity);
+           }
+       });
+
+       disposableHelpBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent goToActivity = new Intent(getApplicationContext(), DisposableHelp.class);
                startActivity(goToActivity);
            }
        });
