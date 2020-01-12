@@ -31,6 +31,11 @@ public class garbageItems implements ImageView.OnTouchListener{
     item.setOnTouchListener(this);
 
   }//garbageItems
+
+  /**
+   * Returns color of bin item goes in
+   * @return color
+   */
   public String getColor() {
     return color;
   }
