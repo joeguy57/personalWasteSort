@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import java.util.Random;
 
 public class game extends AppCompatActivity implements
     ImageView.OnDragListener  {
@@ -39,11 +40,11 @@ public class game extends AppCompatActivity implements
 
   private ImageView blackBin;
   private ConstraintLayout constraintLayout;
-  private ConstraintLayout dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
-  private ConstraintLayout dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
-  private ConstraintLayout dropLayoutYellow = findViewById(R.id.dropLayoutBlue);
-  private ConstraintLayout getDropLayoutBlack= findViewById(R.id.dropLayoutBlack);
-  private ConstraintLayout itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
+  private ConstraintLayout dropLayoutGreen;
+  private ConstraintLayout dropLayoutBlue;
+  private ConstraintLayout dropLayoutYellow;
+  private ConstraintLayout dropLayoutBlack;
+  private ConstraintLayout itemSpawnLocation;
 
   private String color;
   private TextView scoreView;
@@ -57,8 +58,8 @@ public class game extends AppCompatActivity implements
 
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
-
     backBtn.setOnClickListener(new View.OnClickListener() {
+
       @Override
       public void onClick(View v) {
         finish();
@@ -110,7 +111,11 @@ public class game extends AppCompatActivity implements
   public void findItems() {
     constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
     scoreView = findViewById(R.id.scoreView);
-
+    dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
+    dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
+    dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
+    dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
+    itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
 //    theBins[0] = new Bin("Green", "Organics");
 //    theBins[1] = new Bin("Blue", "Recyclables");
 //    theBins[2] = new Bin("Yellow", "Yellow");
@@ -143,7 +148,7 @@ public class game extends AppCompatActivity implements
     scoreView.setText(""+ score);
   }//changeScore
   public void grabNewItem(){
-    garbageItems item = new garbageItems("Green","N",this, itemSpawnLocation);
+    garbageItems item = new garbageItems(this, itemSpawnLocation);
     color = item.getColor();
   }
   @Override
@@ -183,5 +188,4 @@ public class game extends AppCompatActivity implements
     return true;
 
   }
-
 }//gameActivity
