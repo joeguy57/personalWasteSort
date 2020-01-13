@@ -128,6 +128,7 @@ public class game extends AppCompatActivity implements
     dropLayoutGreen.setOnDragListener(this);
     dropLayoutBlue.setOnDragListener(this);
     dropLayoutYellow.setOnDragListener(this);
+    dropLayoutBlack.setOnDragListener(this);
     itemSpawnLocation.setOnDragListener(this);
     dropLayoutGreen.setTag("Green");
     dropLayoutBlue.setTag("Blue");
@@ -172,11 +173,11 @@ public class game extends AppCompatActivity implements
         break;
       case DragEvent.ACTION_DROP:
         View view = (View) event.getLocalState();
-        ViewGroup owner = (ViewGroup) view.getParent();
-        owner.removeView(view);
+        //ViewGroup owner = (ViewGroup) view.getParent();
+        //owner.removeView(view);
         ConstraintLayout container = (ConstraintLayout) v;
-        container.addView(view);
-        view.setVisibility(View.VISIBLE);
+        //container.addView(view);
+        //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
         checkForPoint((String) container.getTag());
         break;

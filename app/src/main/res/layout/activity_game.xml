@@ -154,14 +154,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutYellow"
-      android:layout_width="78dp"
-      android:layout_height="113dp"
+      android:layout_width="91dp"
+      android:layout_height="130dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.662"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.478">
+      app:layout_constraintVertical_bias="0.859">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
