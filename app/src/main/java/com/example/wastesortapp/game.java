@@ -133,19 +133,28 @@ public class game extends AppCompatActivity implements
     dropLayoutGreen.setTag("Green");
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
+    dropLayoutBlack.setTag("Black");
+    constraintLayout.setTag("Outside");
   }
   public void checkForPoint(String binChoice){
-    if(binChoice == color){
-      System.out.println("POINT SCORED");
-      changeScore();
+    if(binChoice == color) {
+      increaseScore(true);
+      grabNewItem();
     }//if
+     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
+       increaseScore(false);
+       grabNewItem();
+     }//if
+
+  }//checkForPoints
+
+  public void increaseScore(boolean wasPointScored){
+    if(wasPointScored == true) {
+      score += 1;
+    }
     else{
-      System.out.println("POINT NOT SCORED");
-    }//else
-    grabNewItem();
-  }
-  public void changeScore(){
-    score += 1;
+      score -= 1;
+    }
     scoreView.setText(""+ score);
   }//changeScore
   public void grabNewItem(){
@@ -174,8 +183,10 @@ public class game extends AppCompatActivity implements
       case DragEvent.ACTION_DROP:
         View view = (View) event.getLocalState();
         //ViewGroup owner = (ViewGroup) view.getParent();
-        //owner.removeView(view);
         ConstraintLayout container = (ConstraintLayout) v;
+        if(container.getTag() == "Outside"){
+          view.setVisibility(view.VISIBLE);
+        }
         //container.addView(view);
         //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());

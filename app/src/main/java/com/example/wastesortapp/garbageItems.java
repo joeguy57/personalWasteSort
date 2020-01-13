@@ -14,7 +14,7 @@ public class garbageItems implements ImageView.OnTouchListener{
   private Context context;
   private game game;
   private int ImageList[] = new int[]{R.drawable.appletest,R.drawable.popcanboi};
-  private String [] colorList = new String[]{"Green","Blue"};
+  private String [] colorList = new String[]{"Green","Yellow"};
   public Random randomGen = new Random();
   private int chosenNum;
 
