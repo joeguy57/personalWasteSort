@@ -22,10 +22,24 @@ public class game extends AppCompatActivity {
 
   ImageView imageView;
   private ObjectAnimator mAnimation;
-  private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-  private DatabaseReference databaseReference = firebaseDatabase.getReference();
-  private DatabaseReference first = databaseReference.child("image");
+  private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+  //private DatabaseReference databaseReference = firebaseDatabase.getReference();
+  private DatabaseReference imagesUrlsRef = rootRef.child("images");
+  private ValueEventListener valueEventListener = new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
+  };
+
+
+
+  //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -69,11 +83,11 @@ public class game extends AppCompatActivity {
   protected void onStart() {
     super.onStart();
     mAnimation.start();
-    first.addValueEventListener(new ValueEventListener() {
+    imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                String link = dataSnapshot.getValue(String.class);
-//                Picasso.get().load(link).into(imageView);
+                String link = dataSnapshot.getValue(String.class);
+                Picasso.get().load(link).into(imageView);
       }
 
       @Override
