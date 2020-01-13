@@ -1,16 +1,9 @@
 package com.example.wastesortapp;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.Image;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
-import android.view.View.OnDragListener;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.Random;

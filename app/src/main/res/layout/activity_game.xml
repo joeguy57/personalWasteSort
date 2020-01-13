@@ -22,14 +22,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutBlue"
-      android:layout_width="78dp"
-      android:layout_height="113dp"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.925"
+      app:layout_constraintHorizontal_bias="0.937"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.478">
+      app:layout_constraintVertical_bias="0.888">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
@@ -143,25 +143,26 @@
       app:layout_constraintVertical_bias="0.019" />
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutGreen"
-      android:layout_width="78dp"
-      android:layout_height="113dp"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.363"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent">
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.894">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutYellow"
       android:layout_width="91dp"
-      android:layout_height="130dp"
+      android:layout_height="145dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.662"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.859">
+      app:layout_constraintVertical_bias="0.892">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -179,14 +180,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
       android:id="@+id/dropLayoutBlack"
-      android:layout_width="80dp"
-      android:layout_height="110dp"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.076"
+      app:layout_constraintHorizontal_bias="0.064"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.527">
+      app:layout_constraintVertical_bias="0.892">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
