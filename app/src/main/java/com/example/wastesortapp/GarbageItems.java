@@ -17,7 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
-public class GarbageItems extends game {
+public class GarbageItems  {
 
   private final DatabaseReference gameObjectRef;
   private FirebaseDatabase database;
@@ -30,7 +30,7 @@ public class GarbageItems extends game {
 
     database = FirebaseDatabase.getInstance();
     gameObjectRef = database.getReference().child("gameObjects");
-
+    earlyRetrieval();
     /*readColorData(new FirebaseCallback() {
       @Override
       public void onCallback(String result) {
@@ -45,7 +45,9 @@ public class GarbageItems extends game {
     }, itemId);*/
   }//GarbageItems(Constructor)
 
-
+  public void earlyRetrieval(){
+    //CurrentI
+  }
   public String getColor() {
     return Color;
   }

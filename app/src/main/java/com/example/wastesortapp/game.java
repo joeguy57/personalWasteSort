@@ -28,6 +28,7 @@ public class game extends AppCompatActivity {
     colorTextView = findViewById(R.id.itemColor);
     itemTextView = findViewById(R.id.itemName);
 
+    //Asynchronous
     final GarbageItems garbageItems = new GarbageItems();
     garbageItems.readRandomKey(new DataCountCallback() {
       @Override
@@ -38,19 +39,19 @@ public class game extends AppCompatActivity {
           @Override
           public void onCallback(String result) {
             setColor(result);
-            garbageItems.readItemNameData(new FirebaseCallback() {
-              @Override
-              public void onCallback(String result) {
-                setItemName(result);
-                itemTextView.setText(getItemName());
-              }
-            }, getRandomKey());
             colorTextView.setText(getColor());
           }
         },getRandomKey());
+        garbageItems.readItemNameData(new FirebaseCallback() {
+          @Override
+          public void onCallback(String result) {
+            setItemName(result);
+            itemTextView.setText(getItemName());
+          }
+        }, getRandomKey());
       }
     });
-
+    //
 
   }
 
