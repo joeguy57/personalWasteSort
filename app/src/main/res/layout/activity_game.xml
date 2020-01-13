@@ -7,6 +7,19 @@
     android:background="@drawable/background"
     tools:context=".game">
 
+    <TextView
+      android:id="@+id/itemName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="71dp"
+      android:layout_marginTop="124dp"
+      android:layout_marginEnd="554dp"
+      android:layout_marginBottom="47dp"
+      android:text="TextView"
+      app:layout_constraintBottom_toTopOf="@+id/trashCan"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/timerBar" />
     <ProgressBar
         android:id="@+id/timerBar"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
@@ -99,21 +112,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.019" />
-
     <TextView
-        android:id = "@+id/ItemNameTextView"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "TextView"
-        tools:layout_editor_absoluteX = "96dp"
-        tools:layout_editor_absoluteY = "111dp" />
-
-    <TextView
-        android:id = "@+id/ColorTextView"
-        android:layout_width = "wrap_content"
-        android:layout_height = "wrap_content"
-        android:text = "TextView"
-        tools:layout_editor_absoluteX = "320dp"
-        tools:layout_editor_absoluteY = "109dp" />
+      android:id="@+id/itemColor"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="342dp"
+      android:layout_marginTop="159dp"
+      android:layout_marginEnd="282dp"
+      android:layout_marginBottom="209dp"
+      android:text="TextView"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

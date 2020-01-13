@@ -7,12 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import java.util.concurrent.CompletableFuture;
+import com.example.wastesortapp.GarbageItems.DataCountCallback;
+import com.example.wastesortapp.GarbageItems.FirebaseCallback;
+
 
 public class game extends AppCompatActivity {
 
@@ -20,19 +17,49 @@ public class game extends AppCompatActivity {
   TextView itemTextView;
   private String Color;
   private String itemName;
+  private int randomKey;
 
   @RequiresApi(api = VERSION_CODES.N)
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
-    colorTextView = findViewById(R.id.ColorTextView);
-    itemTextView = findViewById(R.id.ItemNameTextView);
 
-    //GarbageItems garbageItems = new GarbageItems(1);
-    //Color =  garbageItems.getColor();
+    colorTextView = findViewById(R.id.itemColor);
+    itemTextView = findViewById(R.id.itemName);
 
-    itemInformationGrabber("1");
+    final GarbageItems garbageItems = new GarbageItems();
+    garbageItems.readRandomKey(new DataCountCallback() {
+      @Override
+      public void onCallback(int result) {
+        setRandomKey(result);
+        getRandomKey();
+        garbageItems.readColorData(new FirebaseCallback() {
+          @Override
+          public void onCallback(String result) {
+            setColor(result);
+            garbageItems.readItemNameData(new FirebaseCallback() {
+              @Override
+              public void onCallback(String result) {
+                setItemName(result);
+                itemTextView.setText(getItemName());
+              }
+            }, getRandomKey());
+            colorTextView.setText(getColor());
+          }
+        },getRandomKey());
+      }
+    });
+
+
+  }
+
+  public int getRandomKey() {
+    return randomKey;
+  }
+
+  public void setRandomKey(int randomKey) {
+    this.randomKey = randomKey;
   }
 
   public String getColor() {
@@ -50,38 +77,6 @@ public class game extends AppCompatActivity {
   public void setItemName(String itemName) {
     this.itemName = itemName;
 
-  }
-
-  private void itemInformationGrabber(String itemId) {
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference gameObjectRef = database.getReference().child("gameObjects");
-
-    DatabaseReference dataReference = gameObjectRef.child(itemId);
-
-    DatabaseReference itemColor = dataReference.child("Color");
-    DatabaseReference itemNames = dataReference.child("Item");
-
-    itemColor.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange( DataSnapshot dataSnapshot) {
-        String color = dataSnapshot.getValue(String.class);
-        setColor(color);
-      }
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-      }
-    });
-
-    itemNames.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        String name = dataSnapshot.getValue(String.class);
-        setItemName(name);
-      }
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-      }
-    });
   }
 
 
