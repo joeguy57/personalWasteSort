@@ -22,8 +22,7 @@ public class garbageItems implements ImageView.OnTouchListener{
   private game game;
   private int ImageList[] = new int[]{R.drawable.appletest,R.drawable.popcanboi};
   private String [] colorList = new String[]{"Green","Blue"};
-  private Random randomGen;
-  private int randomNum;
+  public Random randomGen = new Random();
   private int chosenNum;
 
   public garbageItems(Context context, ConstraintLayout constraintLayout){
@@ -45,9 +44,8 @@ public class garbageItems implements ImageView.OnTouchListener{
   public String getColor() {
     return color;
   }
-  public Integer getRandomNumber(){
-    randomNum = randomGen.nextInt(2);
-    return randomNum;
+  public int getRandomNumber(){
+    return randomGen.nextInt(2);
   }
   /**
    * Allows for items with setOnTouchListener to be dragged around
