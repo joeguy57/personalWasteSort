@@ -13,9 +13,7 @@ import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.DragShadowBuilder;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
@@ -30,7 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class game extends AppCompatActivity implements ImageView.OnTouchListener,
+public class game extends AppCompatActivity implements
     ImageView.OnDragListener  {
 
   private ObjectAnimator mAnimation;
@@ -41,10 +39,12 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
 
   private ImageView blackBin;
   private ConstraintLayout constraintLayout;
-  private ConstraintLayout dropLayoutGreen;
-  private ConstraintLayout dropLayoutBlue;
-  private ConstraintLayout dropLayoutYellow;
-  private ConstraintLayout itemGet;
+  private ConstraintLayout dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
+  private ConstraintLayout dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
+  private ConstraintLayout dropLayoutYellow = findViewById(R.id.dropLayoutBlue);
+  private ConstraintLayout getDropLayoutBlack= findViewById(R.id.dropLayoutBlack);
+  private ConstraintLayout itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
+
   private String color;
   private TextView scoreView;
   private int score = 0;
@@ -108,12 +108,7 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
   }//onCreate
 
   public void findItems() {
-    blackBin = findViewById(R.id.trashCan);
     constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
-    dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
-    dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
-    dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
-    itemGet = findViewById(R.id.itemGet);
     scoreView = findViewById(R.id.scoreView);
 
 //    theBins[0] = new Bin("Green", "Organics");
@@ -124,12 +119,11 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     setItemAttributes();
   }
   public void setItemAttributes(){
-    blackBin.setOnTouchListener(this);
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
     dropLayoutBlue.setOnDragListener(this);
     dropLayoutYellow.setOnDragListener(this);
-    itemGet.setOnDragListener(this);
+    itemSpawnLocation.setOnDragListener(this);
     dropLayoutGreen.setTag("Green");
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
@@ -149,16 +143,16 @@ public class game extends AppCompatActivity implements ImageView.OnTouchListener
     scoreView.setText(""+ score);
   }//changeScore
   public void grabNewItem(){
-    garbageItems item = new garbageItems("Green","N",this, itemGet);
+    garbageItems item = new garbageItems("Green","N",this, itemSpawnLocation);
     color = item.getColor();
   }
   @Override
-  public boolean onTouch(View v, MotionEvent event) {
-    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-    v.startDrag(null, shadowBuilder, v, 0);
-    v.setVisibility(v.INVISIBLE);
-    return true;
-  }
+//  public boolean onTouch(View v, MotionEvent event) {
+//    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+//    v.startDrag(null, shadowBuilder, v, 0);
+//    v.setVisibility(v.INVISIBLE);
+//    return true;
+//  }
 
   public boolean onDrag(View v, DragEvent event) {
     switch (event.getAction()) {
