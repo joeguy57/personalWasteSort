@@ -18,8 +18,12 @@ public class garbageItems implements ImageView.OnTouchListener{
   public Random randomGen = new Random();
   private int chosenNum;
 
+  /**
+   * Constructor for garbageItems
+   * @param context the context that the item is being created in
+   * @param constraintLayout which layout the item will be created in
+   */
   public garbageItems(Context context, ConstraintLayout constraintLayout){
-    this.information = information;
     this.context = context;
     chosenNum = getRandomNumber();
     color = colorList[chosenNum];
