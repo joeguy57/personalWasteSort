@@ -89,13 +89,18 @@ public class game extends AppCompatActivity {
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ImageView imageGet = findViewById(R.id.imageGet);
                 long numChildern =  dataSnapshot.getChildrenCount();
                 TextView urlNum = findViewById(R.id.textView3);
                 String num = String.valueOf(numChildern);
-                urlNum.setText(num);
+                //urlNum.setText(num);
                 int randNum = new Random().nextInt(Integer.parseInt(num));
-                String rand = String.valueOf(randNum);
+                String rand = String.valueOf(randNum + 1);
                 String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
+                String data = dataSnapshot.child(rand).child("Item").getValue(String.class);
+                urlNum.setText(data + " " + rand);
+                //imageGet.addView
+
                 Picasso.get().load(link).into(imageView);
       }
 
