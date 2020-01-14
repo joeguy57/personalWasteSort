@@ -93,7 +93,9 @@ public class game extends AppCompatActivity {
                 TextView urlNum = findViewById(R.id.textView3);
                 String num = String.valueOf(numChildern);
                 urlNum.setText(num);
-                String link = dataSnapshot.child("1").child("Image").getValue(String.class);
+                int randNum = new Random().nextInt(Integer.parseInt(num));
+                String rand = String.valueOf(randNum);
+                String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
                 Picasso.get().load(link).into(imageView);
       }
 
@@ -118,7 +120,7 @@ public class game extends AppCompatActivity {
     System.out.println(urlCount);
     TextView urlNum = findViewById(R.id.textView3);
     //urlNum.setText(urlCount);
-    int randNum = new Random().nextInt(urlCount);
+
     List<String> randomUrlList = new ArrayList<>();
 
 
