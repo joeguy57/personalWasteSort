@@ -1,5 +1,6 @@
 package com.example.wastesortapp;
 
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class game extends AppCompatActivity {
 
@@ -24,7 +28,7 @@ public class game extends AppCompatActivity {
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   //private DatabaseReference databaseReference = firebaseDatabase.getReference();
-  private DatabaseReference imagesUrlsRef = rootRef.child("images");
+  private DatabaseReference imagesUrlsRef = rootRef.child("gameObjects");
   private ValueEventListener valueEventListener = new ValueEventListener() {
     @Override
     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -48,7 +52,6 @@ public class game extends AppCompatActivity {
     imageView = findViewById(R.id.imageGet);
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
-
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -86,7 +89,8 @@ public class game extends AppCompatActivity {
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String link = dataSnapshot.getValue(String.class);
+
+                String link = dataSnapshot.child("1").child("Image").getValue(String.class);
                 Picasso.get().load(link).into(imageView);
       }
 
@@ -96,5 +100,24 @@ public class game extends AppCompatActivity {
       }
     });
 
-  }
+  }//onStart
+
+
+  protected void getImage(DataSnapshot dataSnapshot){
+    List<String> urlList = new ArrayList<>();
+
+    for(DataSnapshot dataShot : dataSnapshot.getChildren()){
+      String url = dataShot.child("url").getValue(String.class);
+      urlList.add(url);
+    }//for
+
+    int urlCount = urlList.size();
+    System.out.println(urlCount);
+    TextView urlNum = findViewById(R.id.textView3);
+    urlNum.setText(urlCount);
+    int randNum = new Random().nextInt(urlCount);
+    List<String> randomUrlList = new ArrayList<>();
+
+
+    }//getImage
 }
