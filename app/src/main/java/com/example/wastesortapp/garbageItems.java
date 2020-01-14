@@ -10,12 +10,10 @@ import java.util.Random;
 
 public class garbageItems implements ImageView.OnTouchListener{
   private String color;
-  private String information;
   private Context context;
-  private game game;
   private int ImageList[] = new int[]{R.drawable.appletest,R.drawable.popcanboi};
   private String [] colorList = new String[]{"Green","Yellow"};
-  public Random randomGen = new Random();
+  private Random randomGen = new Random();
   private int chosenNum;
 
   /**
@@ -53,7 +51,8 @@ public class garbageItems implements ImageView.OnTouchListener{
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
-    v.setVisibility(v.GONE);
+    v.setVisibility(v.INVISIBLE);
     return true;
   }
+
 }

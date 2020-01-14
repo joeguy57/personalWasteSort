@@ -134,7 +134,8 @@ public class game extends AppCompatActivity implements
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
     dropLayoutBlack.setTag("Black");
-    constraintLayout.setTag("Outside");
+//    itemSpawnLocation.setTag("Outside");
+//    constraintLayout.setTag("Outside");
   }
   public void checkForPoint(String binChoice){
     if(binChoice == color) {
@@ -182,9 +183,9 @@ public class game extends AppCompatActivity implements
         break;
       case DragEvent.ACTION_DROP:
         View view = (View) event.getLocalState();
-        //ViewGroup owner = (ViewGroup) view.getParent();
+       // ViewGroup owner = (ViewGroup) view.getParent();
         ConstraintLayout container = (ConstraintLayout) v;
-        if(container.getTag() == "Outside"){
+        if(container.getTag() == null){
           view.setVisibility(view.VISIBLE);
         }
         //container.addView(view);
