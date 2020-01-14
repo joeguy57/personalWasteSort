@@ -1,15 +1,13 @@
 package com.example.wastesortapp;
 
 import android.os.Build.VERSION_CODES;
-import androidx.annotation.NonNull;
+import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
 import com.example.wastesortapp.GarbageItems.DataCountCallback;
 import com.example.wastesortapp.GarbageItems.FirebaseCallback;
-
 
 public class game extends AppCompatActivity {
 
@@ -29,30 +27,36 @@ public class game extends AppCompatActivity {
     itemTextView = findViewById(R.id.itemName);
 
     //Asynchronous
+
     final GarbageItems garbageItems = new GarbageItems();
     garbageItems.readRandomKey(new DataCountCallback() {
       @Override
       public void onCallback(int result) {
         setRandomKey(result);
-        getRandomKey();
-        garbageItems.readColorData(new FirebaseCallback() {
-          @Override
-          public void onCallback(String result) {
-            setColor(result);
-            colorTextView.setText(getColor());
-          }
-        },getRandomKey());
         garbageItems.readItemNameData(new FirebaseCallback() {
           @Override
           public void onCallback(String result) {
             setItemName(result);
-            itemTextView.setText(getItemName());
+            colorTextView.setText(getItemName());
+          }
+        }, getRandomKey());
+        garbageItems.readColorData(new FirebaseCallback() {
+          @Override
+          public void onCallback(String result) {
+            setColor(result);
+            itemTextView.setText(getColor());
           }
         }, getRandomKey());
       }
     });
-    //
 
+    //synchronized (CurrentItem.Valid) {
+
+
+
+      //}
+
+   // }
   }
 
   public int getRandomKey() {

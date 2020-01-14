@@ -21,6 +21,8 @@ public class GarbageItems  {
 
   private final DatabaseReference gameObjectRef;
   private FirebaseDatabase database;
+  private  DatabaseReference itemColor;
+  private DatabaseReference itemNames;
 
   public String Color;
   public String itemName;
@@ -30,24 +32,13 @@ public class GarbageItems  {
 
     database = FirebaseDatabase.getInstance();
     gameObjectRef = database.getReference().child("gameObjects");
-    earlyRetrieval();
-    /*readColorData(new FirebaseCallback() {
-      @Override
-      public void onCallback(String result) {
-            Log.d("Color",result);
-      }
-    }, itemId);
-    readItemNameData(new FirebaseCallback() {
-      @Override
-      public void onCallback(String result) {
-        Log.d("Item",result);
-      }
-    }, itemId);*/
+
+
   }//GarbageItems(Constructor)
 
-  public void earlyRetrieval(){
-    //CurrentI
-  }
+
+
+
   public String getColor() {
     return Color;
   }
@@ -65,32 +56,6 @@ public class GarbageItems  {
 
   }
 
-  /*private void itemInformationGrabber(DatabaseReference gameObjectRef, String itemId) {
-    DatabaseReference dataReference = gameObjectRef.child(itemId);
-    DatabaseReference itemColor = dataReference.child("Color");
-    DatabaseReference itemNames = dataReference.child("Item");
-    itemColor.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange( DataSnapshot dataSnapshot) {
-        String color = dataSnapshot.getValue(String.class);
-      }
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-      }
-    });
-    itemNames.addValueEventListener(new ValueEventListener() {
-      @Override
-      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        String name = dataSnapshot.getValue(String.class);
-        setItemName(name);
-      }
-      @Override
-      public void onCancelled(@NonNull DatabaseError databaseError) {
-      }
-    });
-
-  }//itemInformationGrabber
-*/
   protected void readColorData (final FirebaseCallback firebaseCallback, int itemKey){
     ValueEventListener valueEventListener = new ValueEventListener() {
       @Override
@@ -108,8 +73,10 @@ public class GarbageItems  {
     };
     String itemId = String.valueOf(itemKey);
     DatabaseReference dataReference = gameObjectRef.child(itemId);
-    DatabaseReference itemColor = dataReference.child("Color");
-    itemColor.addValueEventListener(valueEventListener);
+    itemColor = dataReference.child("Color");
+      itemColor.addValueEventListener(valueEventListener);
+
+
   }
 
   protected void readItemNameData(final FirebaseCallback firebaseCallback, int itemKey){
@@ -127,8 +94,9 @@ public class GarbageItems  {
     };
     String itemId = String.valueOf(itemKey);
     DatabaseReference dataReference = gameObjectRef.child(itemId);
-    DatabaseReference itemNames = dataReference.child("Item");
+    itemNames = dataReference.child("Item");
     itemNames.addValueEventListener(valueEventListener);
+
   }
   protected void readRandomKey(final DataCountCallback dataCountCallback){
     ValueEventListener valueEventListener = new ValueEventListener() {
@@ -144,7 +112,9 @@ public class GarbageItems  {
 
       }
     };
-    gameObjectRef.addValueEventListener(valueEventListener);
+
+      gameObjectRef.addValueEventListener(valueEventListener);
+
   }
   protected interface FirebaseCallback{
     void onCallback(String result);
