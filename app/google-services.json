@@ -1,21 +1,37 @@
 {
   "project_info": {
-    "project_number": "573828410837",
-    "firebase_url": "https://wastesort-322c2.firebaseio.com",
-    "project_id": "wastesort-322c2",
-    "storage_bucket": "wastesort-322c2.appspot.com"
+    "project_number": "760302628969",
+    "firebase_url": "https://wastesortapp.firebaseio.com",
+    "project_id": "wastesortapp",
+    "storage_bucket": "wastesortapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:573828410837:android:6e53abea35d35515b9a15c",
+        "mobilesdk_app_id": "1:760302628969:android:9cb7c1eef7dabb598ab2f8",
         "android_client_info": {
           "package_name": "com.example.wastesortapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "573828410837-j0abob763p9sfh876n4qomrigts02jha.apps.googleusercontent.com",
+          "client_id": "760302628969-jjcd3q9j157ns4e6eu2lgimccnniebie.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wastesortapp",
+            "certificate_hash": "34eecbcc814f1a7721c82bdf7e93537c3cedd740"
+          }
+        },
+        {
+          "client_id": "760302628969-qggm0mqg0qqmrg7mv3jr23r68nt15h9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.wastesortapp",
+            "certificate_hash": "3fcc116894c450f16c6193b974110807ec0915d5"
+          }
+        },
+        {
+          "client_id": "760302628969-g4a57eb0gk7c2cteu50du2dl9tbgppoj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.wastesortapp",
@@ -23,20 +39,20 @@
           }
         },
         {
-          "client_id": "573828410837-j47sae443uvdramg2hu1mfcbgk2klm1m.apps.googleusercontent.com",
+          "client_id": "760302628969-0mc4ojsa0o2dp70q9lenvp3k1po19h6c.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB_6dWX2yUlCvIiOvgNQ84V6s8Lb9kGlOk"
+          "current_key": "AIzaSyANyuNWq6oeEDYzFuqR2nmQXBgKun95qjY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "573828410837-j47sae443uvdramg2hu1mfcbgk2klm1m.apps.googleusercontent.com",
+              "client_id": "760302628969-0mc4ojsa0o2dp70q9lenvp3k1po19h6c.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

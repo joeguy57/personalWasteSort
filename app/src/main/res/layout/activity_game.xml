@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/ConstraintLayoutDrop"
     android:background="@drawable/gamebackground"
     tools:context=".game">
 
@@ -19,6 +20,18 @@
         app:layout_constraintVertical_bias="0.053"
         app:srcCompat="@drawable/backbutton" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutBlue"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.937"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.888">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <ProgressBar
         android:id="@+id/timerBar"
         style="@android:style/Widget.Holo.Light.ProgressBar.Horizontal"
@@ -36,36 +49,20 @@
         app:layout_constraintVertical_bias="0.044" />
 
     <TextView
-        android:id="@+id/score2"
-        android:layout_width="34dp"
-        android:layout_height="30dp"
-        android:fontFamily="@font/oxygen_light"
-        android:gravity="center"
-        android:text="0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toEndOf="@+id/score"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
-
-    <TextView
-        android:id="@+id/score"
-        android:layout_width="61dp"
-        android:layout_height="33dp"
-        android:fontFamily="@font/oxygen_light"
-        android:text="Score:"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.736"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.064" />
-
+      android:id="@+id/scoreView"
+      android:layout_width="34dp"
+      android:layout_height="30dp"
+      android:fontFamily="@font/oxygen_light"
+      android:gravity="center"
+      android:text="0"
+      android:textSize="20sp"
+      android:textStyle="bold"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toEndOf="@+id/score"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.019" />
     <TextView
         android:id="@+id/timerText"
         android:layout_width="wrap_content"
@@ -131,26 +128,66 @@
         app:layout_constraintVertical_bias="0.9"
         app:srcCompat="@drawable/beveragebin" />
 
-    <ImageView
-      android:id="@+id/imageGet"
-      android:layout_width="156dp"
-      android:layout_height="191dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.969"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.316" />
     <TextView
-      android:id="@+id/textView3"
-      android:layout_width="91dp"
-      android:layout_height="42dp"
-      android:text="TextView"
+      android:id="@+id/score"
+      android:layout_width="61dp"
+      android:layout_height="33dp"
+      android:fontFamily="@font/oxygen_light"
+      android:text="Score"
+      android:textSize="20sp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.194"
+      app:layout_constraintHorizontal_bias="0.644"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.423" />
+      app:layout_constraintVertical_bias="0.019" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutGreen"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.363"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.894">
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutYellow"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.662"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.892">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/itemSpawnLocation"
+      android:layout_width="72dp"
+      android:layout_height="48dp"
+      android:layout_marginBottom="216dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.499"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.691">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dropLayoutBlack"
+      android:layout_width="91dp"
+      android:layout_height="145dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.064"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.892">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

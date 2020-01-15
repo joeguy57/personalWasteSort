@@ -2,10 +2,16 @@ package com.example.wastesortapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ProgressBar;
+import android.view.animation.DecelerateInterpolator;
+
 
 public class MainActivity extends AppCompatActivity {
 
