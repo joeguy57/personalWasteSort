@@ -8,19 +8,14 @@
  */
 package com.example.wastesortapp;
 
-import android.view.MotionEvent;
-import android.view.View.DragShadowBuilder;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.View.DragShadowBuilder;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -34,9 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
