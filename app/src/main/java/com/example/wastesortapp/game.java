@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -41,7 +42,7 @@ import java.util.Random;
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
           ImageView.OnTouchListener {
 
-  ImageView imageView;
+  ImageView imageView2;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   //private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -112,9 +113,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
                 String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
                 String data = dataSnapshot.child(rand).child("Item").getValue(String.class);
                 //urlNum.setText(data + " " + rand);
-                //imageGet.addView
+               // itemSpawnLocation.addView();
 
-                Picasso.get().load(link).into(imageView);
+                Picasso.get().load(link).into(imageView2);
+
       }
 
       @Override
@@ -123,7 +125,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       }
     });
     findItems();
-    grabNewItem();
+//    grabNewItem();
 
 
 
@@ -138,6 +140,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
     dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
     itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
+    imageView2 = findViewById(R.id.imageView2);
     setItemAttributes();
   }
   public void setItemAttributes(){
@@ -147,6 +150,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutYellow.setOnDragListener(this);
     dropLayoutBlack.setOnDragListener(this);
     itemSpawnLocation.setOnDragListener(this);
+    imageView2.setOnTouchListener(this);
     dropLayoutGreen.setTag("Green");
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
@@ -154,17 +158,17 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 //    itemSpawnLocation.setTag("Outside");
 //    constraintLayout.setTag("Outside");
   }
-  public void checkForPoint(String binChoice){
-    if(binChoice == color) {
-      increaseScore(true);
-      grabNewItem();
-    }//if
-     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
-       increaseScore(false);
-       grabNewItem();
-     }//if
-
-  }//checkForPoints
+//  public void checkForPoint(String binChoice){
+//    if(binChoice == color) {
+//      increaseScore(true);
+//      grabNewItem();
+//    }//if
+//     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
+//       increaseScore(false);
+//       grabNewItem();
+//     }//if
+//
+//  }//checkForPoints
 
   public void increaseScore(boolean wasPointScored){
     if(wasPointScored == true) {
@@ -175,10 +179,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     }
     scoreView.setText(""+ score);
   }//changeScore
-  public void grabNewItem(){
-    garbageItems item = new garbageItems(this, itemSpawnLocation);
-    color = item.getColor();
-  }
+//  public void grabNewItem(){
+//    garbageItems item = new garbageItems(this, itemSpawnLocation);
+//    color = item.getColor();
+//  }
  // @Override
 //  public boolean onTouch(View v, MotionEvent event) {
 //    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
@@ -208,7 +212,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         //container.addView(view);
         //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
-        checkForPoint((String) container.getTag());
+       // checkForPoint((String) container.getTag());
         break;
       case DragEvent.ACTION_DRAG_ENDED:
         Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
