@@ -53,6 +53,6 @@ public class garbageItems implements ImageView.OnTouchListener{
     v.startDrag(null, shadowBuilder, v, 0);
     v.setVisibility(v.INVISIBLE);
     return true;
-  }
+  }//onTouch
 
 }

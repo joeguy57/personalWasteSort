@@ -8,6 +8,8 @@
  */
 package com.example.wastesortapp;
 
+import android.view.MotionEvent;
+import android.view.View.DragShadowBuilder;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,7 +38,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class game extends AppCompatActivity implements  ImageView.OnDragListener {
+public class game extends AppCompatActivity implements  ImageView.OnDragListener,
+          ImageView.OnTouchListener {
 
   ImageView imageView;
   private ObjectAnimator mAnimation;
@@ -54,53 +57,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private int score = 0;
   private static final String TAG = "MyActivity";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  private ValueEventListener valueEventListener = new ValueEventListener() {
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-    }
-
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-    }
-  };
-
-
-
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
 
-    //imageView = findViewById(R.id.imageGet);
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
     backBtn.setOnClickListener(new View.OnClickListener() {
@@ -167,24 +129,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
   }//onStart
 
-
-  protected void getImage(DataSnapshot dataSnapshot){
-    List<String> urlList = new ArrayList<>();
-
-    for(DataSnapshot dataShot : dataSnapshot.getChildren()){
-      String url = dataShot.child("url").getValue(String.class);
-      urlList.add(url);
-    }//for
-
-    int urlCount = urlList.size();
-    System.out.println(urlCount);
-    //TextView urlNum = findViewById(R.id.textView3);
-    //urlNum.setText(urlCount);
-
-    List<String> randomUrlList = new ArrayList<>();
-
-
-    }//getImage
 
   public void findItems() {
     constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
@@ -274,4 +218,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     return true;
 
   }
+  public boolean onTouch(View v, MotionEvent event) {
+    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
+    v.startDrag(null, shadowBuilder, v, 0);
+    v.setVisibility(v.INVISIBLE);
+    return true;
+  }//onTouch
 }//gameActivity
