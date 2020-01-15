@@ -1,7 +1,6 @@
 package com.example.wastesortapp;
 
 import android.os.Build.VERSION_CODES;
-import android.util.Log;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +10,8 @@ import com.example.wastesortapp.GarbageItems.FirebaseCallback;
 
 public class game extends AppCompatActivity {
 
-  TextView colorTextView;
-  TextView itemTextView;
+  private TextView colorTextView;
+  private TextView itemTextView;
   private String Color;
   private String itemName;
   private int randomKey;
@@ -26,9 +25,16 @@ public class game extends AppCompatActivity {
     colorTextView = findViewById(R.id.itemColor);
     itemTextView = findViewById(R.id.itemName);
 
-    //Asynchronous
+    onGameStart();
 
+  }
+
+  private void onGameStart() {
     final GarbageItems garbageItems = new GarbageItems();
+    runAsync(garbageItems);
+  }
+
+  private void runAsync(final GarbageItems garbageItems) {
     garbageItems.readRandomKey(new DataCountCallback() {
       @Override
       public void onCallback(int result) {
@@ -37,7 +43,7 @@ public class game extends AppCompatActivity {
           @Override
           public void onCallback(String result) {
             setItemName(result);
-            colorTextView.setText(getItemName());
+            colorTextView.setText(getItemName()); // put in code to make comparison with constraint tags
           }
         }, getRandomKey());
         garbageItems.readColorData(new FirebaseCallback() {
@@ -47,39 +53,32 @@ public class game extends AppCompatActivity {
             itemTextView.setText(getColor());
           }
         }, getRandomKey());
+        //garbageItem.readImageData(new FirebaseCallback() {) // not a string may need a new access point
       }
     });
-
-    //synchronized (CurrentItem.Valid) {
-
-
-
-      //}
-
-   // }
   }
 
-  public int getRandomKey() {
+  private int getRandomKey() {
     return randomKey;
   }
 
-  public void setRandomKey(int randomKey) {
+  private void setRandomKey(int randomKey) {
     this.randomKey = randomKey;
   }
 
-  public String getColor() {
+  private String getColor() {
     return Color;
   }
 
-  public void setColor(String color) {
+  private void setColor(String color) {
     this.Color = color;
   }
 
-  public String getItemName() {
+  private String getItemName() {
     return itemName;
   }
 
-  public void setItemName(String itemName) {
+  private void setItemName(String itemName) {
     this.itemName = itemName;
 
   }

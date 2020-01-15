@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">WasteSortApp</string>
 	<string name = "aucsc320_software_eng_2">AUCSC320 _ Software Eng 2</string>
+  <string name="textview">TextView</string>
+  <string name="timer">Timer</string>
+  <string name="todo">TODO</string>
+  <string name="score">Score</string>
 </resources>

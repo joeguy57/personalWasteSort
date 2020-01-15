@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.view.animation.DecelerateInterpolator;
 
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         final Button customButton = findViewById(R.id.button);
         final ProgressBar progressBar = findViewById(R.id.progressBar);
-        Button goToGameButton = findViewById(R.id.button);
 
         customButton.setOnClickListener(new CompoundButton.OnClickListener() {
             @Override
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       goToGameButton.setOnClickListener(new View.OnClickListener() {
+       customButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                Intent goToActivity = new Intent(getApplicationContext(), game.class);
