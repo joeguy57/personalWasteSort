@@ -111,10 +111,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
                 int randNum = new Random().nextInt(Integer.parseInt(num));
                 String rand = String.valueOf(randNum + 1);
                 String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
-                String data = dataSnapshot.child(rand).child("Item").getValue(String.class);
+                String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
                 //urlNum.setText(data + " " + rand);
                // itemSpawnLocation.addView();
-
+                color = data;
                 Picasso.get().load(link).into(imageView2);
 
       }
@@ -158,17 +158,18 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 //    itemSpawnLocation.setTag("Outside");
 //    constraintLayout.setTag("Outside");
   }
-//  public void checkForPoint(String binChoice){
-//    if(binChoice == color) {
-//      increaseScore(true);
-//      grabNewItem();
-//    }//if
-//     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
-//       increaseScore(false);
-//       grabNewItem();
-//     }//if
-//
-//  }//checkForPoints
+  public void checkForPoint(String binChoice){
+    System.out.println("COMPARISON "+ binChoice + " CORRECT ANSWER " + color);
+    if(binChoice.equals(color)) {
+      increaseScore(true);
+      //grabNewItem();
+    }//if
+     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
+       increaseScore(false);
+       //grabNewItem();
+     }//if
+
+  }//checkForPoints
 
   public void increaseScore(boolean wasPointScored){
     if(wasPointScored == true) {
@@ -212,7 +213,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         //container.addView(view);
         //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
-       // checkForPoint((String) container.getTag());
+        checkForPoint((String) container.getTag());
         break;
       case DragEvent.ACTION_DRAG_ENDED:
         Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
