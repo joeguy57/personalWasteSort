@@ -12,12 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-      android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name=".game"
-            android:screenOrientation="landscape">
-        </activity>
-        <activity android:name=".MainActivity">
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ContactUs"></activity>
+        <activity
+            android:name=".DisposableHelp"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".game"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

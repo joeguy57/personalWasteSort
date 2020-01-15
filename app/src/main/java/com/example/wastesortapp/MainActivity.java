@@ -14,52 +14,42 @@ import android.view.animation.DecelerateInterpolator;
 
 
 public class MainActivity extends AppCompatActivity {
-    private ObjectAnimator mAnimation;
+
+    protected Intent goToActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button customButton = findViewById(R.id.button);
-        final ProgressBar progressBar = findViewById(R.id.progressBar);
+        Button gameBtn = findViewById(R.id.gameBtn);
+        Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
+        Button moreInfo = findViewById(R.id.moreInfoBtn);
 
-        customButton.setOnClickListener(new CompoundButton.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                customButton.setEnabled(true);
-                mAnimation.start();
-            }
-        });
-        mAnimation = ObjectAnimator.ofInt(progressBar, "progress" , 100, 0);
-        mAnimation.setDuration(7000);
-        mAnimation.setInterpolator(new DecelerateInterpolator());
-        mAnimation.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                //do something when the countdown is complete
-
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-            }
-        });
-
-       customButton.setOnClickListener(new View.OnClickListener() {
+        gameBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent goToActivity = new Intent(getApplicationContext(), game.class);
-               startActivity(goToActivity);
+               startActivity(goToActivity = new Intent(getApplicationContext(), game.class));
+
            }
        });
 
+       disposableHelpBtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               startActivity(goToActivity = new Intent(getApplicationContext(), DisposableHelp.class));
+
+           }
+       });
+
+        moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(goToActivity = new Intent(getApplicationContext(), ContactUs.class));
+
+            }
+        });
+
     }
+
+
 }

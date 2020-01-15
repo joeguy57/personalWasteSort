@@ -1,12 +1,11 @@
 package com.example.wastesortapp;
 
 import android.os.Build.VERSION_CODES;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
-import com.example.wastesortapp.GarbageItems.DataCountCallback;
-import com.example.wastesortapp.GarbageItems.FirebaseCallback;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class game extends AppCompatActivity {
 
@@ -25,38 +24,11 @@ public class game extends AppCompatActivity {
     colorTextView = findViewById(R.id.itemColor);
     itemTextView = findViewById(R.id.itemName);
 
-    onGameStart();
+
 
   }
 
-  private void onGameStart() {
-    final GarbageItems garbageItems = new GarbageItems();
-    runAsync(garbageItems);
-  }
 
-  private void runAsync(final GarbageItems garbageItems) {
-    garbageItems.readRandomKey(new DataCountCallback() {
-      @Override
-      public void onCallback(int result) {
-        setRandomKey(result);
-        garbageItems.readItemNameData(new FirebaseCallback() {
-          @Override
-          public void onCallback(String result) {
-            setItemName(result);
-            colorTextView.setText(getItemName()); // put in code to make comparison with constraint tags
-          }
-        }, getRandomKey());
-        garbageItems.readColorData(new FirebaseCallback() {
-          @Override
-          public void onCallback(String result) {
-            setColor(result);
-            itemTextView.setText(getColor());
-          }
-        }, getRandomKey());
-        //garbageItem.readImageData(new FirebaseCallback() {) // not a string may need a new access point
-      }
-    });
-  }
 
   private int getRandomKey() {
     return randomKey;

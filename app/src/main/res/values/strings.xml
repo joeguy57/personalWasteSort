@@ -1,8 +1,6 @@
 <resources>
-    <string name="app_name">WasteSortApp</string>
-	<string name = "aucsc320_software_eng_2">AUCSC320 _ Software Eng 2</string>
-  <string name="textview">TextView</string>
-  <string name="timer">Timer</string>
-  <string name="todo">TODO</string>
-  <string name="score">Score</string>
+	<string name = "app_name">WasteSortApp</string>
+	<string name = "more_information">More Information</string>
+	<string name = "if_this_app_does_not_provide_you_with_the_information_you_require_we_recommend_going_to_the_link_below_for_more_information">If this app does not provide you with the information you require, We recommend going to the link below for more information.</string>
+	<string name = "todo">TODO</string>
 </resources>
