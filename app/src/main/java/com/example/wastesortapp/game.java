@@ -10,6 +10,7 @@ package com.example.wastesortapp;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
@@ -70,10 +71,11 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onAnimationStart(Animator animator) {
       }
-
       @Override
       public void onAnimationEnd(Animator animator) {
-        //do something when the countdown is complete
+        Intent highscore = new Intent(getApplicationContext(), ContactUs.class);
+        highscore.putExtra("Score", score);
+        startActivity(highscore);
 
       }
 
