@@ -10,6 +10,7 @@ package com.example.wastesortapp;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -75,17 +76,19 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       }
     });
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
-    mAnimation.setDuration(7000);
+    mAnimation.setDuration(60000);
     mAnimation.setInterpolator(new DecelerateInterpolator());
     mAnimation.addListener(new Animator.AnimatorListener() {
       @Override
       public void onAnimationStart(Animator animator) {
 
       }
-
       @Override
       public void onAnimationEnd(Animator animator) {
-        //do something when the countdown is complete
+        mAnimation.cancel();
+        Intent highscore = new Intent(getApplicationContext(), HighScore.class);
+        highscore.putExtra("Score", score);
+        startActivity(highscore);
 
       }
 
