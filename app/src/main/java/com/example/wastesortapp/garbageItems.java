@@ -1,58 +1,80 @@
 package com.example.wastesortapp;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.View.DragShadowBuilder;
-import android.widget.ImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import java.util.Random;
+import androidx.annotation.NonNull;
 
-public class garbageItems implements ImageView.OnTouchListener{
-  private String color;
-  private Context context;
-  private int ImageList[] = new int[]{R.drawable.appletest,R.drawable.popcanboi};
-  private String [] colorList = new String[]{"Green","Yellow"};
-  private Random randomGen = new Random();
-  private int chosenNum;
 
-  /**
-   * Constructor for garbageItems
-   * @param context the context that the item is being created in
-   * @param constraintLayout which layout the item will be created in
-   */
-  public garbageItems(Context context, ConstraintLayout constraintLayout){
-    this.context = context;
-    chosenNum = getRandomNumber();
-    color = colorList[chosenNum];
-    ImageView item = new ImageView(context);
-    item.setBackgroundResource(ImageList[chosenNum]);
-    constraintLayout.addView(item);
-    item.setOnTouchListener(this);
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-  }//garbageItems
+class GarbageItems  {
 
-  /**
-   * Returns color of bin item goes in
-   * @return color
-   */
-  public String getColor() {
-    return color;
+  private final DatabaseReference gameObjectRef;
+
+  GarbageItems() {
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    gameObjectRef = database.getReference().child("gameObjects");
+  }//GarbageItems(Constructor)
+
+  void readColorData(final FirebaseCallback firebaseCallback, int itemKey){
+    ValueEventListener valueEventListener = new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        String color = dataSnapshot.getValue(String.class);
+        firebaseCallback.onCallback(color);
+      }
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+      }
+    };
+    String itemId = String.valueOf(itemKey);
+    DatabaseReference dataReference = gameObjectRef.child(itemId);
+    DatabaseReference itemColor = dataReference.child("Color");
+    itemColor.addValueEventListener(valueEventListener);
+  }//readColorData
+
+  void readItemNameData(final FirebaseCallback firebaseCallback, int itemKey){
+    ValueEventListener valueEventListener = new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        String item = dataSnapshot.getValue(String.class);
+        firebaseCallback.onCallback(item);
+      }
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+      }
+    };
+    String itemId = String.valueOf(itemKey);
+    DatabaseReference dataReference = gameObjectRef.child(itemId);
+    DatabaseReference itemNames = dataReference.child("Item");
+    itemNames.addValueEventListener(valueEventListener);
+  }//readItemNameData
+
+  void readRandomKey(final DataCountCallback dataCountCallback){
+    ValueEventListener valueEventListener = new ValueEventListener() {
+      @Override
+      public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        int dataCount = (int) dataSnapshot.getChildrenCount();
+        int randomKey = (int) (Math.random()*((dataCount - 1) + 1)) + 1;
+        dataCountCallback.onCallback(randomKey);
+      }
+      @Override
+      public void onCancelled(@NonNull DatabaseError databaseError) {
+      }
+    };
+      gameObjectRef.addValueEventListener(valueEventListener);
+  }//readRandomKey
+
+  interface FirebaseCallback{
+    void onCallback(String result);
   }
-  public int getRandomNumber(){
-    return randomGen.nextInt(2);
-  }
-  /**
-   * Allows for items with setOnTouchListener to be dragged around
-   * @param v the item that is being dragged
-   * @param event how it is being moved
-   * @return if the item has been dragged
-   */
-  public boolean onTouch(View v, MotionEvent event) {
-    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-    v.startDrag(null, shadowBuilder, v, 0);
-    v.setVisibility(v.INVISIBLE);
-    return true;
-  }//onTouch
 
-}
+  interface DataCountCallback{
+    void onCallback(int result);
+  }
+
+
+
+}//GarbageItems
