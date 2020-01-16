@@ -7,7 +7,7 @@ public class Sound {
   private Context context;
   private MediaPlayer correctSortSound;
   private MediaPlayer incorrectSortSound;
-  private MediaPlayer timerSound;
+  private MediaPlayer tickingSound;
   private MediaPlayer buzzerSound;
 
   private static boolean soundToggle = true;
@@ -15,6 +15,7 @@ public class Sound {
   public Sound(Context context){
     this.context = context;
   }//Sound
+
   public void initializeAllGameSounds(){
     initializeCorrectSound();
     initializeIncorrectSound();
@@ -37,7 +38,7 @@ public class Sound {
   }//initializeIncorrectSort
 
   public void initializeTickingSound(){
-    incorrectSortSound = MediaPlayer.create(context,R.raw.tickingsound);
+    tickingSound = MediaPlayer.create(context,R.raw.tickingsound);
   }//initializeIncorrectSort
 
   public void playCorrectSound(){
@@ -50,4 +51,9 @@ public class Sound {
       incorrectSortSound.start();
     }
   }
+  public void playTickingSound() {
+    if (soundToggle == true) {
+      incorrectSortSound.start();
+    }
+  }//playTickingSound
 }
