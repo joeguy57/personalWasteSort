@@ -51,7 +51,7 @@ public class garbageItems implements ImageView.OnTouchListener{
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
-    v.setVisibility(v.INVISIBLE);
+    v.setVisibility(v.GONE);
     return true;
   }//onTouch
 

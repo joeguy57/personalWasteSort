@@ -147,12 +147,16 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
     dropLayoutBlack.setTag("Black");
-//    itemSpawnLocation.setTag("Outside");
-//    constraintLayout.setTag("Outside");
+    itemSpawnLocation.setTag("Outside");
+    constraintLayout.setTag("Outside");
   }
   public void checkForPoint(String binChoice){
     System.out.println("COMPARISON "+ binChoice + " CORRECT ANSWER " + color);
-    if(binChoice.equals(color)) {
+    if(binChoice.equals("Outside")){
+      System.out.println("TRYING TO MAKE VISIBLE");
+      imageView2.setVisibility(View.VISIBLE);
+    }
+    else if(binChoice.equals(color)) {
       increaseScore(true);
       //grabNewItem();
     }//if
@@ -199,9 +203,9 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         View view = (View) event.getLocalState();
        // ViewGroup owner = (ViewGroup) view.getParent();
         ConstraintLayout container = (ConstraintLayout) v;
-        if(container.getTag() == null){
-          view.setVisibility(view.VISIBLE);
-        }
+//        if(container.getTag() == null){
+//          view.setVisibility(view.VISIBLE);
+//        }
         //container.addView(view);
         //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
