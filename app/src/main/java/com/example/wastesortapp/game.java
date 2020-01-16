@@ -37,7 +37,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   ImageView imageView2;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-  //private DatabaseReference databaseReference = firebaseDatabase.getReference();
   private DatabaseReference imagesUrlsRef = rootRef.child("gameObjects");
   private ConstraintLayout constraintLayout;
   private ConstraintLayout dropLayoutGreen;
@@ -104,6 +103,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
                 String rand = String.valueOf(randNum + 1);
                 String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
                 String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+
                 //urlNum.setText(data + " " + rand);
                // itemSpawnLocation.addView();
                 color = data;
