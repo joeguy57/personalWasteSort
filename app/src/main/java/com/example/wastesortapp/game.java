@@ -58,14 +58,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    sound.initializeIncorrectSound();
-    sound.initializeCorrectSound();
+    sound.initializeAllGameSounds();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
 
     DisplayMetrics displayMetrics = new DisplayMetrics();
     getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-
 
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
@@ -104,13 +102,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   protected void onStart() {
     super.onStart();
     mAnimation.start();
-
     createNewImages();
     findItems();
-
-
-//    grabNewItem();
-
   }//onStart
 
 

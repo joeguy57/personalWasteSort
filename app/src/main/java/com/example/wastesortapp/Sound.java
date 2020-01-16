@@ -8,7 +8,7 @@ public class Sound {
   private MediaPlayer correctSortSound;
   private MediaPlayer incorrectSortSound;
   private MediaPlayer tickingSound;
-  private MediaPlayer buzzerSound;
+  private MediaPlayer gameOverSound;
 
   private static boolean soundToggle = true;
 
@@ -32,7 +32,9 @@ public class Sound {
   public void initializeCorrectSound(){
     correctSortSound = MediaPlayer.create(context, R.raw.correctsound);
   }//initializeCorrectSort
-
+  public void initializeGameOverSound(){
+    gameOverSound = MediaPlayer.create(context,R.raw.gameoversound);
+  }
   public void initializeIncorrectSound(){
     incorrectSortSound = MediaPlayer.create(context,R.raw.incorrectsound);
   }//initializeIncorrectSort
@@ -53,7 +55,10 @@ public class Sound {
   }
   public void playTickingSound() {
     if (soundToggle == true) {
-      incorrectSortSound.start();
+      tickingSound.start();
     }
   }//playTickingSound
+  public void playGameOverSound(){
+    gameOverSound.start();
+  }
 }
