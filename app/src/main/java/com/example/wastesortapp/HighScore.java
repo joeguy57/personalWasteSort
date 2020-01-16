@@ -51,8 +51,15 @@ public class HighScore extends AppCompatActivity {
   }
 
   public void sendData(View view){
+
+    String key;
     DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("HighScore");
-    String key = writeData.push().getKey();
+    if (writeData.getKey() != String.valueOf(1)) {
+      key = writeData.push().getKey();
+    }
+    else{
+      key = "1";
+    }
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss z" );
     Date date = new Date(System.currentTimeMillis());
     writeData.child(key).child("Date").setValue(formatter.format(date));
@@ -60,12 +67,11 @@ public class HighScore extends AppCompatActivity {
     writeData.child(key).child("Name").setValue(nameInput.getText().toString());
     if(!emailInput.isEmpty()) {
       emailValid = checkEmail(emailTextView);
-      if (emailValid) {
-        writeData.child(key).child("Email").setValue(emailInput);
-      }//if
-      else {
+      while (!emailValid) {
         emailTextView.setError("Invalid Email: please use your ualberta email address");
-      }//else
+      }//if
+      writeData.child(key).child("Email").setValue(emailInput);
     }//outter if
+
   }//sendDataa
 }//HighScore
