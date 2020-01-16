@@ -11,6 +11,7 @@ package com.example.wastesortapp;
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
@@ -49,12 +50,19 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private TextView scoreView;
   private int score = 0;
   private static final String TAG = "MyActivity";
+  int screenHeight;
+  int screenWidth;
 
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
+
+    DisplayMetrics displayMetrics = new DisplayMetrics();
+    getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+    screenHeight = displayMetrics.heightPixels;
+    screenWidth = displayMetrics.widthPixels;
 
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
@@ -219,6 +227,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
     v.setVisibility(v.INVISIBLE);
+
     return true;
   }//onTouch
 }//gameActivity
