@@ -6,4 +6,23 @@
   android:layout_height="match_parent"
   tools:context=".HighScore">
 
+  <TextView
+    android:id="@+id/title"
+    android:layout_width="140dp"
+    android:layout_height="35dp"
+    android:gravity="center"
+    android:text="Enter Your High Score"
+    app:layout_constraintBottom_toTopOf="@+id/playerScore"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+  <TextView
+    android:id="@+id/playerScore"
+    android:layout_width="145dp"
+    android:layout_height="47dp"
+    android:gravity="center"
+    android:text="Your Score"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:layout_editor_absoluteY="144dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
