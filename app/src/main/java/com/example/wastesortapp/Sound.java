@@ -2,7 +2,6 @@ package com.example.wastesortapp;
 
 import android.content.Context;
 import android.media.MediaPlayer;
-import android.provider.MediaStore.Audio.Media;
 
 public class Sound {
   private Context context;
@@ -16,7 +15,11 @@ public class Sound {
   public Sound(Context context){
     this.context = context;
   }//Sound
-
+  public void initializeAllGameSounds(){
+    initializeCorrectSound();
+    initializeIncorrectSound();
+    initializeTickingSound();
+  }
   public void disableSound(){
     soundToggle = false;
   }//disableSound
@@ -25,11 +28,26 @@ public class Sound {
     soundToggle = true;
   }//enableSound
 
-  public void initializeCorrectSort(){
-
+  public void initializeCorrectSound(){
+    correctSortSound = MediaPlayer.create(context, R.raw.correctsound);
   }//initializeCorrectSort
 
-  public void initializeIncorrectSort(){
-
+  public void initializeIncorrectSound(){
+    incorrectSortSound = MediaPlayer.create(context,R.raw.incorrectsound);
   }//initializeIncorrectSort
+
+  public void initializeTickingSound(){
+    incorrectSortSound = MediaPlayer.create(context,R.raw.tickingsound);
+  }//initializeIncorrectSort
+
+  public void playCorrectSound(){
+    if(soundToggle == true){
+      correctSortSound.start();
+    }
+  }
+  public void playIncorrectSound(){
+    if(soundToggle == true){
+      incorrectSortSound.start();
+    }
+  }
 }
