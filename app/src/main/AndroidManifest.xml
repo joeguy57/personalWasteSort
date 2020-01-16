@@ -13,8 +13,10 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme"
     tools:ignore="GoogleAppIndexingWarning">
-    <activity android:name=".HighScore"></activity>
-    <activity android:name=".ContactUs" />
+    <activity android:name=".HighScore"
+      android:screenOrientation="portrait"/>
+    <activity android:name=".ContactUs"
+      android:screenOrientation="portrait"/>
     <activity
       android:name=".DisposableHelp"
       android:screenOrientation="portrait" />
