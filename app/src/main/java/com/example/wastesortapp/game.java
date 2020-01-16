@@ -50,8 +50,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private TextView scoreView;
   private int score = 0;
   private static final String TAG = "MyActivity";
-  int screenHeight;
-  int screenWidth;
+  boolean wasThereDrop = false;
+
 
   //-----------------------------------------------------------------------------------
   @Override
@@ -61,8 +61,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
     DisplayMetrics displayMetrics = new DisplayMetrics();
     getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-    screenHeight = displayMetrics.heightPixels;
-    screenWidth = displayMetrics.widthPixels;
+
 
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
@@ -159,7 +158,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     constraintLayout.setTag("Outside");
   }
   public void checkForPoint(String binChoice){
-    System.out.println("COMPARISON "+ binChoice + " CORRECT ANSWER " + color);
+//    if(binChoice == null || wasThereDrop == false){
+//      imageView2.setVisibility(View.VISIBLE);
+//    }
+    //System.out.println("COMPARISON "+ binChoice + " CORRECT ANSWER " + color);
     if(binChoice.equals("Outside")){
       imageView2.setVisibility(View.VISIBLE);
     }
@@ -196,8 +198,11 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 //  }
 
   public boolean onDrag(View v, DragEvent event) {
+
+    ConstraintLayout container = null;
     switch (event.getAction()) {
       case DragEvent.ACTION_DRAG_STARTED:
+        wasThereDrop = false;
         Log.d(TAG, "onDrag: ACTION_DRAG_STARTED ");
         break;
       case DragEvent.ACTION_DRAG_ENTERED:
@@ -207,27 +212,47 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         Log.d(TAG, "onDrag: ACTION_DRAG_EXITED ");
         break;
       case DragEvent.ACTION_DROP:
+        Log.d(TAG,"onDrag: ACTION_DRAG_DROP");
         View view = (View) event.getLocalState();
        // ViewGroup owner = (ViewGroup) view.getParent();
-        ConstraintLayout container = (ConstraintLayout) v;
+        container = (ConstraintLayout) v;
         //container.addView(view);
         //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
+        wasThereDrop = true;
         checkForPoint((String) container.getTag());
+
         break;
       case DragEvent.ACTION_DRAG_ENDED:
         Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
+        outOfBoundsCheck(wasThereDrop);
       default:
         break;
     }//switch
     return true;
-
   }
   public boolean onTouch(View v, MotionEvent event) {
+    switch(event.getAction()){
+      case MotionEvent.ACTION_DOWN:
+        System.out.println(v.getX() + " X " +v.getY() + " Y     ONCLICK"  );
+      case MotionEvent.ACTION_BUTTON_RELEASE:
+        System.out.println(v.getX() + " X " +v.getY() + " Y    ONRELEASE"  );
+    }
+    if(event.getAction() == MotionEvent.ACTION_DOWN){
+      System.out.println(v.getX() + " X " +v.getY() + " Y     ONCLICK"  );
+    }//if
+    if(event.getAction() == MotionEvent.ACTION_UP){
+      System.out.println(v.getX() + " X " +v.getY() + " Y    ONRELEASE"  );
+    }
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
     v.setVisibility(v.INVISIBLE);
 
     return true;
   }//onTouch
+  public void outOfBoundsCheck(boolean wasThereDrop){
+    if(wasThereDrop == false){
+      imageView2.setVisibility(View.VISIBLE);
+    }
+  }
 }//gameActivity
