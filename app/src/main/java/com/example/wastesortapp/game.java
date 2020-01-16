@@ -34,8 +34,10 @@ import java.util.Random;
 
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
           ImageView.OnTouchListener {
-
+  Sound sound = new Sound(this);
   ImageView imageView2;
+  private ImageView enableSoundButton;
+  private ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   //private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -50,8 +52,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private TextView scoreView;
   private int score = 0;
   private static final String TAG = "MyActivity";
-  boolean wasThereDrop = false;
-  Sound sound = new Sound(this);
+  private boolean wasThereDrop = false;
+
 
 
 
@@ -104,6 +106,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     mAnimation.start();
     createNewImages();
     findItems();
+
   }//onStart
 
 
@@ -137,6 +140,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
 
   public void findItems() {
+    enableSoundButton = findViewById(R.id.soundOffImage);
+    disableSoundButton = findViewById(R.id.soundOnImage);
     constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
     scoreView = findViewById(R.id.scoreView);
     dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
@@ -263,4 +268,14 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       imageView2.setVisibility(View.VISIBLE);
     }
   }
+  public void enableVolume(View v) {
+    sound.enableSound();
+    disableSoundButton.setVisibility(View.VISIBLE);
+    enableSoundButton.setVisibility(View.INVISIBLE);
+  } // enableVolume
+  public void disableVolume(View v) {
+    sound.disableSound();
+    disableSoundButton.setVisibility(View.INVISIBLE);
+    enableSoundButton.setVisibility(View.VISIBLE);
+  } // enableVolume
 }//gameActivity

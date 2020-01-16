@@ -46,13 +46,15 @@ public class Sound {
   public void playCorrectSound(){
     if(soundToggle == true){
       correctSortSound.start();
-    }
-  }
+    }//if
+
+  }//playCorrectSound
   public void playIncorrectSound(){
     if(soundToggle == true){
       incorrectSortSound.start();
-    }
-  }
+    }//if
+
+  }//playIncorrectSound
   public void playTickingSound() {
     if (soundToggle == true) {
       tickingSound.start();
