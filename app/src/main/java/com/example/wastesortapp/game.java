@@ -40,7 +40,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-  //private DatabaseReference databaseReference = firebaseDatabase.getReference();
   private DatabaseReference imagesUrlsRef = rootRef.child("gameObjects");
   private ConstraintLayout constraintLayout;
   private ConstraintLayout dropLayoutGreen;
@@ -114,17 +113,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        //  ImageView imageGet = findViewById(R.id.imageGet);
         long numChildern =  dataSnapshot.getChildrenCount();
-        //TextView urlNum = findViewById(R.id.textView3);
         String num = String.valueOf(numChildern);
-        //urlNum.setText(num);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         String rand = String.valueOf(randNum + 1);
         String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
         String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-        //urlNum.setText(data + " " + rand);
-        // itemSpawnLocation.addView();
         color = data;
         Picasso.get().load(link).into(imageView2);
         imageView2.setVisibility(View.VISIBLE);
@@ -137,8 +131,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       }
     });
   }//createNewImages
-
-
   public void findItems() {
     enableSoundButton = findViewById(R.id.soundOffImage);
     disableSoundButton = findViewById(R.id.soundOnImage);
@@ -168,10 +160,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     constraintLayout.setTag("Outside");
   }
   public void checkForPoint(String binChoice){
-//    if(binChoice == null || wasThereDrop == false){
-//      imageView2.setVisibility(View.VISIBLE);
-//    }
-    //System.out.println("COMPARISON "+ binChoice + " CORRECT ANSWER " + color);
     if(binChoice.equals("Outside")){
       imageView2.setVisibility(View.VISIBLE);
     }
@@ -179,14 +167,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       increaseScore(true);
       createNewImages();
       sound.playCorrectSound();
-
     }//if
      else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
        increaseScore(false);
        createNewImages();
        sound.playIncorrectSound();
      }//if
-
   }//checkForPoints
 
   public void increaseScore(boolean wasPointScored){
@@ -198,20 +184,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     }
     scoreView.setText(""+ score);
   }//changeScore
-//  public void grabNewItem(){
-//    garbageItems item = new garbageItems(this, itemSpawnLocation);
-//    color = item.getColor();
-//  }
- // @Override
-//  public boolean onTouch(View v, MotionEvent event) {
-//    DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
-//    v.startDrag(null, shadowBuilder, v, 0);
-//    v.setVisibility(v.INVISIBLE);
-//    return true;
-//  }
 
   public boolean onDrag(View v, DragEvent event) {
-
     ConstraintLayout container = null;
     switch (event.getAction()) {
       case DragEvent.ACTION_DRAG_STARTED:
@@ -226,15 +200,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         break;
       case DragEvent.ACTION_DROP:
         Log.d(TAG,"onDrag: ACTION_DRAG_DROP");
-        View view = (View) event.getLocalState();
-       // ViewGroup owner = (ViewGroup) view.getParent();
         container = (ConstraintLayout) v;
-        //container.addView(view);
-        //view.setVisibility(View.VISIBLE);
         System.out.println("CONTAINER " + container.getTag());
         wasThereDrop = true;
         checkForPoint((String) container.getTag());
-
         break;
       case DragEvent.ACTION_DRAG_ENDED:
         Log.d(TAG, "onDrag: ACTION_DRAG_ENDED ");
@@ -243,20 +212,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         break;
     }//switch
     return true;
-  }
+  }//onDrag
   public boolean onTouch(View v, MotionEvent event) {
-    switch(event.getAction()){
-      case MotionEvent.ACTION_DOWN:
-        System.out.println(v.getX() + " X " +v.getY() + " Y     ONCLICK"  );
-      case MotionEvent.ACTION_BUTTON_RELEASE:
-        System.out.println(v.getX() + " X " +v.getY() + " Y    ONRELEASE"  );
-    }
-    if(event.getAction() == MotionEvent.ACTION_DOWN){
-      System.out.println(v.getX() + " X " +v.getY() + " Y     ONCLICK"  );
-    }//if
-    if(event.getAction() == MotionEvent.ACTION_UP){
-      System.out.println(v.getX() + " X " +v.getY() + " Y    ONRELEASE"  );
-    }
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
     v.setVisibility(v.INVISIBLE);
