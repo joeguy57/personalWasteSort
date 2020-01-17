@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -56,6 +57,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
   private int randCounter = 1;
+  ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
 
   //-----------------------------------------------------------------------------------
   @Override
@@ -88,7 +90,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         mAnimation.cancel();
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
-        sound.playGameOverSound();
+        //sound.playGameOverSound();
         startActivity(highscore);
         finish();
 
@@ -125,16 +127,23 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildern);
         int randNum = new Random().nextInt(Integer.parseInt(num));
-        String rand = String.valueOf(randNum + 1);
+        System.out.println(randNum);
+        if(itemsChosen.contains(randNum)){
+          createNewImages();
+        }
+        else {
+          itemsChosen.add(randNum);
+          String rand = String.valueOf(randNum + 1);
 
-        if(!list.contains(rand)) {
-          randKey[randCounter] = rand;
-          String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
-          String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-          color = data;
-          Picasso.get().load(link).into(imageView2);
-          imageView2.setVisibility(View.VISIBLE);
-        }//if
+          //if (!list.contains(rand)) {
+          //  randKey[randCounter] = rand;
+            String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
+            String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+            color = data;
+            Picasso.get().load(link).into(imageView2);
+            imageView2.setVisibility(View.VISIBLE);
+        //  }//if
+        }
       }//onDataChange
 
       @Override
@@ -178,12 +187,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     else if(binChoice.equals(color)) {
       increaseScore(true);
       createNewImages();
-      sound.playCorrectSound();
+      //sound.playCorrectSound();
     }//if
      else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
        increaseScore(false);
        createNewImages();
-       sound.playIncorrectSound();
+      // sound.playIncorrectSound();
      }//if
   }//checkForPoints
 
