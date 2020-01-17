@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/ConstraintLayoutDrop"
-    android:background="@drawable/gamebackground"
+    android:background="@mipmap/gamebackground"
     tools:context=".game">
 
     <ImageView
