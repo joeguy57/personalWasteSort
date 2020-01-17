@@ -4,5 +4,5 @@
         android:state_pressed="true"
         android:drawable="@drawable/gamebtnpressed"/>
     <item
-        android:drawable="@drawable/gamebtn"/>
+        android:drawable="@drawable/gamebtnoriginal"/>
 </selector>
