@@ -53,10 +53,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private int score = 0;
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
-
-
-
-
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {

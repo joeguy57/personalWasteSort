@@ -36,6 +36,7 @@ public class HighScore extends AppCompatActivity {
     nameInput = findViewById(R.id.userInputName);
     emailTextView = findViewById(R.id.userEmailName);
     TextView playerScore = findViewById(R.id.playerScore);
+    playerScore.setText("");
     playerScore.setText(String.valueOf(score));
 
   }//onStart
@@ -96,9 +97,6 @@ public class HighScore extends AppCompatActivity {
     } else {
       emailTextView.setText("");
       emailTextView.setError("Please use ualberta email");
-
     }
-
-
   }//sendDataa
 }//HighScore
