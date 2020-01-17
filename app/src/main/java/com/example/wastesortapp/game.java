@@ -31,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
@@ -53,6 +55,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private int score = 0;
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
+  private int randCounter = 1;
+
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +107,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     super.onStart();
     mAnimation.start();
     createNewImages();
+    randCounter++;
     findItems();
 
   }//onStart
@@ -112,15 +117,22 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
         long numChildern =  dataSnapshot.getChildrenCount();
+        String randKey[] = new String[(int) numChildern];
+        List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildern);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         String rand = String.valueOf(randNum + 1);
-        String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
-        String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-        color = data;
-        Picasso.get().load(link).into(imageView2);
-        imageView2.setVisibility(View.VISIBLE);
+
+        if(!list.contains(rand)) {
+          randKey[randCounter] = rand;
+          String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
+          String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+          color = data;
+          Picasso.get().load(link).into(imageView2);
+          imageView2.setVisibility(View.VISIBLE);
+        }//if
 
       }
 
