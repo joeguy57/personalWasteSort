@@ -88,7 +88,9 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         mAnimation.cancel();
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
+        sound.playGameOverSound();
         startActivity(highscore);
+        finish();
 
       }
 
