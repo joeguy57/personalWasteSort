@@ -41,7 +41,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-  private DatabaseReference imagesUrlsRef = rootRef.child("gameObjects");
+  private DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
   private ConstraintLayout constraintLayout;
   private ConstraintLayout dropLayoutGreen;
   private ConstraintLayout dropLayoutBlue;
