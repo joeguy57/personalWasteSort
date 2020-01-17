@@ -119,7 +119,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
         long numChildern =  dataSnapshot.getChildrenCount();
-        String randKey[] = new String[(int) numChildern];
+        String[] randKey = new String[(int) numChildern];
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildern);
         int randNum = new Random().nextInt(Integer.parseInt(num));
@@ -133,8 +133,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
           Picasso.get().load(link).into(imageView2);
           imageView2.setVisibility(View.VISIBLE);
         }//if
-
-      }
+      }//onDataChange
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -187,7 +186,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   }//checkForPoints
 
   public void increaseScore(boolean wasPointScored){
-    if(wasPointScored == true) {
+    if(wasPointScored) {
       score += 1;
     }
     else{
