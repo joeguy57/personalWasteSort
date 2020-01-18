@@ -41,7 +41,7 @@ public class Sound {
   }//initializeIncorrectSort
 
   public void initializeTickingSound(){
-    tickingSound = MediaPlayer.create(context,R.raw.tickingsound);
+    tickingSound = MediaPlayer.create(context,R.raw.tickingsound2);
   }//initializeIncorrectSort
 
   public void playCorrectSound(){

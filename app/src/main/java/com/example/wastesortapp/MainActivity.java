@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
            @Override
            public void onClick(View v) {
                startActivity(goToActivity = new Intent(getApplicationContext(), game.class));
+               finish();
 
            }
        });

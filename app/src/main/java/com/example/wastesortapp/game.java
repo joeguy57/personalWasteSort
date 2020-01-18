@@ -12,9 +12,11 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
 
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
           ImageView.OnTouchListener {
@@ -57,12 +60,24 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private int score = 0;
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
-  private int randCounter = 1;
+  private CountDownTimer timer;
   ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
 
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    timer = new CountDownTimer(45000,1000) {
+      @Override
+      public void onTick(long millisUntilFinished) {
+        System.out.println("One second");
+      }
+
+      @Override
+      public void onFinish() {
+        sound.playTickingSound();
+      }
+    };timer.start();
+
     sound.initializeAllGameSounds();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
@@ -72,6 +87,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
     ImageView backBtn = findViewById(R.id.backBtn);
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
+    progressBar.getDrawingTime();
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -80,8 +96,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     });
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
     mAnimation.setDuration(60000);
+
     mAnimation.setInterpolator(new DecelerateInterpolator());
     mAnimation.addListener(new Animator.AnimatorListener() {
+
       @Override
       public void onAnimationStart(Animator animator) {
 
@@ -105,6 +123,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onAnimationRepeat(Animator animator) {
       }
+
     });
   }
 
@@ -113,7 +132,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     super.onStart();
     mAnimation.start();
     createNewImages();
-    randCounter++;
     findItems();
 
   }//onStart
@@ -262,4 +280,11 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     disableSoundButton.setVisibility(View.INVISIBLE);
     enableSoundButton.setVisibility(View.VISIBLE);
   } // enableVolume
+  public boolean onKeyDown(int keyCode, KeyEvent event){
+    if(keyCode == KeyEvent.KEYCODE_BACK){
+      finish();
+      System.exit(0);
+    }
+    return true;
+  }//onKeyDown
 }//gameActivity
