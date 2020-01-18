@@ -69,7 +69,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     timer = new CountDownTimer(45000,1000) {
       @Override
       public void onTick(long millisUntilFinished) {
-        System.out.println("One second");
       }
 
       @Override
