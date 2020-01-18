@@ -8,14 +8,38 @@
     android:background="@drawable/gamebackground">
 
     <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="39dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/backbutton" />
+      android:id="@+id/backBtn"
+      android:layout_width="37dp"
+      android:layout_height="59dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.044"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:srcCompat="@drawable/backbutton" />
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recycleView"
+      android:layout_width="387dp"
+      android:layout_height="566dp"
+      android:layout_marginStart="1dp"
+      android:layout_marginTop="41dp"
+      android:layout_marginEnd="1dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/searchView" />
+    <SearchView
+      android:id="@+id/searchView"
+      android:layout_width="368dp"
+      android:layout_height="49dp"
+      android:layout_marginStart="1dp"
+      android:layout_marginTop="1dp"
+      android:layout_marginEnd="1dp"
+      android:layout_marginBottom="1dp"
+      app:layout_constraintBottom_toTopOf="@+id/recycleView"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/backBtn"
+      android:padding="10dp"
+      android:queryHint="Search"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

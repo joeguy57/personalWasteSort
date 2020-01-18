@@ -56,7 +56,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
   private int randCounter = 1;
-
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -118,26 +117,28 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildern =  dataSnapshot.getChildrenCount();
-        String[] randKey = new String[(int) numChildern];
-        List<String> list = Arrays.asList(randKey);
+        long numChildern = dataSnapshot.getChildrenCount();
+        Integer[] randKey = new Integer[(int) numChildern];
+        List<Integer> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildern);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         String rand = String.valueOf(randNum + 1);
-
-        if(!list.contains(rand)) {
-          randKey[randCounter] = rand;
+        if (!list.contains(randNum)) {
+          randKey[randCounter] = randNum;
           String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
           String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+          String itemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
           color = data;
           Picasso.get().load(link).into(imageView2);
           imageView2.setVisibility(View.VISIBLE);
+          Log.d(TAG, itemName);
         }//if
+
       }//onDataChange
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-
+          createNewImages();
       }
     });
   }//createNewImages
