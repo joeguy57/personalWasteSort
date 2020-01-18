@@ -250,6 +250,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
           @Override
           public void onClick(DialogInterface dialog, int which) {
             finish();
+            System.exit(0);
           }
         })
 

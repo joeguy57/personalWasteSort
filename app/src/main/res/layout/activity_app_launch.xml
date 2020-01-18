@@ -7,6 +7,21 @@
   tools:context=".appLaunch"
   android:background="@mipmap/background">
 
+  <TextView
+    android:id="@+id/title2"
+    android:layout_width="313dp"
+    android:layout_height="121dp"
+    android:fontFamily="@font/candy_beans"
+    android:gravity="center"
+    android:text="URecycle"
+    android:textColor="#4E610F"
+    android:textSize="70sp"
+    android:textStyle="normal"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.132" />
   <ImageView
     android:id="@+id/imageView3"
     android:layout_width="172dp"
@@ -16,6 +31,6 @@
     app:layout_constraintHorizontal_bias="0.497"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.394"
+    app:layout_constraintVertical_bias="0.558"
     app:srcCompat="@mipmap/leaflogo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
