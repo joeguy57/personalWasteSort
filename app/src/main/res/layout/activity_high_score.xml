@@ -4,81 +4,40 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".HighScore"
-  android:background="@mipmap/background">
+  android:background="@mipmap/background"
+  tools:context=".HighScore">
 
-  <TextView
-    android:id="@+id/userEmail"
-    android:layout_width="93dp"
-    android:layout_height="30dp"
-    android:gravity="center"
-    android:text="Email :"
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/userInputName"
+  <ImageView
+    android:id="@+id/imageView4"
+    android:layout_width="261dp"
+    android:layout_height="84dp"
+    android:layout_marginTop="30dp"
+    app:layout_constraintBottom_toTopOf="@+id/yourScoreLocation"
+    app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.531" />
-  <EditText
-    android:id="@+id/userInputName"
+    app:srcCompat="@mipmap/highscoreheader" />
+  <ImageView
+    android:id="@+id/yourScoreLocation"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:ems="10"
-    android:hint="Enter you name"
-    android:inputType="textPersonName"
+    android:layout_marginTop="33dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/imageView4"
+    app:srcCompat="@mipmap/finalscore" />
+  <ImageView
+    android:id="@+id/nameinputlocation"
+    android:layout_width="220dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="268dp"
+
+    android:layout_marginEnd="24dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/enterName"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.41" />
-  <TextView
-    android:id="@+id/enterName"
-    android:layout_width="93dp"
-    android:layout_height="30dp"
-    android:gravity="center"
-    android:text="Name : "
-    android:textSize="18sp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toStartOf="@+id/userInputName"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.413" />
-  <EditText
-    android:id="@+id/userEmailName"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:hint="Enter your email"
-    android:inputType="textWebEmailAddress"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/enterName"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.53" />
-  <TextView
-    android:id="@+id/title"
-    android:layout_width="140dp"
-    android:layout_height="35dp"
-    android:gravity="center"
-    android:text="Enter Your High Score"
-    app:layout_constraintBottom_toTopOf="@+id/playerScore"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.546"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
-  <TextView
-    android:id="@+id/playerScore"
-    android:layout_width="145dp"
-    android:layout_height="47dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="32dp"
-    android:gravity="center"
-    android:text="Your Score"
-    app:layout_constraintBottom_toTopOf="@+id/userInputName"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.556"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/title" />
+    app:layout_constraintVertical_bias="0.0"
+    app:srcCompat="@mipmap/inputzone" />
   <Button
     android:id="@+id/button2"
     android:layout_width="155dp"
@@ -87,7 +46,105 @@
     android:text="Button"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.683"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.807" />
+    app:layout_constraintVertical_bias="0.778" />
+  <ImageView
+    android:id="@+id/nameLocation"
+    android:layout_width="125dp"
+    android:layout_height="37dp"
+    android:layout_marginBottom="40dp"
+    app:layout_constraintBottom_toTopOf="@+id/emaillocation"
+    app:layout_constraintEnd_toStartOf="@+id/nameinputlocation"
+    app:layout_constraintHorizontal_bias="0.54"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.919"
+    app:srcCompat="@mipmap/discrp" />
+  <ImageView
+    android:id="@+id/emailinputlocation"
+    android:layout_width="220dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="324dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:srcCompat="@mipmap/inputzone" />
+  <ImageView
+    android:id="@+id/emaillocation"
+    android:layout_width="125dp"
+    android:layout_height="37dp"
+    android:layout_marginBottom="324dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/emailinputlocation"
+    app:layout_constraintHorizontal_bias="0.48"
+    app:layout_constraintStart_toStartOf="parent"
+    app:srcCompat="@mipmap/discrp" />
+  <TextView
+    android:id="@+id/userEmail"
+    android:layout_width="97dp"
+    android:layout_height="38dp"
+    android:gravity="center"
+    android:text="Email :"
+    android:textColor="#000000"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toBottomOf="@+id/emaillocation"
+    app:layout_constraintEnd_toEndOf="@+id/emaillocation"
+    app:layout_constraintStart_toStartOf="@+id/emaillocation"
+    app:layout_constraintTop_toTopOf="@+id/emaillocation"
+    app:layout_constraintVertical_bias="0.0" />
+  <EditText
+    android:id="@+id/userInputName"
+    android:layout_width="206dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="1dp"
+    android:ems="10"
+    android:hint="Enter you name"
+    android:inputType="textPersonName"
+    app:layout_constraintBottom_toBottomOf="@+id/nameinputlocation"
+    app:layout_constraintEnd_toEndOf="@+id/nameinputlocation"
+    app:layout_constraintHorizontal_bias="0.384"
+    app:layout_constraintStart_toStartOf="@+id/nameinputlocation"
+    app:layout_constraintTop_toTopOf="@+id/nameinputlocation"
+    app:layout_constraintVertical_bias="1.0" />
+  <TextView
+    android:id="@+id/enterName"
+    android:layout_width="102dp"
+    android:layout_height="32dp"
+    android:gravity="center"
+    android:text="Name : "
+    android:textColor="#000000"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toBottomOf="@+id/nameLocation"
+    app:layout_constraintEnd_toEndOf="@+id/nameLocation"
+    app:layout_constraintHorizontal_bias="0.406"
+    app:layout_constraintStart_toStartOf="@+id/nameLocation"
+    app:layout_constraintTop_toTopOf="@+id/nameLocation"
+    app:layout_constraintVertical_bias="0.571" />
+  <EditText
+    android:id="@+id/userEmailName"
+    android:layout_width="207dp"
+    android:layout_height="39dp"
+    android:ems="10"
+    android:hint="Enter your email"
+    android:inputType="textWebEmailAddress"
+    app:layout_constraintBottom_toBottomOf="@+id/emailinputlocation"
+    app:layout_constraintEnd_toEndOf="@+id/emailinputlocation"
+    app:layout_constraintHorizontal_bias="0.384"
+    app:layout_constraintStart_toStartOf="@+id/emailinputlocation"
+    app:layout_constraintTop_toTopOf="@+id/emailinputlocation"
+    app:layout_constraintVertical_bias="0.0" />
+  <TextView
+    android:id="@+id/playerScore"
+    android:layout_width="145dp"
+    android:layout_height="47dp"
+    android:gravity="center"
+    android:text="Your Score"
+    android:textColor="#000000"
+    android:textSize="24sp"
+    app:layout_constraintBottom_toBottomOf="@+id/yourScoreLocation"
+    app:layout_constraintEnd_toEndOf="@+id/yourScoreLocation"
+    app:layout_constraintStart_toStartOf="@+id/yourScoreLocation"
+    app:layout_constraintTop_toTopOf="@+id/yourScoreLocation" />
 </androidx.constraintlayout.widget.ConstraintLayout>
