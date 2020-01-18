@@ -31,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -50,12 +51,15 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private ConstraintLayout dropLayoutYellow;
   private ConstraintLayout dropLayoutBlack;
   private ConstraintLayout itemSpawnLocation;
+  private TextView itemNameTextView;
   private String color;
   private TextView scoreView;
   private int score = 0;
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
   private int randCounter = 1;
+  ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
+
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -87,12 +91,15 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         mAnimation.cancel();
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
+        sound.playGameOverSound();
         startActivity(highscore);
+        finish();
 
       }
 
       @Override
       public void onAnimationCancel(Animator animator) {
+
       }
 
       @Override
@@ -117,28 +124,36 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildern = dataSnapshot.getChildrenCount();
-        Integer[] randKey = new Integer[(int) numChildern];
-        List<Integer> list = Arrays.asList(randKey);
-        String num = String.valueOf(numChildern);
+        long numChildren =  dataSnapshot.getChildrenCount();
+        String[] randKey = new String[(int) numChildren];
+        List<String> list = Arrays.asList(randKey);
+        String num = String.valueOf(numChildren);
         int randNum = new Random().nextInt(Integer.parseInt(num));
-        String rand = String.valueOf(randNum + 1);
-        if (!list.contains(randNum)) {
-          randKey[randCounter] = randNum;
+        System.out.println(randNum);
+
+        if(itemsChosen.contains(randNum)){
+          createNewImages();
+        }
+        else {
+          //System.out.println(itemsChosen);
+          String rand = String.valueOf(randNum);
           String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
           String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-          String itemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
+          String ItemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
           color = data;
           Picasso.get().load(link).into(imageView2);
           imageView2.setVisibility(View.VISIBLE);
-          Log.d(TAG, itemName);
-        }//if
-
+          itemNameTextView.setText(ItemName);
+          itemsChosen.add(randNum);
+          if(itemsChosen.size() == numChildren){
+            itemsChosen.clear();
+          }
+        //  }//if
+        }//else
       }//onDataChange
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-          createNewImages();
       }
     });
   }//createNewImages
@@ -153,6 +168,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
     itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
     imageView2 = findViewById(R.id.imageView2);
+    itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
   }
   public void setItemAttributes(){

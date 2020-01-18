@@ -20,6 +20,7 @@ public class Sound {
     initializeCorrectSound();
     initializeIncorrectSound();
     initializeTickingSound();
+    initializeGameOverSound();
   }
   public void disableSound(){
     soundToggle = false;
