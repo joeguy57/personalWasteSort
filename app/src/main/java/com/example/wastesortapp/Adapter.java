@@ -27,19 +27,24 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
   @Override
   public void onBindViewHolder(@NonNull viewHolder holder, int position) {
     holder.nameView.setText(list.get(position).getName());
-    holder.colorView.setText(list.get(position).getBinType());
+    holder.binTypeView.setText(list.get(position).getBinType());
     holder.descriptionView.setText(list.get(position).getDescription());
-    switch (list.get(position).getBinType()) {
-      case "Others":
-        //holder.imageView.setImageDrawable();
+    String str = list.get(position).getBinType();
+    switch (str) {
+      case "Other":
+        holder.imageView.setImageResource(R.drawable.other);
         break;
-      case "Trash":
+      case "Landfill":
+        holder.imageView.setImageResource(R.drawable.trash);
         break;
-      case "Recyclables":
+      case "Recyclable":
+        holder.imageView.setImageResource(R.drawable.recyclables);
         break;
-      case "Beverages":
+      case "Beverage":
+        holder.imageView.setImageResource(R.drawable.beverages);
         break;
-      case "Organics":
+      case "Organic":
+        holder.imageView.setImageResource(R.drawable.organics);
         break;
       default:
         break;
@@ -53,13 +58,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
   class viewHolder extends RecyclerView.ViewHolder {
 
-    TextView nameView, colorView, descriptionView;
+    TextView nameView, binTypeView, descriptionView;
     ImageView imageView;
 
     public viewHolder(@NonNull View itemView) {
       super(itemView);
       nameView = itemView.findViewById(R.id.itemName);
-      colorView = itemView.findViewById(R.id.itemBinType);
+      binTypeView = itemView.findViewById(R.id.itemBinType);
       descriptionView = itemView.findViewById(R.id.itemDescription);
       imageView = itemView.findViewById(R.id.binImage);
     }
