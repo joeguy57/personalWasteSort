@@ -51,6 +51,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private ConstraintLayout dropLayoutYellow;
   private ConstraintLayout dropLayoutBlack;
   private ConstraintLayout itemSpawnLocation;
+  private TextView itemNameTextView;
   private String color;
   private TextView scoreView;
   private int score = 0;
@@ -90,7 +91,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         mAnimation.cancel();
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
-        //sound.playGameOverSound();
+        sound.playGameOverSound();
         startActivity(highscore);
         finish();
 
@@ -98,6 +99,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
       @Override
       public void onAnimationCancel(Animator animator) {
+
       }
 
       @Override
@@ -122,33 +124,36 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildern =  dataSnapshot.getChildrenCount();
-        String[] randKey = new String[(int) numChildern];
+        long numChildren =  dataSnapshot.getChildrenCount();
+        String[] randKey = new String[(int) numChildren];
         List<String> list = Arrays.asList(randKey);
-        String num = String.valueOf(numChildern);
+        String num = String.valueOf(numChildren);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         System.out.println(randNum);
+
         if(itemsChosen.contains(randNum)){
           createNewImages();
         }
         else {
+          //System.out.println(itemsChosen);
+          String rand = String.valueOf(randNum);
+          String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
+          String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+          String ItemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
+          color = data;
+          Picasso.get().load(link).into(imageView2);
+          imageView2.setVisibility(View.VISIBLE);
+          itemNameTextView.setText(ItemName);
           itemsChosen.add(randNum);
-          String rand = String.valueOf(randNum + 1);
-
-          //if (!list.contains(rand)) {
-          //  randKey[randCounter] = rand;
-            String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
-            String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-            color = data;
-            Picasso.get().load(link).into(imageView2);
-            imageView2.setVisibility(View.VISIBLE);
+          if(itemsChosen.size() == numChildren){
+            itemsChosen.clear();
+          }
         //  }//if
-        }
+        }//else
       }//onDataChange
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-
       }
     });
   }//createNewImages
@@ -163,6 +168,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
     itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
     imageView2 = findViewById(R.id.imageView2);
+    itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
   }
   public void setItemAttributes(){
@@ -187,12 +193,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     else if(binChoice.equals(color)) {
       increaseScore(true);
       createNewImages();
-      //sound.playCorrectSound();
+      sound.playCorrectSound();
     }//if
      else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
        increaseScore(false);
        createNewImages();
-      // sound.playIncorrectSound();
+       sound.playIncorrectSound();
      }//if
   }//checkForPoints
 
