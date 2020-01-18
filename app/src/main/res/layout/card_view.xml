@@ -3,13 +3,16 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content">
+  android:layout_height="wrap_content"
+  android:background="@android:color/transparent"
+  android:paddingBottom="5dp">
 
   <androidx.cardview.widget.CardView
     android:id="@+id/cardsLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:drawable/screen_background_light_transparent"
+    android:background="@android:color/transparent"
+    app:cardBackgroundColor="@android:color/transparent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
@@ -17,9 +20,11 @@
       android:id="@+id/constraintLayout1"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:padding="5dp">
+      android:background="@android:color/transparent"
+      android:padding="5dp"
+      android:paddingBottom="5dp">
       <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/binImage"
         android:layout_width="98dp"
         android:layout_height="109dp"
         android:layout_marginStart="8dp"
@@ -34,27 +39,65 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:text="TextView"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/itemDescripton"
+        android:hint="itemName"
+        android:text="itemName"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/binImage"
         app:layout_constraintTop_toTopOf="parent" />
       <TextView
-        android:id="@+id/itemDescripton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:layout_width="69dp"
+        android:layout_height="17dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:text="TextView"
-        android:textSize="20sp"
+        android:text="Bin:"
+        app:layout_constraintBottom_toTopOf="@+id/textView7"
+        app:layout_constraintEnd_toStartOf="@+id/itemBinType"
+        app:layout_constraintStart_toEndOf="@+id/binImage"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+      <TextView
+        android:id="@+id/itemBinType"
+        android:layout_width="136dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="40dp"
+        android:text="itemBinType"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+      <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="13dp"
+        android:gravity="center"
+        android:text="Description:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/itemDescription"
+        app:layout_constraintStart_toEndOf="@+id/binImage"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+      <TextView
+        android:id="@+id/itemDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="Description"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/itemName" />
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/itemBinType"
+        app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
   </androidx.cardview.widget.CardView>
 

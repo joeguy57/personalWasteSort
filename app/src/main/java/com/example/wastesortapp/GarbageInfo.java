@@ -2,24 +2,25 @@ package com.example.wastesortapp;
 
 public class GarbageInfo {
 
-  private String Color;
+  private String binType;
   private String Name;
+  private String Description;
 
   public GarbageInfo() {
   }
 
-  public GarbageInfo(String color, String name, String description) {
-    Color = color;
+  public GarbageInfo(String binType, String name, String description) {
+    binType = binType;
     Name = name;
     Description = description;
   }
 
-  public String getColor() {
-    return Color;
+  public String getBinType() {
+    return binType;
   }
 
-  public void setColor(String color) {
-    Color = color;
+  public void setBinType(String color) {
+    binType = color;
   }
 
   public String getName() {
@@ -38,6 +39,6 @@ public class GarbageInfo {
     Description = description;
   }
 
-  private String Description;
+
 
 }

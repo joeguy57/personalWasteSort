@@ -74,6 +74,9 @@ public class DisposableHelp extends AppCompatActivity {
         @Override
         public boolean onQueryTextChange(String newText) {
           search(newText);
+          if (searchView == null){
+            onStart();
+          }
           return true;
         }
       });
@@ -82,7 +85,7 @@ public class DisposableHelp extends AppCompatActivity {
 
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
-    for (GarbageInfo object : myList){
+    for (GarbageInfo object : list){
       if (object.getName().toLowerCase().contains(newText.toLowerCase())){
         myList.add(object);
       }
