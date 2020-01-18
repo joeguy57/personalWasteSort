@@ -22,7 +22,7 @@ public class instruction_activity extends AppCompatActivity {
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        Intent mainMenu = new Intent(getApplicationContext() , MainActivity.class);
+        Intent mainMenu = new Intent(getApplicationContext() , game.class);
         startActivity(mainMenu);
       }
     },5000);

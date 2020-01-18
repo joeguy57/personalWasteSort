@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         gameBtn.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(goToActivity = new Intent(getApplicationContext(), game.class));
+               startActivity(goToActivity = new Intent(getApplicationContext(), instruction_activity.class));
 
            }
        });
