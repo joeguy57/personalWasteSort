@@ -46,10 +46,9 @@
     android:text="Button"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.683"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.778" />
+    app:layout_constraintVertical_bias="0.715" />
   <ImageView
     android:id="@+id/nameLocation"
     android:layout_width="125dp"
@@ -96,8 +95,8 @@
     app:layout_constraintVertical_bias="0.0" />
   <EditText
     android:id="@+id/userInputName"
-    android:layout_width="206dp"
-    android:layout_height="40dp"
+    android:layout_width="188dp"
+    android:layout_height="41dp"
     android:layout_marginEnd="1dp"
     android:ems="10"
     android:hint="Enter you name"
@@ -124,8 +123,8 @@
     app:layout_constraintVertical_bias="0.571" />
   <EditText
     android:id="@+id/userEmailName"
-    android:layout_width="207dp"
-    android:layout_height="39dp"
+    android:layout_width="188dp"
+    android:layout_height="41dp"
     android:ems="10"
     android:hint="Enter your email"
     android:inputType="textWebEmailAddress"

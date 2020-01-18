@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisposableHelp"
-    android:background="@drawable/gamebackground">
+    android:background="@mipmap/background">
 
     <ImageView
         android:id="@+id/backBtn"
@@ -17,5 +17,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@drawable/backbutton" />
+        app:srcCompat="@mipmap/backbtn" />
+    <ImageView
+      android:id="@+id/searchZone"
+      android:layout_width="320dp"
+      android:layout_height="55dp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:srcCompat="@mipmap/searchzone"
+      tools:layout_editor_absoluteY="158dp" />
+    <ImageView
+      android:id="@+id/surchBtn"
+      android:layout_width="23dp"
+      android:layout_height="24dp"
+      android:layout_marginEnd="30dp"
+      app:layout_constraintBottom_toBottomOf="@+id/searchZone"
+      app:layout_constraintEnd_toEndOf="@+id/searchZone"
+      app:layout_constraintTop_toTopOf="@+id/searchZone"
+      app:srcCompat="@mipmap/searchbtn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
