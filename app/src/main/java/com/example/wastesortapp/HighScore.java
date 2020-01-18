@@ -6,10 +6,12 @@
 * */
 package com.example.wastesortapp;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -74,4 +76,28 @@ public class HighScore extends AppCompatActivity {
     }//outter if
 
   }//sendDataa
+
+  public void onBackPressed() {
+    AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
+
+    confirmation.setMessage("Are you sure you want to go back?")
+        //.setCancelable(true)
+        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            finish();
+          }
+        })
+
+        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+          }
+        });
+    AlertDialog alertDialog = confirmation.create();
+    alertDialog.show();
+
+  }//onbackpressed
+
 }//HighScore
