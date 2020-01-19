@@ -1,13 +1,11 @@
 /**
  * GameActivity.java
  * <p>This activity is going to show the gamePlay aspect of the application. There is a
- * fixed amount of bins for the objects to be sorted into. It will have bin objects
- * displayed at the bottom of the screen where items can be dropped into. These items
- * will be pulled from a FireBase server to help reduce the size of the application.
- * After the game is completed, this class will send the players score to the HighScore
- * class where the user may enter their email which will be sent to a Google Sheet.</p>
- *
- *
+ * fixed amount of bins for the objects to be sorted into. It will have bin objects displayed at the
+ * bottom of the screen where items can be dropped into. These items will be pulled from a FireBase
+ * server to help reduce the size of the application. After the game is completed, this class will
+ * send the players score to the HighScore class where the user may enter their email which will be
+ * sent to a Google Sheet.</p>
  */
 package com.example.wastesortapp;
 
@@ -27,23 +25,27 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 
-public class game extends AppCompatActivity implements  ImageView.OnDragListener,
-          ImageView.OnTouchListener {
+public class game extends AppCompatActivity implements ImageView.OnDragListener,
+    ImageView.OnTouchListener {
+
   Sound sound = new Sound(this);
   ImageView imageView2;
   private ImageView enableSoundButton;
@@ -69,7 +71,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    timer = new CountDownTimer(45000,1000) {
+    timer = new CountDownTimer(45000, 1000) {
       @Override
       public void onTick(long millisUntilFinished) {
       }
@@ -78,7 +80,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       public void onFinish() {
         sound.playTickingSound();
       }
-    };timer.start();
+    };
+    timer.start();
 
     sound.initializeAllGameSounds();
     super.onCreate(savedInstanceState);
@@ -106,6 +109,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       public void onAnimationStart(Animator animator) {
 
       }
+
       @Override
       public void onAnimationEnd(Animator animator) {
         mAnimation.cancel();
@@ -144,17 +148,16 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildren =  dataSnapshot.getChildrenCount();
+        long numChildren = dataSnapshot.getChildrenCount();
         String[] randKey = new String[(int) numChildren];
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildren);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         System.out.println(randNum);
 
-        if(itemsChosen.contains(randNum)){
+        if (itemsChosen.contains(randNum)) {
           createNewImages();
-        }
-        else {
+        } else {
           //System.out.println(itemsChosen);
           String rand = String.valueOf(randNum);
           String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
@@ -165,10 +168,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
           imageView2.setVisibility(View.VISIBLE);
           itemNameTextView.setText(ItemName);
           itemsChosen.add(randNum);
-          if(itemsChosen.size() == numChildren){
+          if (itemsChosen.size() == numChildren) {
             itemsChosen.clear();
           }
-        //  }//if
+          //  }//if
         }//else
       }//onDataChange
 
@@ -201,7 +204,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
    * include all binds, where the game items spawn, and the game screen as a whole. Will
    * also set tags to these constraint layouts which will help determine point scoring.
    */
-  public void setItemAttributes(){
+  public void setItemAttributes() {
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
     dropLayoutBlue.setOnDragListener(this);
@@ -224,34 +227,34 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
    * a point is deducted
    * @param binChoice Color of bin the item was dropped in
    */
-  public void checkForPoint(String binChoice){
-    if(binChoice.equals("Outside")){
+  public void checkForPoint(String binChoice) {
+    if (binChoice.equals("Outside")) {
       imageView2.setVisibility(View.VISIBLE);
     }//if
-    else if(binChoice.equals(color)) {
+    else if (binChoice.equals(color)) {
       increaseScore(true);
       createNewImages();
       sound.playCorrectSound();
     }//if
-     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
-       increaseScore(false);
-       createNewImages();
-       sound.playIncorrectSound();
-     }//if
+    else if (binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()) {
+      increaseScore(false);
+      createNewImages();
+      sound.playIncorrectSound();
+    }//if
   }//checkForPoints
 
   /**
    * Will either increment or decrement the score, based on if they sorted an item correctly
    * @param wasPointScored did the person sort the image correctly
    */
-  public void increaseScore(boolean wasPointScored){
-    if(wasPointScored) {
+  public void increaseScore(boolean wasPointScored) {
+    if (wasPointScored) {
       score += 1;
     }//if
-    else{
+    else {
       score -= 1;
     }//else
-    scoreView.setText(""+ score);
+    scoreView.setText("" + score);
   }//changeScore
 
   /**
@@ -275,7 +278,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         Log.d(TAG, "onDrag: ACTION_DRAG_EXITED ");
         break;
       case DragEvent.ACTION_DROP:
-        Log.d(TAG,"onDrag: ACTION_DRAG_DROP");
+        Log.d(TAG, "onDrag: ACTION_DRAG_DROP");
         container = (ConstraintLayout) v;
         wasThereDrop = true;
         checkForPoint((String) container.getTag());
@@ -310,11 +313,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
    * there are no constraint layouts
    * @param wasThereDrop was the item placed in a constraint layout provided
    */
-  public void outOfBoundsCheck(boolean wasThereDrop){
-    if(wasThereDrop == false){
+  public void outOfBoundsCheck(boolean wasThereDrop) {
+    if (wasThereDrop == false) {
       imageView2.setVisibility(View.VISIBLE);
     }//if
   }//outOfBoundsCheck
+
   /**
    * Enables volume if volume is disabled, must click on enableSoundButton in top right
    * of game activity to do so
@@ -344,8 +348,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
    * @param event the event associated with each unique press
    * @return if something was pressed
    */
-  public boolean onKeyDown(int keyCode, KeyEvent event){
-    if(keyCode == KeyEvent.KEYCODE_BACK){
+  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    if (keyCode == KeyEvent.KEYCODE_BACK) {
       finish();
       System.exit(0);
     }//if
