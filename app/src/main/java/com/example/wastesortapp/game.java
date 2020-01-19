@@ -5,7 +5,10 @@
  * bottom of the screen where items can be dropped into. These items will be pulled from a FireBase
  * server to help reduce the size of the application. After the game is completed, this class will
  * send the players score to the HighScore class where the user may enter their email which will be
- * sent to a Google Sheet.</p>
+ * sent to a Google Sheet.
+ *
+ * Methods :
+ * </p>
  */
 package com.example.wastesortapp;
 
