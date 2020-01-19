@@ -1,10 +1,14 @@
 /**
  * GameActivity.java
  * <p>This activity is going to show the gamePlay aspect of the application. There is a
- * fixed amount of bins for the objects to be sorted into. It will create bin objects from the
- * Bin.java class, as well as take information from objects in the WasteItems.java class</p>
+ * fixed amount of bins for the objects to be sorted into. It will have bin objects displayed at the
+ * bottom of the screen where items can be dropped into. These items will be pulled from a FireBase
+ * server to help reduce the size of the application. After the game is completed, this class will
+ * send the players score to the HighScore class where the user may enter their email which will be
+ * sent to a Google Sheet.
  *
- * @author Jared Matson unless specified otherwise
+ * Methods :
+ * </p>
  */
 package com.example.wastesortapp;
 
@@ -14,9 +18,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -26,11 +32,13 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,12 +46,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import java.util.MissingFormatArgumentException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.Timer;
 
-public class game extends AppCompatActivity implements  ImageView.OnDragListener,
-          ImageView.OnTouchListener {
+public class game extends AppCompatActivity implements ImageView.OnDragListener,
+    ImageView.OnTouchListener {
+
   Sound sound = new Sound(this);
   ImageView imageView2;
   private ImageView enableSoundButton;
@@ -57,18 +71,30 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   private ConstraintLayout dropLayoutYellow;
   private ConstraintLayout dropLayoutBlack;
   private ConstraintLayout itemSpawnLocation;
+  private TextView itemNameTextView;
   private String color;
   private TextView scoreView;
   private int score = 0;
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
-
-
-
+  private CountDownTimer timer;
+  ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
 
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    timer = new CountDownTimer(45000, 1000) {
+      @Override
+      public void onTick(long millisUntilFinished) {
+      }
+
+      @Override
+      public void onFinish() {
+        sound.playTickingSound();
+      }
+    };
+    timer.start();
+
     sound.initializeAllGameSounds();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
@@ -127,28 +153,34 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
           }
         },2500);
       }
+
       @Override
       public void onAnimationEnd(Animator animator) {
         mAnimation.cancel();
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
+        sound.playGameOverSound();
         startActivity(highscore);
+        finish();
 
       }
 
       @Override
       public void onAnimationCancel(Animator animator) {
+
       }
 
       @Override
       public void onAnimationRepeat(Animator animator) {
       }
+
     });
   }
 
   @Override
   protected void onStart() {
     super.onStart();
+    sound.enableSound();
     mAnimation.start();
     createNewImages();
     findItems();
@@ -160,24 +192,43 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        long numChildern =  dataSnapshot.getChildrenCount();
-        String num = String.valueOf(numChildern);
-        int randNum = new Random().nextInt(Integer.parseInt(num));
-        String rand = String.valueOf(randNum + 1);
-        String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
-        String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
-        color = data;
-        Picasso.get().load(link).into(imageView2);
-        imageView2.setVisibility(View.VISIBLE);
 
-      }
+        long numChildren = dataSnapshot.getChildrenCount();
+        String[] randKey = new String[(int) numChildren];
+        List<String> list = Arrays.asList(randKey);
+        String num = String.valueOf(numChildren);
+        int randNum = new Random().nextInt(Integer.parseInt(num));
+        System.out.println(randNum);
+
+        if (itemsChosen.contains(randNum)) {
+          createNewImages();
+        } else {
+          //System.out.println(itemsChosen);
+          String rand = String.valueOf(randNum);
+          String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
+          String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
+          String ItemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
+          color = data;
+          Picasso.get().load(link).into(imageView2);
+          imageView2.setVisibility(View.VISIBLE);
+          itemNameTextView.setText(ItemName);
+          itemsChosen.add(randNum);
+          if (itemsChosen.size() == numChildren) {
+            itemsChosen.clear();
+          }
+          //  }//if
+        }//else
+      }//onDataChange
 
       @Override
       public void onCancelled(@NonNull DatabaseError databaseError) {
-
       }
     });
   }//createNewImages
+
+  /**
+   * Finds all of the ConstraintLayouts and Views that will be used within the game
+   */
   public void findItems() {
     enableSoundButton = findViewById(R.id.soundOffImage);
     disableSoundButton = findViewById(R.id.soundOnImage);
@@ -189,9 +240,16 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
     itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
     imageView2 = findViewById(R.id.imageView2);
+    itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
-  }
-  public void setItemAttributes(){
+  }//findItems
+
+  /**
+   * Will set onDragListeners for all the constraint layouts in the game. This
+   * include all binds, where the game items spawn, and the game screen as a whole. Will
+   * also set tags to these constraint layouts which will help determine point scoring.
+   */
+  public void setItemAttributes() {
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
     dropLayoutBlue.setOnDragListener(this);
@@ -205,33 +263,54 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlack.setTag("Black");
     itemSpawnLocation.setTag("Outside");
     constraintLayout.setTag("Outside");
-  }
-  public void checkForPoint(String binChoice){
-    if(binChoice.equals("Outside")){
+  }//setItemAttributes
+
+  /**
+   * Will check to see if the user placed the item in the right bin, it will do this
+   * by matching the color of where the item is supposed to go, and the tag of the bin
+   * that it was dropped in. If the color and tag match, then a point is awarded, otherwise
+   * a point is deducted
+   * @param binChoice Color of bin the item was dropped in
+   */
+  public void checkForPoint(String binChoice) {
+    if (binChoice.equals("Outside")) {
       imageView2.setVisibility(View.VISIBLE);
-    }
-    else if(binChoice.equals(color)) {
+    }//if
+    else if (binChoice.equals(color)) {
       increaseScore(true);
       createNewImages();
       sound.playCorrectSound();
     }//if
-     else if(binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()){
-       increaseScore(false);
-       createNewImages();
-       sound.playIncorrectSound();
-     }//if
+    else if (binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()) {
+      //if the player picks a wrong bin, otherwise the app assumes that the user just dragged
+      //into no container and will thus not register a point
+      increaseScore(false);
+      createNewImages();
+      sound.playIncorrectSound();
+    }//if
   }//checkForPoints
 
-  public void increaseScore(boolean wasPointScored){
-    if(wasPointScored == true) {
+  /**
+   * Will either increment or decrement the score, based on if they sorted an item correctly
+   * @param wasPointScored did the person sort the image correctly
+   */
+  public void increaseScore(boolean wasPointScored) {
+    if (wasPointScored) {
       score += 1;
-    }
-    else{
+    }//if
+    else {
       score -= 1;
-    }
-    scoreView.setText(""+ score);
+    }//else
+    scoreView.setText("" + score);
   }//changeScore
 
+  /**
+   * Allows for constraint layouts to determine if an item was dragged overtop of them. Applied
+   * to where the item spawns, the game screen as a whole, and each individual bin.
+   * @param v What is being drug around
+   * @param event what is happening during the drag event
+   * @return was there a drag event
+   */
   public boolean onDrag(View v, DragEvent event) {
     ConstraintLayout container = null;
     switch (event.getAction()) {
@@ -246,9 +325,8 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         Log.d(TAG, "onDrag: ACTION_DRAG_EXITED ");
         break;
       case DragEvent.ACTION_DROP:
-        Log.d(TAG,"onDrag: ACTION_DRAG_DROP");
+        Log.d(TAG, "onDrag: ACTION_DRAG_DROP");
         container = (ConstraintLayout) v;
-        System.out.println("CONTAINER " + container.getTag());
         wasThereDrop = true;
         checkForPoint((String) container.getTag());
         break;
@@ -260,6 +338,14 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     }//switch
     return true;
   }//onDrag
+
+  /**
+   * Allows for items spawned in the game to be draggable, the item technically does not
+   * delete when dragged, it just goes invisible
+   * @param v the imageView being dragged (in our case)
+   * @param event what is happening to this imageView
+   * @return was the item dragged
+   */
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
@@ -267,22 +353,45 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
     return true;
   }//onTouch
-  public void outOfBoundsCheck(boolean wasThereDrop){
-    if(wasThereDrop == false){
+
+  /**
+   * Will make sure the image being sorted will still be visible if the user
+   * dragged the item to either the navigation bar or the top of the screen where
+   * there are no constraint layouts
+   * @param wasThereDrop was the item placed in a constraint layout provided
+   */
+  public void outOfBoundsCheck(boolean wasThereDrop) {
+    if (wasThereDrop == false) {
       imageView2.setVisibility(View.VISIBLE);
-    }
-  }
+    }//if
+  }//outOfBoundsCheck
+
+  /**
+   * Enables volume if volume is disabled, must click on enableSoundButton in top right
+   * of game activity to do so
+   * @param v the enable volume button being pressed
+   */
   public void enableVolume(View v) {
     sound.enableSound();
     disableSoundButton.setVisibility(View.VISIBLE);
     enableSoundButton.setVisibility(View.INVISIBLE);
   } // enableVolume
+
+  /**
+   * Disables volume if volume is enabled, must click on disableSoundButton in top right
+   * of game activity to do so
+   * @param v the disable volume button being pressed
+   */
   public void disableVolume(View v) {
     sound.disableSound();
     disableSoundButton.setVisibility(View.INVISIBLE);
     enableSoundButton.setVisibility(View.VISIBLE);
   } // enableVolume
 
+  /**
+   * Looks to see if the back button was pressed on the navigation bar, will close app
+   * if it was hit
+   */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
@@ -320,7 +429,13 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
           @Override
           public void onClick(DialogInterface dialog, int which) {
             Intent goBack = new Intent(getApplicationContext(), MainActivity.class);
+            sound.disableSound();
+            mAnimation.cancel();
+            timer.cancel();
+
+            finish();
             startActivity(goBack);
+
           }
         })
 

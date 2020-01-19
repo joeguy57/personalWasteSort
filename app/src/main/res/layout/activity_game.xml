@@ -60,6 +60,7 @@
     android:layout_width="123dp"
     android:layout_height="97dp"
     android:layout_marginEnd="4dp"
+    android:foregroundGravity="center"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.503"
@@ -221,4 +222,16 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.041"
     app:srcCompat="@mipmap/scorelocation" />
+  <TextView
+    android:id="@+id/itemNameTextView"
+    android:layout_width="108dp"
+    android:layout_height="19dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:gravity="center"
+    android:text="TextView"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/itemSpawnLocation"
+    app:layout_constraintVertical_bias="0.061" />
 </androidx.constraintlayout.widget.ConstraintLayout>
