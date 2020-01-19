@@ -1,10 +1,13 @@
 /**
  * GameActivity.java
  * <p>This activity is going to show the gamePlay aspect of the application. There is a
- * fixed amount of bins for the objects to be sorted into. It will create bin objects from the
- * Bin.java class, as well as take information from objects in the WasteItems.java class</p>
+ * fixed amount of bins for the objects to be sorted into. It will have bin objects
+ * displayed at the bottom of the screen where items can be dropped into. These items
+ * will be pulled from a FireBase server to help reduce the size of the application.
+ * After the game is completed, this class will send the players score to the HighScore
+ * class where the user may enter their email which will be sent to a Google Sheet.</p>
  *
- * @author Jared Matson unless specified otherwise
+ *
  */
 package com.example.wastesortapp;
 

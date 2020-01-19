@@ -1,3 +1,6 @@
+/**
+ *
+ */
 package com.example.wastesortapp;
 
 import android.content.Context;
