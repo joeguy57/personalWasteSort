@@ -28,23 +28,19 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
 
 public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView.OnTouchListener {
@@ -151,7 +147,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildren = dataSnapshot.getChildrenCount();
+        long numChildren =  dataSnapshot.getChildrenCount();
         String[] randKey = new String[(int) numChildren];
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildren);

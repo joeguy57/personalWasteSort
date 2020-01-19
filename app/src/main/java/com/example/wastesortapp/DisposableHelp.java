@@ -17,10 +17,12 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class DisposableHelp extends AppCompatActivity {
+
   private SearchView searchView;
   private RecyclerView mGarbageList;
   private DatabaseReference mData;
   private ArrayList<GarbageInfo> list;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -38,23 +40,27 @@ public class DisposableHelp extends AppCompatActivity {
     mGarbageList.setHasFixedSize(true);
     mGarbageList.setLayoutManager(new LinearLayoutManager(this));
 
-    mData = FirebaseDatabase.getInstance().getReference().child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
+    mData = FirebaseDatabase.getInstance().getReference()
+        .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
   }
 
   @Override
   protected void onStart() {
     super.onStart();
-    if (mData != null){
+    if (mData != null) {
       mData.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-          if(dataSnapshot.exists()){
-            list = new ArrayList<>();
-            for (DataSnapshot ds : dataSnapshot.getChildren()){
-              list.add(ds.getValue(GarbageInfo.class));
-            }
-            Adapter adapter = new Adapter(list);
-            mGarbageList.setAdapter(adapter);
+            if (dataSnapshot.exists()) {
+              list = new ArrayList<>();
+
+              for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                if (!ds.getKey().equals("0")) {
+                  list.add(ds.getValue(GarbageInfo.class));
+                }
+              }
+              Adapter adapter = new Adapter(list);
+              mGarbageList.setAdapter(adapter);
           }
         }
 
@@ -64,7 +70,7 @@ public class DisposableHelp extends AppCompatActivity {
         }
       });
     }
-    if (searchView != null){
+    if (searchView != null) {
       searchView.setOnQueryTextListener(new OnQueryTextListener() {
         @Override
         public boolean onQueryTextSubmit(String query) {
@@ -74,7 +80,7 @@ public class DisposableHelp extends AppCompatActivity {
         @Override
         public boolean onQueryTextChange(String newText) {
           search(newText);
-          if (searchView == null){
+          if (searchView == null) {
             onStart();
           }
           return true;
@@ -85,8 +91,8 @@ public class DisposableHelp extends AppCompatActivity {
 
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
-    for (GarbageInfo object : list){
-      if (object.getName().toLowerCase().contains(newText.toLowerCase())){
+    for (GarbageInfo object : list) {
+      if (object.getName().toLowerCase().contains(newText.toLowerCase())) {
         myList.add(object);
       }
     }

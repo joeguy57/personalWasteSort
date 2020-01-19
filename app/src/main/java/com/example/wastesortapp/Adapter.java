@@ -27,7 +27,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
   @Override
   public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-    if (list.get(position).getName() != null) {
+    if (!list.contains("")) {
       holder.nameView.setText(list.get(position).getName());
       holder.binTypeView.setText("Bin: " + list.get(position).getBinType());
       holder.descriptionView.setText("Description: " + list.get(position).getDescription());
@@ -50,7 +50,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         default:
           break;
       }
-    }else{
+    } else {
       Log.d("Error", "itemName should not be used");
     }
   }
