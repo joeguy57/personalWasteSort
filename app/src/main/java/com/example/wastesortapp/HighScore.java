@@ -8,6 +8,7 @@ package com.example.wastesortapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -99,4 +100,11 @@ public class HighScore extends AppCompatActivity {
       emailTextView.setError("Please use ualberta email");
     }
   }//sendDataa
+  public boolean onKeyDown(int keyCode, KeyEvent event){
+    if(keyCode == KeyEvent.KEYCODE_BACK){
+      finish();
+      System.exit(0);
+    }
+    return true;
+  }//onKeyDown
 }//HighScore

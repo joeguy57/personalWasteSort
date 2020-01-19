@@ -6,6 +6,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
            @Override
            public void onClick(View v) {
                startActivity(goToActivity = new Intent(getApplicationContext(), DisposableHelp.class));
-
+               finish();
            }
        });
 
@@ -46,11 +47,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(goToActivity = new Intent(getApplicationContext(), ContactUs.class));
-
+                finish();
             }
         });
 
     }
-
+  public boolean onKeyDown(int keyCode, KeyEvent event){
+    if(keyCode == KeyEvent.KEYCODE_BACK){
+      finish();
+      System.exit(0);
+    }
+    return true;
+  }//onKeyDown
 
 }

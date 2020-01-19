@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,4 +32,11 @@ public class ContactUs extends AppCompatActivity {
         "-initiatives/waste"));
 		startActivity(browserAccess);
 	}
+	public boolean onKeyDown(int keyCode, KeyEvent event){
+		if(keyCode == KeyEvent.KEYCODE_BACK){
+			finish();
+			System.exit(0);
+		}
+		return true;
+	}//onKeyDown
 }
