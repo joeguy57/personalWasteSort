@@ -37,17 +37,6 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.832"
     app:srcCompat="@mipmap/inputzone" />
-  <Button
-    android:id="@+id/button2"
-    android:layout_width="155dp"
-    android:layout_height="57dp"
-    android:onClick="sendData"
-    android:text="Button"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.715" />
   <ImageView
     android:id="@+id/nameLocation"
     android:layout_width="125dp"
@@ -154,4 +143,26 @@
     app:layout_constraintEnd_toEndOf="@+id/yourScoreLocation"
     app:layout_constraintStart_toStartOf="@+id/yourScoreLocation"
     app:layout_constraintTop_toTopOf="@+id/yourScoreLocation" />
+  <ImageView
+    android:id="@+id/sumbitBtn"
+    android:layout_width="130dp"
+    android:layout_height="43dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.667"
+    app:srcCompat="@drawable/submit_button" />
+  <ImageView
+    android:id="@+id/sumbitBtn2"
+    android:layout_width="130dp"
+    android:layout_height="43dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.776"
+    app:srcCompat="@drawable/submit_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
