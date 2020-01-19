@@ -7,6 +7,22 @@
  * @author Jared Matson
  *
  * Methods :
+ *    - Sound(Context)
+ *        Initalizes sound object in a given activity
+ *    - InitializeAllGameSounds()
+ *        Initializes all game sounds
+ *    - disableSound()
+ *        Disables sound in the activity
+ *    - enableSound()
+ *        Enables sound in the activity
+ *    - initializeCorrectSound()
+ *        Creates mediaPlayer with CorrectSound sound
+ *    - initializeIncorrectSound()
+ *         Creates mediaPlayer with IncorrectSound sound
+ *    - initializeTickingSound()
+ *         Creates mediaPlayer with TickingSound sound
+ *    - initializeGameOverSound()
+ *         Creates mediaPlayer with GameOverSound sound
  */
 package com.example.wastesortapp;
 
@@ -84,7 +100,7 @@ public class Sound {
   }//initializeIncorrectSort
 
   /**
-   * Plays the correct sound (if player scores a point)
+   * Plays the correctSound sound (if player scores a point)
    */
   public void playCorrectSound() {
     if (soundToggle == true) {
@@ -94,7 +110,7 @@ public class Sound {
   }//playCorrectSound
 
   /**
-   * Plays the incorrect sound (if player loses a point)
+   * Plays the incorrectSound sound (if player loses a point)
    */
   public void playIncorrectSound() {
     if (soundToggle == true) {
@@ -103,7 +119,7 @@ public class Sound {
   }//playIncorrectSound
 
   /**
-   * Plays the ticking sound when there is only 15 seconds left in the game
+   * Plays the tickingSound sound when there is only 15 seconds left in the game
    */
   public void playTickingSound() {
     if (soundToggle == true) {
@@ -112,7 +128,7 @@ public class Sound {
   }//playTickingSound
 
   /**
-   * Plays the game over sound when the game is completed
+   * Plays the gameOverSound sound when the game is completed
    */
   public void playGameOverSound() {
     gameOverSound.start();
