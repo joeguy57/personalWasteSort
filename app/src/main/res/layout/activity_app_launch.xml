@@ -22,6 +22,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.132" />
+
   <ImageView
     android:id="@+id/imageView3"
     android:layout_width="172dp"
@@ -31,6 +32,17 @@
     app:layout_constraintHorizontal_bias="0.497"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.558"
+    app:layout_constraintVertical_bias="0.52"
     app:srcCompat="@mipmap/leaflogo" />
+  <pl.droidsonroids.gif.GifImageView
+    android:id="@+id/loading"
+    android:layout_width="41dp"
+    android:layout_height="45dp"
+    android:src="@drawable/loader"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.784" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
