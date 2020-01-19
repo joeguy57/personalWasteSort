@@ -9,7 +9,6 @@ package com.example.wastesortapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
@@ -55,7 +54,7 @@ public class HighScore extends AppCompatActivity {
     mainMenu.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent goToMainMenu = new Intent(getApplicationContext() , MainActivity.class);
+        Intent goToMainMenu = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(goToMainMenu);
 
       }//onClick
@@ -79,8 +78,11 @@ public class HighScore extends AppCompatActivity {
 
   public void sendData() {
     if (nameInput.getText().length() == 0 && emailTextView.getText().length() == 0) {
-      Intent goToActivity;
-      startActivity(goToActivity = new Intent(getApplicationContext(), MainActivity.class));
+      nameInput.setText("");
+      emailTextView.setText("");
+      nameInput.setError(
+          "If you do not want to submit your high score, hit the main menu button. "
+              + "Else fill in either your Name or both Name and Email Address");
     }//if
     else if (emailTextView.getText().length() == 0) {
       String key;
