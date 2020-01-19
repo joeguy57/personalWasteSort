@@ -1,5 +1,6 @@
 package com.example.wastesortapp;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,27 +27,31 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
   @Override
   public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-    holder.nameView.setText(list.get(position).getName());
-    holder.binTypeView.setText("Bin: " + list.get(position).getBinType());
-    holder.descriptionView.setText("Description: " + list.get(position).getDescription());
-    switch (list.get(position).getBinType()) {
-      case "Other":
-        holder.imageView.setImageResource(R.drawable.other);
-        break;
-      case "Landfill":
-        holder.imageView.setImageResource(R.drawable.trash);
-        break;
-      case "Recyclable":
-        holder.imageView.setImageResource(R.drawable.recyclables);
-        break;
-      case "Beverage":
-        holder.imageView.setImageResource(R.drawable.beverages);
-        break;
-      case "Organic":
-        holder.imageView.setImageResource(R.drawable.organics);
-        break;
-      default:
-        break;
+    if (list.get(position).getName() != null) {
+      holder.nameView.setText(list.get(position).getName());
+      holder.binTypeView.setText("Bin: " + list.get(position).getBinType());
+      holder.descriptionView.setText("Description: " + list.get(position).getDescription());
+      switch (list.get(position).getBinType()) {
+        case "Other":
+          holder.imageView.setImageResource(R.drawable.other);
+          break;
+        case "Landfill":
+          holder.imageView.setImageResource(R.drawable.trash);
+          break;
+        case "Recyclable":
+          holder.imageView.setImageResource(R.drawable.recyclables);
+          break;
+        case "Beverage":
+          holder.imageView.setImageResource(R.drawable.beverages);
+          break;
+        case "Organic":
+          holder.imageView.setImageResource(R.drawable.organics);
+          break;
+        default:
+          break;
+      }
+    }else{
+      Log.d("Error", "itemName should not be used");
     }
   }
 
