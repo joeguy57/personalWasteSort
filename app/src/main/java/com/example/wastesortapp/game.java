@@ -267,23 +267,42 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   public void outOfBoundsCheck(boolean wasThereDrop){
     if(wasThereDrop == false){
       imageView2.setVisibility(View.VISIBLE);
-    }
-  }
+    }//if
+  }//outOfBoundsCheck
+  /**
+   * Enables volume if volume is disabled, must click on disable button in top right
+   * of game activity to do so
+   * @param v the disable volume button being pressed
+   */
   public void enableVolume(View v) {
     sound.enableSound();
     disableSoundButton.setVisibility(View.VISIBLE);
     enableSoundButton.setVisibility(View.INVISIBLE);
   } // enableVolume
+
+  /**
+   * Disables volume if volume is enabled, must click on disable button in top right
+   * of game activity to do so
+   * @param v the disable volume button being pressed
+   */
   public void disableVolume(View v) {
     sound.disableSound();
     disableSoundButton.setVisibility(View.INVISIBLE);
     enableSoundButton.setVisibility(View.VISIBLE);
   } // enableVolume
+
+  /**
+   * Looks to see if the back button was pressed on the navigation bar, will close app
+   * if it was hit
+   * @param keyCode what is being pressed
+   * @param event the event associated with each unique press
+   * @return if something was pressed
+   */
   public boolean onKeyDown(int keyCode, KeyEvent event){
     if(keyCode == KeyEvent.KEYCODE_BACK){
       finish();
       System.exit(0);
-    }
+    }//if
     return true;
   }//onKeyDown
 }//gameActivity
