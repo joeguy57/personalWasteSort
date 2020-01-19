@@ -257,6 +257,14 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     }//switch
     return true;
   }//onDrag
+
+  /**
+   * Allows for items spawned in the game to be draggable, the item technically does not
+   * delete when dragged, it just goes invisible
+   * @param v the imageView being dragged (in our case)
+   * @param event what is happening to this imageView
+   * @return was the item dragged
+   */
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
