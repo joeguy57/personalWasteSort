@@ -113,7 +113,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       }
     });
 
-
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
     mAnimation.setDuration(60000);
     //mAnimation.setInterpolator(new DecelerateInterpolator());
@@ -292,6 +291,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
+            mAnimation.cancel();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

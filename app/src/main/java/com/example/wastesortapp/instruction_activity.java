@@ -9,7 +9,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class instruction_activity extends AppCompatActivity {
-
+  Timer timer;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -18,7 +18,7 @@ public class instruction_activity extends AppCompatActivity {
   }//onCreate
 
   public void goToMainMenu(){
-    Timer timer = new Timer();
+    timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
@@ -38,6 +38,7 @@ public class instruction_activity extends AppCompatActivity {
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
+            timer.cancel();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
