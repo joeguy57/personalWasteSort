@@ -219,6 +219,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
      }//if
   }//checkForPoints
 
+  /**
+   * Will either increment or decrement the score, based on if they sorted an item correctly
+   * @param wasPointScored did the person sort the image correctly
+   */
   public void increaseScore(boolean wasPointScored){
     if(wasPointScored) {
       score += 1;
@@ -229,6 +233,13 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     scoreView.setText(""+ score);
   }//changeScore
 
+  /**
+   * Allows for constraint layouts to determine if an item was dragged overtop of them. Applied
+   * to where the item spawns, the game screen as a whole, and each individual bin.
+   * @param v What is being drug around
+   * @param event what is happening during the drag event
+   * @return was there a drag event
+   */
   public boolean onDrag(View v, DragEvent event) {
     ConstraintLayout container = null;
     switch (event.getAction()) {
@@ -245,7 +256,6 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       case DragEvent.ACTION_DROP:
         Log.d(TAG,"onDrag: ACTION_DRAG_DROP");
         container = (ConstraintLayout) v;
-        System.out.println("CONTAINER " + container.getTag());
         wasThereDrop = true;
         checkForPoint((String) container.getTag());
         break;
