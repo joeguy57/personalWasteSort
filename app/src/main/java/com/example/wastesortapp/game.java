@@ -264,15 +264,22 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
     return true;
   }//onTouch
+
+  /**
+   * Will make sure the image being sorted will still be visible if the user
+   * dragged the item to either the navigation bar or the top of the screen where
+   * there are no constraint layouts
+   * @param wasThereDrop was the item placed in a constraint layout provided
+   */
   public void outOfBoundsCheck(boolean wasThereDrop){
     if(wasThereDrop == false){
       imageView2.setVisibility(View.VISIBLE);
     }//if
   }//outOfBoundsCheck
   /**
-   * Enables volume if volume is disabled, must click on disable button in top right
+   * Enables volume if volume is disabled, must click on enableSoundButton in top right
    * of game activity to do so
-   * @param v the disable volume button being pressed
+   * @param v the enable volume button being pressed
    */
   public void enableVolume(View v) {
     sound.enableSound();
@@ -281,7 +288,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   } // enableVolume
 
   /**
-   * Disables volume if volume is enabled, must click on disable button in top right
+   * Disables volume if volume is enabled, must click on disableSoundButton in top right
    * of game activity to do so
    * @param v the disable volume button being pressed
    */
