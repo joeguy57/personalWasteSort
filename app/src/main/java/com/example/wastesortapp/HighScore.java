@@ -39,7 +39,7 @@ public class HighScore extends AppCompatActivity {
     nameInput = findViewById(R.id.userInputName);
     emailTextView = findViewById(R.id.userEmailName);
     TextView playerScore = findViewById(R.id.playerScore);
-    playerScore.setText(String.valueOf(score));
+    playerScore.setText("Your Score is: " + score);
     ImageView mainMenu = findViewById(R.id.mainMenuBtn);
     ImageView submitBtn = findViewById(R.id.submitBtn);
 

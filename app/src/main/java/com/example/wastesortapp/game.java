@@ -80,19 +80,31 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     ImageView blueBin = findViewById(R.id.recycleBin);
     ImageView greenBin = findViewById(R.id.organicBin);
     ImageView blackBin = findViewById(R.id.trashCan);
+    ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
+    ImageView timerText = findViewById(R.id.timeText);
+    ImageView scoreText = findViewById(R.id.scoreText);
+    ImageView scoreDisplay = findViewById(R.id.score);
+
 
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+    Animation fromTop = AnimationUtils.loadAnimation(this,R.anim.from_top);
 
     yellowBin.setAnimation(fromBottom);
     blackBin.setAnimation(fromBottom);
     blueBin.setAnimation(fromBottom);
     greenBin.setAnimation(fromBottom);
+    progressBar.setAnimation(fromTop);
+    timerText.setAnimation(fromTop);
+    scoreText.setAnimation(fromTop);
+    scoreDisplay.setAnimation(fromTop);
 
 
     ImageView backBtn = findViewById(R.id.backBtn);
 
+    backBtn.setAnimation(fromTop);
 
-    final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
+
+    //ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

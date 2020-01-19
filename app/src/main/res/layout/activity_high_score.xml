@@ -129,8 +129,8 @@
     app:layout_constraintVertical_bias="0.0" />
   <TextView
     android:id="@+id/playerScore"
-    android:layout_width="145dp"
-    android:layout_height="47dp"
+    android:layout_width="157dp"
+    android:layout_height="72dp"
     android:fontFamily="@font/arial_rounded_mt_bold"
     android:gravity="center"
     android:text="Your Score"
