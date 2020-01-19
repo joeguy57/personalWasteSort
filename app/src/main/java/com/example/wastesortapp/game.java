@@ -58,8 +58,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
   Sound sound = new Sound(this);
   ImageView imageView2;
-  private ImageView enableSoundButton;
-  private ImageView disableSoundButton;
+  public ImageView enableSoundButton;
+  public ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
   private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   private DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
