@@ -240,6 +240,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
       sound.playCorrectSound();
     }//if
     else if (binChoice != constraintLayout.getTag() && binChoice != itemSpawnLocation.getTag()) {
+      //if the player picks a wrong bin, otherwise the app assumes that the user just dragged
+      //into no container and will thus not register a point
       increaseScore(false);
       createNewImages();
       sound.playIncorrectSound();
