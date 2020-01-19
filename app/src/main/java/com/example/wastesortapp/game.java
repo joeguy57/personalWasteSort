@@ -174,6 +174,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
       }
     });
   }//createNewImages
+
+  /**
+   * Finds all of the ConstraintLayouts and Views that will be used within the game
+   */
   public void findItems() {
     enableSoundButton = findViewById(R.id.soundOffImage);
     disableSoundButton = findViewById(R.id.soundOnImage);
@@ -188,6 +192,12 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
   }//findItems
+
+  /**
+   * Will set onDragListeners for all the constraint layouts in the game. This
+   * include all binds, where the game items spawn, and the game screen as a whole. Will
+   * also set tags to these constraint layouts which will help determine point scoring.
+   */
   public void setItemAttributes(){
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
