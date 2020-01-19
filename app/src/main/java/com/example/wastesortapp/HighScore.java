@@ -103,13 +103,15 @@ public class HighScore extends AppCompatActivity {
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
-    confirmation.setMessage("Are you sure you want to go back?")
+    confirmation.setMessage("Are you sure you want to go exit?")
         //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            finish();
-            System.exit(0);
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
           }
         })
 
