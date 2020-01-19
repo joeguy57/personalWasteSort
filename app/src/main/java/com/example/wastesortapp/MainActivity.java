@@ -2,6 +2,8 @@ package com.example.wastesortapp;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +16,21 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     protected Intent goToActivity;
+    Animation fromBottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
          setContentView(R.layout.activity_main);
 
-//backBtnPress();
         Button gameBtn = findViewById(R.id.gameBtn);
         Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
         Button moreInfo = findViewById(R.id.moreInfoBtn);
+
+        fromBottom = AnimationUtils.loadAnimation(this,R.anim.from_bottom);
+        gameBtn.setAnimation(fromBottom);
+        disposableHelpBtn.setAnimation(fromBottom);
+        moreInfo.setAnimation(fromBottom);
+
 
         gameBtn.setOnClickListener(new View.OnClickListener() {
            @Override

@@ -12,6 +12,7 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -19,11 +20,14 @@ import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -33,7 +37,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import java.util.MissingFormatArgumentException;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class game extends AppCompatActivity implements  ImageView.OnDragListener,
           ImageView.OnTouchListener {
@@ -69,21 +76,45 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     DisplayMetrics displayMetrics = new DisplayMetrics();
     getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
+    ImageView yellowBin = findViewById(R.id.beverageBin);
+    ImageView blueBin = findViewById(R.id.recycleBin);
+    ImageView greenBin = findViewById(R.id.organicBin);
+    ImageView blackBin = findViewById(R.id.trashCan);
+
+    Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+
+    yellowBin.setAnimation(fromBottom);
+    blackBin.setAnimation(fromBottom);
+    blueBin.setAnimation(fromBottom);
+    greenBin.setAnimation(fromBottom);
+
+
     ImageView backBtn = findViewById(R.id.backBtn);
+
+
     final ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        finish();
+       backBtnPress();
+
       }
     });
+
+
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
     mAnimation.setDuration(60000);
-    mAnimation.setInterpolator(new DecelerateInterpolator());
+    //mAnimation.setInterpolator(new DecelerateInterpolator());
     mAnimation.addListener(new Animator.AnimatorListener() {
+
       @Override
       public void onAnimationStart(Animator animator) {
-
+          Timer timer = new Timer();
+           timer.schedule(new TimerTask() {
+          @Override
+          public void run() {
+          }
+        },2500);
       }
       @Override
       public void onAnimationEnd(Animator animator) {
@@ -267,4 +298,28 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
 
   }//onbackpressed
 
+
+  protected void backBtnPress(){
+    AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
+
+    confirmation.setMessage("Are you sure you want to go back?")
+        .setCancelable(false)
+        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            Intent goBack = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(goBack);
+          }
+        })
+
+        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+          }
+        });
+    AlertDialog alertDialog = confirmation.create();
+    alertDialog.show();
+
+  }//backBtnPressed
 }//gameActivity
