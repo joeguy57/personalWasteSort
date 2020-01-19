@@ -25,6 +25,7 @@ public class appLaunch extends AppCompatActivity {
       public void run() {
         Intent mainMenu = new Intent(getApplicationContext() , MainActivity.class);
         startActivity(mainMenu);
+        finish();
       }
     },2500);
 
@@ -43,6 +44,7 @@ public class appLaunch extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
           }
         })
 
