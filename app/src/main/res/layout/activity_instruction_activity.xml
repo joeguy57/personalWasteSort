@@ -25,6 +25,7 @@
     android:layout_height="112dp"
     android:fontFamily="@font/arial_rounded_mt_bold"
     android:gravity="center"
+    android:text="@string/GameInstructions"
     app:layout_constraintBottom_toBottomOf="@+id/instructionZone"
     app:layout_constraintEnd_toEndOf="@+id/instructionZone"
     app:layout_constraintStart_toStartOf="@+id/instructionZone"

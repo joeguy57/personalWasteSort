@@ -22,7 +22,7 @@
       app:layout_constraintHorizontal_bias="0.495"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.024" />
+      app:layout_constraintVertical_bias="0.049" />
     <ImageView
 
       android:id="@+id/backBtn"
@@ -48,28 +48,31 @@
       app:layout_constraintTop_toBottomOf="@+id/imageView5" />
     <ImageView
       android:id="@+id/imageView5"
-      android:layout_width="369dp"
-      android:layout_height="95dp"
+      android:layout_width="320dp"
+      android:layout_height="85dp"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.619"
+      app:layout_constraintHorizontal_bias="0.44"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintVertical_bias="0.155"
+      app:layout_constraintTop_toBottomOf="@+id/title"
+      app:layout_constraintVertical_bias="0.0"
       app:srcCompat="@mipmap/searchzone" />
     <SearchView
       android:id="@+id/searchView"
-      android:layout_width="341dp"
-      android:layout_height="47dp"
+      android:layout_width="297dp"
+      android:layout_height="40dp"
       android:background="#00FFFFFF"
       android:clickable="true"
       android:focusable="true"
+      android:gravity="left"
       android:iconifiedByDefault="false"
       android:padding="10dp"
       android:queryHint="Search"
       app:layout_constraintBottom_toBottomOf="@+id/imageView5"
       app:layout_constraintEnd_toEndOf="@+id/imageView5"
+      app:layout_constraintHorizontal_bias="0.0"
       app:layout_constraintStart_toStartOf="@+id/imageView5"
-      app:layout_constraintTop_toTopOf="@+id/imageView5" />
+      app:layout_constraintTop_toTopOf="@+id/imageView5"
+      app:layout_constraintVertical_bias="0.533" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

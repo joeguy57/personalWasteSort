@@ -10,9 +10,9 @@ public class GarbageInfo {
   }
 
   public GarbageInfo(String binType, String name, String description) {
-    binType = binType;
-    Name = name;
-    Description = description;
+    this.binType = binType;
+    this.Name = name;
+    this.Description = description;
   }
 
   public String getBinType() {
