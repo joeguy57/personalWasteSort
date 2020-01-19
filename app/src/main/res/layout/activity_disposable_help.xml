@@ -7,17 +7,33 @@
     tools:context=".DisposableHelp"
     android:background="@mipmap/background">
 
+    <TextView
+      android:id="@+id/title"
+      android:layout_width="300dp"
+      android:layout_height="67dp"
+      android:fontFamily="@font/arial_rounded_mt_bold"
+      android:gravity="center"
+      android:text="Waste Guide"
+      android:textColor="#000000"
+      android:textSize="45sp"
+      android:textStyle="normal"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.693"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.024" />
     <ImageView
-        android:id="@+id/backBtn"
-        android:layout_width="39dp"
-        android:layout_height="47dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.026"
-        app:srcCompat="@mipmap/backbtn" />
+      android:id="@+id/backBtn"
+      android:layout_width="22dp"
+      android:layout_height="24dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.041"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintVertical_bias="0.022"
+      app:srcCompat="@mipmap/backbtn" />
     <ImageView
       android:id="@+id/searchZone"
       android:layout_width="320dp"
