@@ -6,5 +6,6 @@
     <color name="lightBlue">#8CD9FF</color>
     <color name="lightYellow">#E1FF9D</color>
     <color name="statusBar">#78B0E4</color>
+    <color name ="cardBackground">#BFE8EAEE</color>
 
 </resources>

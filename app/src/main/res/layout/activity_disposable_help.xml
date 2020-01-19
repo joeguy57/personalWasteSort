@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DisposableHelp"
-    android:background="@drawable/gamebackground">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/gamebackground"
+  tools:context=".DisposableHelp">
 
     <ImageView
       android:id="@+id/backBtn"
@@ -15,14 +15,16 @@
       app:layout_constraintHorizontal_bias="0.044"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent"
-      app:srcCompat="@drawable/backbutton" />
+      app:srcCompat="@drawable/backbutton"
+      android:contentDescription="@string/todo" />
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recycleView"
-      android:layout_width="387dp"
-      android:layout_height="566dp"
+      android:layout_width="379dp"
+      android:layout_height="0dp"
       android:layout_marginStart="1dp"
-      android:layout_marginTop="41dp"
+      android:layout_marginTop="16dp"
       android:layout_marginEnd="1dp"
+      app:layout_constraintBottom_toTopOf="@+id/guideline"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/searchView" />
@@ -34,12 +36,21 @@
       android:layout_marginTop="1dp"
       android:layout_marginEnd="1dp"
       android:layout_marginBottom="1dp"
+      android:clickable="true"
+      android:focusable="true"
+      android:iconifiedByDefault="false"
+      android:padding="10dp"
+      android:queryHint="Search"
       app:layout_constraintBottom_toTopOf="@+id/recycleView"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/backBtn"
-      android:padding="10dp"
-      android:queryHint="Search"/>
+      app:layout_constraintTop_toBottomOf="@+id/backBtn" />
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_begin="688dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

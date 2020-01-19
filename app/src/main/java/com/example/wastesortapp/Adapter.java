@@ -27,10 +27,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
   @Override
   public void onBindViewHolder(@NonNull viewHolder holder, int position) {
     holder.nameView.setText(list.get(position).getName());
-    holder.binTypeView.setText(list.get(position).getBinType());
-    holder.descriptionView.setText(list.get(position).getDescription());
-    String str = list.get(position).getBinType();
-    switch (str) {
+    holder.binTypeView.setText("Bin: " + list.get(position).getBinType());
+    holder.descriptionView.setText("Description: " + list.get(position).getDescription());
+    switch (list.get(position).getBinType()) {
       case "Other":
         holder.imageView.setImageResource(R.drawable.other);
         break;
