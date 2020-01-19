@@ -187,7 +187,7 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     imageView2 = findViewById(R.id.imageView2);
     itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
-  }
+  }//findItems
   public void setItemAttributes(){
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
@@ -202,11 +202,19 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
     dropLayoutBlack.setTag("Black");
     itemSpawnLocation.setTag("Outside");
     constraintLayout.setTag("Outside");
-  }
+  }//setItemAttributes
+
+  /**
+   * Will check to see if the user placed the item in the right bin, it will do this
+   * by matching the color of where the item is supposed to go, and the tag of the bin
+   * that it was dropped in. If the color and tag match, then a point is awarded, otherwise
+   * a point is deducted
+   * @param binChoice Color of bin the item was dropped in
+   */
   public void checkForPoint(String binChoice){
     if(binChoice.equals("Outside")){
       imageView2.setVisibility(View.VISIBLE);
-    }
+    }//if
     else if(binChoice.equals(color)) {
       increaseScore(true);
       createNewImages();
@@ -226,10 +234,10 @@ public class game extends AppCompatActivity implements  ImageView.OnDragListener
   public void increaseScore(boolean wasPointScored){
     if(wasPointScored) {
       score += 1;
-    }
+    }//if
     else{
       score -= 1;
-    }
+    }//else
     scoreView.setText(""+ score);
   }//changeScore
 
