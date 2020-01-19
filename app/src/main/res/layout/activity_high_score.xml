@@ -29,48 +29,47 @@
   <ImageView
     android:id="@+id/nameinputlocation"
     android:layout_width="220dp"
-    android:layout_height="40dp"
+    android:layout_height="37dp"
 
-    app:layout_constraintBottom_toTopOf="@+id/emailinputlocation"
+    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toEndOf="@+id/nameLocation"
+    app:layout_constraintHorizontal_bias="0.916"
+    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.832"
+    app:layout_constraintVertical_bias="0.402"
     app:srcCompat="@mipmap/inputzone" />
   <ImageView
     android:id="@+id/nameLocation"
-    android:layout_width="125dp"
-    android:layout_height="37dp"
+    android:layout_width="106dp"
+    android:layout_height="38dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.076"
+    app:layout_constraintHorizontal_bias="0.055"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.391"
+    app:layout_constraintVertical_bias="0.403"
     app:srcCompat="@mipmap/discrp" />
   <ImageView
     android:id="@+id/emailinputlocation"
     android:layout_width="220dp"
-    android:layout_height="40dp"
-    android:layout_marginBottom="324dp"
+    android:layout_height="37dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.521"
-    app:layout_constraintStart_toEndOf="@+id/emaillocation"
+    app:layout_constraintHorizontal_bias="0.916"
+    app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.989"
+    app:layout_constraintVertical_bias="0.525"
     app:srcCompat="@mipmap/inputzone" />
   <ImageView
     android:id="@+id/emaillocation"
-    android:layout_width="125dp"
-    android:layout_height="37dp"
-    android:layout_marginBottom="328dp"
+    android:layout_width="109dp"
+    android:layout_height="39dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.076"
+    app:layout_constraintHorizontal_bias="0.055"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="1.0"
+    app:layout_constraintVertical_bias="0.527"
     app:srcCompat="@mipmap/discrp" />
   <TextView
     android:id="@+id/userEmail"
@@ -88,8 +87,8 @@
     app:layout_constraintVertical_bias="0.0" />
   <EditText
     android:id="@+id/userInputName"
-    android:layout_width="188dp"
-    android:layout_height="41dp"
+    android:layout_width="171dp"
+    android:layout_height="40dp"
     android:layout_marginEnd="1dp"
     android:ems="10"
     android:fontFamily="@font/arial_rounded_mt_bold"
@@ -97,10 +96,10 @@
     android:inputType="textPersonName"
     app:layout_constraintBottom_toBottomOf="@+id/nameinputlocation"
     app:layout_constraintEnd_toEndOf="@+id/nameinputlocation"
-    app:layout_constraintHorizontal_bias="0.384"
+    app:layout_constraintHorizontal_bias="0.419"
     app:layout_constraintStart_toStartOf="@+id/nameinputlocation"
     app:layout_constraintTop_toTopOf="@+id/nameinputlocation"
-    app:layout_constraintVertical_bias="1.0" />
+    app:layout_constraintVertical_bias="0.0" />
   <TextView
     android:id="@+id/enterName"
     android:layout_width="101dp"
@@ -118,8 +117,8 @@
     app:layout_constraintVertical_bias="1.0" />
   <EditText
     android:id="@+id/userEmailName"
-    android:layout_width="188dp"
-    android:layout_height="41dp"
+    android:layout_width="168dp"
+    android:layout_height="40dp"
     android:ems="10"
     android:fontFamily="@font/arial_rounded_mt_bold"
     android:hint="Enter your email"
@@ -144,9 +143,9 @@
     app:layout_constraintStart_toStartOf="@+id/yourScoreLocation"
     app:layout_constraintTop_toTopOf="@+id/yourScoreLocation" />
   <ImageView
-    android:id="@+id/sumbitBtn"
-    android:layout_width="130dp"
-    android:layout_height="43dp"
+    android:id="@+id/submitBtn"
+    android:layout_width="141dp"
+    android:layout_height="52dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.498"
@@ -154,15 +153,16 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.667"
     app:srcCompat="@drawable/submit_button" />
+
   <ImageView
-    android:id="@+id/sumbitBtn2"
-    android:layout_width="130dp"
-    android:layout_height="43dp"
+    android:id="@+id/mainMenuBtn"
+    android:layout_width="142dp"
+    android:layout_height="53dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.498"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.776"
-    app:srcCompat="@drawable/submit_button" />
+    app:srcCompat="@drawable/main_menu_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

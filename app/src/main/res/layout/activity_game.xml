@@ -44,20 +44,6 @@
     app:layout_constraintStart_toEndOf="@+id/timeText"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.047" />
-  <TextView
-    android:id="@+id/scoreView"
-    android:layout_width="34dp"
-    android:layout_height="30dp"
-    android:fontFamily="@font/oxygen_light"
-    android:gravity="center"
-    android:text="0"
-    android:textColor="#000000"
-    android:textSize="20sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toBottomOf="@+id/imageView5"
-    app:layout_constraintEnd_toEndOf="@+id/imageView5"
-    app:layout_constraintStart_toEndOf="@+id/scoreText"
-    app:layout_constraintTop_toTopOf="@+id/imageView5" />
   <androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/dropLayoutYellow"
     android:layout_width="135dp"
@@ -76,8 +62,10 @@
     android:layout_marginEnd="4dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.503"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent">
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.321">
 
     <ImageView
       android:id="@+id/imageView2"
@@ -206,15 +194,31 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.044"
     app:srcCompat="@mipmap/score" />
+  <TextView
+    android:id="@+id/scoreView"
+    android:layout_width="34dp"
+    android:layout_height="30dp"
+    android:fontFamily="@font/oxygen_light"
+    android:gravity="center"
+    android:text="0"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="@+id/score"
+    app:layout_constraintEnd_toEndOf="@+id/score"
+    app:layout_constraintHorizontal_bias="0.597"
+    app:layout_constraintStart_toEndOf="@+id/scoreText"
+    app:layout_constraintTop_toTopOf="@+id/score"
+    app:layout_constraintVertical_bias="0.0" />
   <ImageView
-    android:id="@+id/imageView5"
+    android:id="@+id/score"
     android:layout_width="90dp"
     android:layout_height="30dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintHorizontal_bias="0.09"
     app:layout_constraintStart_toEndOf="@+id/scoreText"
     app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.042"
+    app:layout_constraintVertical_bias="0.041"
     app:srcCompat="@mipmap/scorelocation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,9 +7,12 @@
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +40,28 @@ public class HighScore extends AppCompatActivity {
     emailTextView = findViewById(R.id.userEmailName);
     TextView playerScore = findViewById(R.id.playerScore);
     playerScore.setText(String.valueOf(score));
+    ImageView mainMenu = findViewById(R.id.mainMenuBtn);
+    ImageView submitBtn = findViewById(R.id.submitBtn);
+
+    submitBtn.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+      }
+    });
+
+    mainMenu.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent goToMainMenu = new Intent(getApplicationContext() , MainActivity.class);
+        startActivity(goToMainMenu);
+
+      }//onClick
+    });
+
 
   }//onStart
+
 
   private Boolean checkEmail(EditText emailTextView) {
     String emailPref = "ualberta.ca";
