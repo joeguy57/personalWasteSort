@@ -70,10 +70,7 @@ public class HighScore extends AppCompatActivity {
     int emailStartIndex = emailInput.indexOf('@');
     String emailSubString = emailInput.substring(emailStartIndex + 1);
 
-    if (emailSubString.equals(emailPref)) {
-      return true;
-    }
-    return false;
+    return emailSubString.equals(emailPref);
   }
 
   public void sendData() {
@@ -88,7 +85,7 @@ public class HighScore extends AppCompatActivity {
       String key;
       DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk")
           .child("HighScore");
-      if (writeData.getKey() != String.valueOf(1)) {
+      if (!writeData.getKey().equals(String.valueOf(1))) {
         key = writeData.push().getKey();
       } else {
         key = "1";
@@ -124,7 +121,7 @@ public class HighScore extends AppCompatActivity {
       emailTextView.setText("");
       emailTextView.setError("Please use ualberta email");
     }
-  }//sendDataa
+  }//sendData
 
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
