@@ -171,6 +171,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     backBtn.setOnClickListener(new View.OnClickListener() {
       /**
        * Will bring the user back to the main menu if the back button is pressed
+       *
        * @param v the back button being pressed
        */
       @Override
@@ -186,6 +187,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     mAnimation.addListener(new Animator.AnimatorListener() {
       /**
        * Initializes the time bar.
+       *
        * @param animator the time bar
        */
       @Override
@@ -199,8 +201,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
       }
 
       /**
-       * When the animation ends (the time bar is empty after a minute) this method will bring
-       * the user to the HighScore class.
+       * When the animation ends (the time bar is empty after a minute) this method will
+       * bring the user to the HighScore class.
+       *
        * @param animator the time bar
        */
       @Override

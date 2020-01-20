@@ -1,5 +1,6 @@
 /**
- * Sound.java This class takes care of all sound that occurs in game.java
+ * Sound.java
+ * This class takes care of all sound that occurs in game.java
  * It contains four sounds that are played at various staged in the game. These
  * sounds can be easily enabled and disabled with enable and disable buttons also located
  * in game.java
