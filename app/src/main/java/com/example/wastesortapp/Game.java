@@ -4,7 +4,7 @@
  * This activity is going to show the gamePlay aspect of the application. There is a
  * fixed amount of bins for the objects to be sorted into. It will have bin objects displayed at the
  * bottom of the screen where items can be dropped into. These items will be pulled from a FireBase
- * server to help reduce the size of the application. After the game is completed, this class will
+ * server to help reduce the size of the application. After the Game is completed, this class will
  * send the players score to the HighScore class where the user may enter their email which will be
  * sent to a Google Sheet.
  *
@@ -14,7 +14,7 @@
  *  - onFinish()
  *     When the timer for the 45 second marker ends, will play the timer ticking sound.
  *  - onAnimationStart(Animator)
- *     Will initialize the time bar which dictates the time left in the game.
+ *     Will initialize the time bar which dictates the time left in the Game.
  *  - onAnimationEnd(Animator)
  *     Will take the user to the HighScore class when the timer bar animation ends
  *  - onStart()
@@ -33,14 +33,14 @@
  *   - onDrag(View, DragEvent)
  *      Allows for constraint layouts to determine if an item was dragged over top of them.
  *   - onTouch(View, MotionEvent)
- *      Allows for items spawned in the game to be draggable
+ *      Allows for items spawned in the Game to be draggable
  *   - outOfBoundsCheck(boolean)
  *      Will make sure the image being sorted will still be visible if the user dragged the item
  *      to either the navigation bar or the top of the screen where there are no constraint layouts
  *   - enableVolume(View)
- *      Enables volume in game
+ *      Enables volume in Game
  *   - disableVolume(View)
- *      Disables volume in game
+ *      Disables volume in Game
  *   - onBackPressed()
  *      Will take the user out of the application if they hit the back arrow on the navigation bar
  *   - backBtnPress()
@@ -66,7 +66,6 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -90,7 +89,7 @@ import java.util.Random;
 import java.util.TimerTask;
 import java.util.Timer;
 
-public class game extends AppCompatActivity implements ImageView.OnDragListener,
+public class Game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView.OnTouchListener {
 
   private final Sound sound = new Sound(this);
@@ -136,7 +135,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   protected void onCreate(Bundle savedInstanceState) {
 
     timer = new CountDownTimer(45000, 1000) { //45 second timer to do ticking sound
-      //which will inform user game is coming to end
+      //which will inform user Game is coming to end
       @Override
       public void onTick(long millisUntilFinished) {
       }
@@ -312,8 +311,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//findItems
 
   /**
-   * Will set onDragListeners for all the constraint layouts in the game. This include all binds,
-   * where the game items spawn, and the game screen as a whole. Will also set tags to these
+   * Will set onDragListeners for all the constraint layouts in the Game. This include all binds,
+   * where the Game items spawn, and the Game screen as a whole. Will also set tags to these
    * constraint layouts which will help determine point scoring.
    */
   private void setItemAttributes() {
@@ -374,7 +373,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
   /**
    * Allows for constraint layouts to determine if an item was dragged overtop of them. Applied to
-   * where the item spawns, the game screen as a whole, and each individual bin.
+   * where the item spawns, the Game screen as a whole, and each individual bin.
    *
    * @param v What is being drug around
    * @param event what is happening during the drag event
@@ -409,7 +408,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//onDrag
 
   /**
-   * Allows for items spawned in the game to be draggable, the item technically does not delete when
+   * Allows for items spawned in the Game to be draggable, the item technically does not delete when
    * dragged, it just goes invisible
    *
    * @param v the imageView being dragged (in our case)
@@ -437,7 +436,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//outOfBoundsCheck
 
   /**
-   * Enables volume if volume is disabled, must click on enableSoundButton in top right of game
+   * Enables volume if volume is disabled, must click on enableSoundButton in top right of Game
    * activity to do so
    *
    * @param v the enable volume button being pressed
@@ -449,7 +448,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   } // enableVolume
 
   /**
-   * Disables volume if volume is enabled, must click on disableSoundButton in top right of game
+   * Disables volume if volume is enabled, must click on disableSoundButton in top right of Game
    * activity to do so
    *
    * @param v the disable volume button being pressed

@@ -1,14 +1,14 @@
 /**
  * instruction_activity.java
- * This class represents the transition between MainActivity.java and game.java. When the user
- * chooses to play the game in MainActivity, this activity will imitate a loading screen
- * which will display brief instructions on how to play the game.
+ * This class represents the transition between MainActivity.java and Game.java. When the user
+ * chooses to play the Game in MainActivity, this activity will imitate a loading screen
+ * which will display brief instructions on how to play the Game.
  *
  * Methods:
  *  - onCreate(Bundle)
  *      Initializes activity
  *  - goToGame()
- *      Takes the user to the game after a five second delay (during this delay, the game
+ *      Takes the user to the Game after a five second delay (during this delay, the Game
  *      instructions will be displayed with a loading gif)
  *  - onBackPressed()
  *      Will take the user out of the application if they hit the back button on the navigation
@@ -38,14 +38,14 @@ public class InstructionActivity extends AppCompatActivity {
   }//onCreate
 
   /**
-   * After 5 seconds, will bring the user to the game
+   * After 5 seconds, will bring the user to the Game
    */
   private void goToGame() {
     timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        Intent mainMenu = new Intent(getApplicationContext(), game.class);
+        Intent mainMenu = new Intent(getApplicationContext(), Game.class);
         startActivity(mainMenu);
       }
     }, 5000);

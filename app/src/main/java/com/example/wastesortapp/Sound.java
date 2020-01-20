@@ -1,9 +1,9 @@
 /**
  * Sound.java
- * This class takes care of all sound that occurs in game.java
- * It contains four sounds that are played at various staged in the game. These
+ * This class takes care of all sound that occurs in Game.java
+ * It contains four sounds that are played at various staged in the Game. These
  * sounds can be easily enabled and disabled with enable and disable buttons also located
- * in game.java
+ * in Game.java
  *
  * @author Jared Matson
  *
@@ -11,7 +11,7 @@
  *    - Sound(Context)
  *        Initalizes sound object in a given activity
  *    - InitializeAllGameSounds()
- *        Initializes all game sounds
+ *        Initializes all Game sounds
  *    - disableSound()
  *        Disables sound in the activity
  *    - enableSound()
@@ -59,42 +59,42 @@ class Sound {
   }//initializeAllGameSounds
 
   /**
-   * Disables sound in game
+   * Disables sound in Game
    */
   public void disableSound() {
     soundToggle = false;
   }//disableSound
 
   /**
-   * Enables sound in game
+   * Enables sound in Game
    */
   public void enableSound() {
     soundToggle = true;
   }//enableSound
 
   /**
-   * Initializes the correctSound sound in game
+   * Initializes the correctSound sound in Game
    */
   private void initializeCorrectSound() {
     correctSortSound = MediaPlayer.create(context, R.raw.correctsound);
   }//initializeCorrectSort
 
   /**
-   * Initializes the incorrectSound sound in game
+   * Initializes the incorrectSound sound in Game
    */
   private void initializeGameOverSound() {
     gameOverSound = MediaPlayer.create(context, R.raw.gameoversound);
   }//initializeGameOverSound
 
   /**
-   * Initializes the ticking sound in game
+   * Initializes the ticking sound in Game
    */
   private void initializeIncorrectSound() {
     incorrectSortSound = MediaPlayer.create(context, R.raw.incorrectsound);
   }//initializeIncorrectSort
 
   /**
-   * Initializes the ticking sound in game
+   * Initializes the ticking sound in Game
    */
   private void initializeTickingSound() {
     tickingSound = MediaPlayer.create(context, R.raw.tickingsound2);
@@ -120,7 +120,7 @@ class Sound {
   }//playIncorrectSound
 
   /**
-   * Plays the tickingSound sound when there is only 15 seconds left in the game
+   * Plays the tickingSound sound when there is only 15 seconds left in the Game
    */
   public void playTickingSound() {
     if (soundToggle) {
@@ -129,7 +129,7 @@ class Sound {
   }//playTickingSound
 
   /**
-   * Plays the gameOverSound sound when the game is completed
+   * Plays the gameOverSound sound when the Game is completed
    */
   public void playGameOverSound() {
     if(soundToggle) {

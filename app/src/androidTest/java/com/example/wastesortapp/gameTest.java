@@ -5,12 +5,12 @@ import org.junit.Test;
 
 public class gameTest extends AppCompatActivity {
 
-  private game game;
+  private Game game;
   @Test
   public void checkSound() {
     Sound sound = new Sound(this);
     sound.disableSound();
-    //assert(game.disableSoundButton.getAlpha() == 0);
+    //assert(Game.disableSoundButton.getAlpha() == 0);
   }
 
 }

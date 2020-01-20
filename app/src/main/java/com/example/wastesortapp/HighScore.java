@@ -1,7 +1,7 @@
 /**
  * HighScore.java
  * This Activity sends the data to the firebase for saved Data.
- * Here score will be sent from the game.java and request (but not require),
+ * Here score will be sent from the Game.java and request (but not require),
  * the user to input either their name or email.
  *
  * Methods:
