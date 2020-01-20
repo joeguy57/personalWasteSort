@@ -2,11 +2,16 @@
  * This Activity class is used for the as the boot up screen
  *
  * The following methods are used:
+ *-------------------------------------------------------------------------------------------------
  *
  * goToMainMenu(): This method is used to go navigate to the main menu page with a delay of 2.5 secs
  *
+ * -------------------------------------------------------------------------------------------------
+ *
  * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
  *                  confirmation message. If YES the exit the app, else don't
+ *
+ *-------------------------------------------------------------------------------------------------
  *
  * @author Harshil Vyas
  * ID : 158162

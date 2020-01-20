@@ -3,14 +3,23 @@
  * information
  *
  * The following methods are used:
+ *--------------------------------------------------------------------------------------------------
  *
  * goToBrowser(): For uses how need to more information about Sustainability there is a link
  *               (University of Alberta) for that
  *
- * Note : The user needs to be connected to the internet to be able to access the link
+ *         Note : The user needs to be connected to the internet to be able to access the link
+ *
+ * -------------------------------------------------------------------------------------------------
  *
  * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
  *                  confirmation message. If YES the exit the app, else don't
+ *
+ *--------------------------------------------------------------------------------------------------
+ *
+ * backBtnPressed(): Takes the user to the home screen when the back button is pressed
+ *
+ * -------------------------------------------------------------------------------------------------
  *
  * @author Harshil Vyas
  * ID : 158162
@@ -36,17 +45,8 @@ public class ContactUs extends AppCompatActivity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_contact_us);
-    ImageView backBtn = findViewById(R.id.backBtn);
+    backBtnPresed();
 
-    //Back Button Navigation
-    backBtn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(goToMain);
-        finish();
-      }
-    });
   }//onCreate
 
   /**
@@ -62,6 +62,21 @@ public class ContactUs extends AppCompatActivity {
         "-initiatives/waste"));
     startActivity(browserAccess);
   }//goToBrowser
+
+  /**
+   * Take the user to the Main Menu (Home) Screen
+   */
+  public void backBtnPresed(){
+    ImageView backBtn = findViewById(R.id.backBtn);
+    backBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(goToMain);
+        finish();
+      }
+    });
+  }//backBtnPressed
 
   /**
    * If the user pressed on the back button on the users phone from the navigation bar then the user
