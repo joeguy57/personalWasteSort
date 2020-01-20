@@ -8,7 +8,7 @@ import android.os.Bundle;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class instruction_activity extends AppCompatActivity {
+public class InstructionActivity extends AppCompatActivity {
   Timer timer;
   @Override
   protected void onCreate(Bundle savedInstanceState) {

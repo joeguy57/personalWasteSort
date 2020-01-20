@@ -1,3 +1,17 @@
+/**
+ * In the Contact Us class so I there is link for to connect to the internet to get more information
+ *
+ * The following methods are used:
+ *
+ * goToBrowser(): For uses how need to more information about Sustainability there is a link
+ *                (University of Alberta) for that
+ *
+ * Note : The user needs to be connected to the internet to be able to access the link
+ *
+ * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
+ *  *                   confirmation message. If YES the exit the app, else don't
+ */
+
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
@@ -7,59 +21,70 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 public class ContactUs extends AppCompatActivity {
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_contact_us);
-		ImageView backBtn = findViewById(R.id.backBtn);
-		
-		backBtn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
-				startActivity(goToMain);
-				finish();
-			}
-		});
-	}
-	
-	public void goToBrowser(View view) {
-		Intent browserAccess = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ualberta" +
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    setContentView(R.layout.activity_contact_us);
+    ImageView backBtn = findViewById(R.id.backBtn);
+
+    //Back Button Navigation
+    backBtn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(goToMain);
+        finish();
+      }
+    });
+  }//onCreate
+
+  /**
+   * Connects the users to the University of Alberta Sustainability Website to get more
+   *
+   * Note : The user needs to be connected to the Internet
+   *
+   * @param view is set up to an onClick button
+   */
+  public void goToBrowser(View view) {
+    Intent browserAccess = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.ualberta" +
         ".ca/augustana/about-us/departments-offices-and-units/lab/sustainability/campus" +
         "-initiatives/waste"));
-		startActivity(browserAccess);
-	}//goToBrower
+    startActivity(browserAccess);
+  }//goToBrowser
 
-	public void onBackPressed() {
-		AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
+  /**
+   * If the user pressed on the back button on the users phone from the navigation bar then the user
+   * will exit the application based on the users answer (YES / NO)
+   */
+  public void onBackPressed() {
+    AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
-		confirmation.setMessage("Are you sure you want to go exit?")
-				//.setCancelable(true)
-				.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						Intent intent = new Intent(Intent.ACTION_MAIN);
-						intent.addCategory(Intent.CATEGORY_HOME);
-						intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-						startActivity(intent);
-					}
-				})
+    confirmation.setMessage("Are you sure you want to go exit?")
+        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+          }
+        })
 
-				.setNegativeButton("No", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.cancel();
-					}
-				});
-		AlertDialog alertDialog = confirmation.create();
-		alertDialog.show();
+        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            dialog.cancel();
+          }
+        });
+    AlertDialog alertDialog = confirmation.create();
+    alertDialog.show();
 
-	}//onbackpressed
-}
+  }//onbackpressed
+
+}//class
