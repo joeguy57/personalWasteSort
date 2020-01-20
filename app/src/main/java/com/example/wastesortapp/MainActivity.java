@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
     disposableHelpBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        startActivity(goToActivity = new Intent(getApplicationContext(), DisposableHelp.class));
+        startActivity(goToActivity = new Intent(getApplicationContext(), WasteGuide.class));
         finish();
       }
     });

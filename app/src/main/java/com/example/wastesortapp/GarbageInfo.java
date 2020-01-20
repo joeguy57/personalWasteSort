@@ -1,5 +1,5 @@
 /**
- * GarbageInfo.java This class is used in our Waste Guide(DisposableHelp.java) to help set and
+ * GarbageInfo.java This class is used in our Waste Guide(WasteGuide.java) to help set and
  * retrieve specific information regarding each waste item such as the color of bin it corresponds
  * to, its name, and also any additional information regarding that item.
  *

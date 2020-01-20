@@ -34,7 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
-public class DisposableHelp extends AppCompatActivity {
+public class WasteGuide extends AppCompatActivity {
 
   private SearchView searchView;
   private RecyclerView garbageRecycleView;
@@ -178,4 +178,4 @@ public class DisposableHelp extends AppCompatActivity {
     });
   }//backBtnPressed
 
-}//DisposableHelp
+}//WasteGuide

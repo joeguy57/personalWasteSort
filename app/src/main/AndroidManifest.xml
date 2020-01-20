@@ -32,7 +32,7 @@
       android:name=".ContactUs"
       android:screenOrientation="portrait" />
     <activity
-      android:name=".DisposableHelp"
+      android:name=".WasteGuide"
       android:screenOrientation="portrait" />
     <activity
       android:name=".Game"

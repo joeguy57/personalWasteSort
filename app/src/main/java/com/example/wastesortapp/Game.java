@@ -443,8 +443,8 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   public void enableVolume(View v) {
     sound.enableSound();
-    disableSoundButton.setVisibility(View.VISIBLE);
-    enableSoundButton.setVisibility(View.INVISIBLE);
+    disableSoundButton.setVisibility(View.INVISIBLE);
+    enableSoundButton.setVisibility(View.VISIBLE);
   } // enableVolume
 
   /**
@@ -455,8 +455,9 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   public void disableVolume(View v) {
     sound.disableSound();
-    disableSoundButton.setVisibility(View.INVISIBLE);
-    enableSoundButton.setVisibility(View.VISIBLE);
+    disableSoundButton.setVisibility(View.VISIBLE);
+    enableSoundButton.setVisibility(View.INVISIBLE);
+
   } // enableVolume
 
   /**
