@@ -18,6 +18,6 @@ of the game will restart, but the sound effects that occur at specific times in 
 indicates that the volume is disabled.
 3.  Another small issue within our game is with specific objects that  spawn in the middle of the screen. These objects are sometimes
 shifted slightly to the left when the image being loaded in is small
-4.  Our last known bug potentially happens with user that have enabled developer mode. Since our progress bar at the top of the game
+4.  Our last known bug potentially happens with users that have enabled developer mode. Since our progress bar at the top of the game
 is considered an animation, users can go into developer settings and make this animation run slowly. This effectivly causes users to have a game that
 lasts much longer than normal which they can exploit to get very high scores.
