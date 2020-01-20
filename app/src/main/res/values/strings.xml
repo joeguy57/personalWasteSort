@@ -15,8 +15,7 @@
   <string name="name">Name :</string>
   <string name="enter_your_email">Enter your email</string>
   <string name="your_score">Your Score</string>
-  <string name="itemname">itemName</string>
-  <string name="itemname">itemName</string>
-  <string name="itembintype">itemBinType</string>
+  <string name="item_name">itemName</string>
+  <string name="item_bin_type">itemBinType</string>
   <string name="description">Description</string>
 </resources>
