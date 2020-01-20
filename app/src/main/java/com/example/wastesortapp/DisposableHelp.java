@@ -12,6 +12,7 @@ import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.database.DataSnapshot;
@@ -27,11 +28,14 @@ public class DisposableHelp extends AppCompatActivity {
   private RecyclerView mGarbageList;
   private DatabaseReference mData;
   private ArrayList<GarbageInfo> list;
+  private ConstraintLayout creditsLay;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_disposable_help);
+    creditsLay = findViewById(R.id.creditsLayout);
+    creditsLay.setVisibility(View.INVISIBLE);
     //back button
     ImageView backBtn = findViewById(R.id.backBtn);
     backBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,24 +91,28 @@ public class DisposableHelp extends AppCompatActivity {
         @Override
         public boolean onQueryTextChange(String newText) {
           search(newText);
-          if (searchView == null) {
-            onStart();
-          }
           return true;
         }
       });
+    }else {
+      onStart();
     }
   }
 
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
-    for (GarbageInfo object : list) {
-      if (object.getName().toLowerCase().contains(newText.toLowerCase())) {
-        myList.add(object);
+      for (GarbageInfo object : list) {
+        if (object.getName().toLowerCase().contains(newText.toLowerCase())) {
+          myList.add(object);
+        }
       }
+      Adapter adapter = new Adapter(myList);
+      mGarbageList.setAdapter(adapter);
+    if (newText.toLowerCase().contains("credits")){
+      creditsLay.setVisibility(View.VISIBLE);
+      return;
     }
-    Adapter adapter = new Adapter(myList);
-    mGarbageList.setAdapter(adapter);
+    creditsLay.setVisibility(View.INVISIBLE);
   }//search
 
   public void onBackPressed() {

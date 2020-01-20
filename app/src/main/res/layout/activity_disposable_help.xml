@@ -74,5 +74,85 @@
       app:layout_constraintStart_toStartOf="@+id/imageView5"
       app:layout_constraintTop_toTopOf="@+id/imageView5"
       app:layout_constraintVertical_bias="0.533" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/creditsLayout"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
+      android:layout_marginStart="1dp"
+      android:layout_marginEnd="1dp"
+      android:background="@color/cardBackground"
+      android:isScrollContainer="true"
+      android:visibility="visible"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+        <TextView
+          android:id="@+id/harshilVyas"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="132dp"
+          android:gravity="center"
+          android:text="Harshil Vyas"
+          android:textColor="@android:color/background_dark"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.474"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+          android:id="@+id/jaredMatson"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="104dp"
+          android:layout_marginBottom="320dp"
+          android:gravity="center"
+          android:text="Jared Matson"
+          android:textColor="@android:color/background_dark"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.498"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/harshilVyas" />
+        <TextView
+          android:id="@+id/josephMenezes"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="53dp"
+          android:gravity="center"
+          android:text="Joseph Menezes"
+          android:textColor="@android:color/background_dark"
+          android:textSize="24sp"
+          android:textStyle="bold"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.498"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/jaredMatson" />
+        <TextView
+          android:id="@+id/textView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="88dp"
+          android:gravity="left"
+          android:text="Created by:"
+          android:textColor="@android:color/background_dark"
+          android:textSize="30sp"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toTopOf="@+id/harshilVyas"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintHorizontal_bias="0.0"
+          app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/guideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_end="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
