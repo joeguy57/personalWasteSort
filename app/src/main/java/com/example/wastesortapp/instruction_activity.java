@@ -3,20 +3,34 @@
  * This class represents the transition between MainActivity.java and game.java. When the user
  * chooses to play the game in MainActivity, this activity will imitate a loading screen
  * which will display brief instructions on how to play the game.
+ *
+ * Methods:
+ *  - onCreate(Bundle)
+ *      Initializes activity
+ *  - goToGame()
+ *      Takes the user to the game after a five second delay (during this delay, the game
+ *      instructions will be displayed with a loading gif)
+ *  - onBackPressed()
+ *      Will take the user out of the application if they hit the back button on the navigation
+ *      bar, will ask for confirmation through a dialog box before doing so
  */
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class instruction_activity extends AppCompatActivity {
+
   Timer timer;
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -25,21 +39,24 @@ public class instruction_activity extends AppCompatActivity {
   }//onCreate
 
   /**
-   *
+   * After 5 seconds, will bring the user to the game
    */
-  public void goToGame(){
+  public void goToGame() {
     timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        Intent mainMenu = new Intent(getApplicationContext() , game.class);
+        Intent mainMenu = new Intent(getApplicationContext(), game.class);
         startActivity(mainMenu);
       }
-    },5000);
+    }, 5000);
 
   }//goToMainMenu
 
-
+  /**
+   * Will close the application if the user hits the back button on the navigation bar. Before it
+   * does this, the user will be prompted with a dialog box to confirm this action.
+   */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
