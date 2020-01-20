@@ -281,7 +281,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="20dp"
     android:fontFamily="@font/arial_rounded_mt_bold"
-    android:text="@string/recyclables"
+    android:text="Recyclables"
     android:textColor="#FFFFFF"
     app:layout_constraintBottom_toBottomOf="@+id/dropLayoutBlue"
     app:layout_constraintEnd_toEndOf="@+id/dropLayoutBlue"

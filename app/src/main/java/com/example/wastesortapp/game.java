@@ -92,7 +92,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   private final Sound sound = new Sound(this);
   private ImageView imageView2;
   private ImageView enableSoundButton;
-  public ImageView disableSoundButton;
+  private ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
   private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   private final DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
@@ -147,6 +147,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     TextView landFillLabel = findViewById(R.id.landFillLabel);
     TextView beverageLabel = findViewById(R.id.beverageLabel);
     ImageView backBtn = findViewById(R.id.backBtn);
+    scoreView = findViewById(R.id.scoreView);
+    enableSoundButton = findViewById(R.id.soundOnImage);
+    disableSoundButton = findViewById(R.id.soundOffImage);
     itemNameTextView = findViewById(R.id.itemNameTextView);
 
     //Animation Setup
@@ -166,6 +169,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     timerText.setAnimation(fromTop);
     scoreText.setAnimation(fromTop);
     scoreDisplay.setAnimation(fromTop);
+    enableSoundButton.setAnimation(fromTop);
+    disableSoundButton.setAnimation(fromTop);
+    scoreView.setAnimation(fromTop);
     itemNameTextView.setAnimation(fromTop);
     backBtn.setAnimation(fromTop);
 
