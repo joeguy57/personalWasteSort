@@ -148,6 +148,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView timerText = findViewById(R.id.timeText);
     ImageView scoreText = findViewById(R.id.scoreText);
     ImageView scoreDisplay = findViewById(R.id.score);
+    itemNameTextView = findViewById(R.id.itemNameTextView);
 
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
     Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);

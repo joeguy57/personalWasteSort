@@ -1,3 +1,9 @@
+/**
+ * instruction_activity.java
+ * This class represents the transition between MainActivity.java and game.java. When the user
+ * chooses to play the game in MainActivity, this activity will imitate a loading screen
+ * which will display brief instructions on how to play the game.
+ */
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
@@ -5,6 +11,7 @@ import android.content.Intent;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -14,10 +21,13 @@ public class instruction_activity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_instruction_activity);
-    goToMainMenu();
+    goToGame();
   }//onCreate
 
-  public void goToMainMenu(){
+  /**
+   *
+   */
+  public void goToGame(){
     timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
