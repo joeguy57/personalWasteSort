@@ -1,34 +1,55 @@
 /**
  * GameActivity.java
- * <p>This activity is going to show the gamePlay aspect of the application. There is a
+ *
+ * This activity is going to show the gamePlay aspect of the application. There is a
  * fixed amount of bins for the objects to be sorted into. It will have bin objects displayed at the
  * bottom of the screen where items can be dropped into. These items will be pulled from a FireBase
  * server to help reduce the size of the application. After the game is completed, this class will
  * send the players score to the HighScore class where the user may enter their email which will be
  * sent to a Google Sheet.
  *
- * @author Joseph Menenez, Jared Matson, Harshil Vyas
+ * Methods (Non trivial) :
+ *  - OnCreate(Bundle)
+ *     Initializes activity
+ *  - onFinish()
+ *     When the timer for the 45 second marker ends, will play the timer ticking sound.
+ *  - onAnimationStart(Animator)
+ *     Will initialize the time bar which dictates the time left in the game.
+ *  - onAnimationEnd(Animator)
+ *     Will take the user to the HighScore class when the timer bar animation ends
+ *  - onStart()
+ *     On the start of the activity, will initialize sound and the time bar animation
+ *  - createNewImages()
+ *     Pulls an item from the FireBase and will assign that item a name/bin color/image
+ *  - findItems()
+ *      Method that finds all the ConstraintLayout and Views that are used in the activity
+ *  - setItemAttributes()
+ *      Sets attributes to the objects found in findItems() will either assign an onDragListener,
+ *      onTouchListener, or a Tag
+ *   - checkForPoint(String)
+ *      Will check to see if the user placed the item in the right bin
+ *   - increaseScore(boolean)
+ *      Will either increment or decrement the score, based on if the user sorted an item correctly
+ *   - onDrag(View, DragEvent)
+ *      Allows for constraint layouts to determine if an item was dragged over top of them.
+ *   - onTouch(View, MotionEvent)
+ *      Allows for items spawned in the game to be draggable
+ *   - outOfBoundsCheck(boolean)
+ *      Will make sure the image being sorted will still be visible if the user dragged the item
+ *      to either the navigation bar or the top of the screen where there are no constraint layouts
+ *   - enableVolume(View)
+ *      Enables volume in game
+ *   - disableVolume(View)
+ *      Disables volume in game
+ *   - onBackPressed()
+ *      Will take the user out of the application if they hit the back arrow on the navigation bar
+ *   - backBtnPress()
+ *      Will take the user back to the Main Menu.
  *
- * Methods (Non trivial) : - OnCreate(Bundle) Initializes activity - onFinish() When the timer for
- * the 45 second marker ends, will play the timer ticking sound. - onAnimationStart(Animator) Will
- * initialize the time bar which dictates the time left in the game. - onAnimationEnd(Animator) Will
- * take the user to the HighScore class when the timer bar animation ends - onStart() On the start
- * of the activity, will initialize sound and the time bar animation - createNewImages() Pulls an
- * item from the FireBase and will assign that item a name/bin color/image - findItems() Method that
- * finds all the ConstraintLayout and Views that are used in the activity - setItemAttributes() Sets
- * attributes to the objects found in findItems() will either assign an onDragListener,
- * onTouchListener, or a Tag - checkForPoint(String) Will check to see if the user placed the item
- * in the right bin - increaseScore(boolean) Will either increment or decrement the score, based on
- * if the user sorted an item correctly - onDrag(View, DragEvent) Allows for constraint layouts to
- * determine if an item was dragged over top of them. - onTouch(View, MotionEvent) Allows for items
- * spawned in the game to be draggable - outOfBoundsCheck(boolean) Will make sure the image being
- * sorted will still be visible if the user dragged the item to either the navigation bar or the top
- * of the screen where there are no constraint layouts - enableVolume(View) Enables volume in game -
- * disableVolume(View) Disables volume in game - onBackPressed() Will take the user out of the
- * application if they hit the back arrow on the navigation bar - backBtnPress() Will take the user
- * back to the Main Menu.
- * </p>
- **/
+ * @author Jared Matson , Joseph Menezes , Harshil Vyas
+ * Date : 2020 - 01 - 20
+ *
+ */
 package com.example.wastesortapp;
 
 import android.animation.Animator;
@@ -73,12 +94,28 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView.OnTouchListener {
 
   private final Sound sound = new Sound(this);
-  private ImageView imageView2;
+  private ImageView spawnedImage;
   private ImageView enableSoundButton;
   private ImageView disableSoundButton;
+  private ImageView yellowBin;
+  private ImageView blueBin;
+  private ImageView greenBin;
+  private ImageView blackBin;
+  private ProgressBar progressBar;
+  private ImageView timerText;
+  private ImageView scoreText;
+  private ImageView scoreDisplay;
+  private TextView organicLabel;
+  private TextView recycleLabel;
+  private TextView landFillLabel;
+  private TextView beverageLabel;
+  private ImageView backBtn;
+
   private ObjectAnimator mAnimation;
+
   private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   private final DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
+
   private ConstraintLayout constraintLayout;
   private ConstraintLayout dropLayoutGreen;
   private ConstraintLayout dropLayoutBlue;
@@ -97,8 +134,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    timer = new CountDownTimer(45000, 1000) { //45 second timer
-      // to do ticking sound which will inform user game is coming to end
+
+    timer = new CountDownTimer(45000, 1000) { //45 second timer to do ticking sound
+      //which will inform user game is coming to end
       @Override
       public void onTick(long millisUntilFinished) {
       }
@@ -109,49 +147,18 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
       }
     };
     timer.start();
+
     sound.initializeAllGameSounds();
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_game);
+
     DisplayMetrics displayMetrics = new DisplayMetrics();
     getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-    ImageView yellowBin = findViewById(R.id.beverageBin);
-    ImageView blueBin = findViewById(R.id.recycleBin);
-    ImageView greenBin = findViewById(R.id.organicBin);
-    ImageView blackBin = findViewById(R.id.trashCan);
-    ProgressBar progressBar = findViewById(R.id.timerBar);
-    ImageView timerText = findViewById(R.id.timeText);
-    ImageView scoreText = findViewById(R.id.scoreText);
-    ImageView scoreDisplay = findViewById(R.id.score);
-    TextView organicLabel = findViewById(R.id.organicLabel);
-    TextView recycleLabel = findViewById(R.id.recycleLabel);
-    TextView landFillLabel = findViewById(R.id.landFillLabel);
-    TextView beverageLabel = findViewById(R.id.beverageLabel);
-    ImageView backBtn = findViewById(R.id.backBtn);
-    scoreView = findViewById(R.id.scoreView);
-    enableSoundButton = findViewById(R.id.soundOnImage);
-    disableSoundButton = findViewById(R.id.soundOffImage);
-    itemNameTextView = findViewById(R.id.itemNameTextView);
-    //Animation Setup
-    Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
-    Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
-    //Animations
-    organicLabel.setAnimation(fromBottom);
-    beverageLabel.setAnimation(fromBottom);
-    landFillLabel.setAnimation(fromBottom);
-    recycleLabel.setAnimation(fromBottom);
-    yellowBin.setAnimation(fromBottom);
-    blackBin.setAnimation(fromBottom);
-    blueBin.setAnimation(fromBottom);
-    greenBin.setAnimation(fromBottom);
-    progressBar.setAnimation(fromTop);
-    timerText.setAnimation(fromTop);
-    scoreText.setAnimation(fromTop);
-    scoreDisplay.setAnimation(fromTop);
-    enableSoundButton.setAnimation(fromTop);
-    disableSoundButton.setAnimation(fromTop);
-    scoreView.setAnimation(fromTop);
-    itemNameTextView.setAnimation(fromTop);
-    backBtn.setAnimation(fromTop);
+
+    findItems();
+
+    animationDisplay();
+
     backBtn.setOnClickListener(new View.OnClickListener() {
       /**
        * Will bring the user back to the main menu if the back button is pressed
@@ -164,13 +171,15 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
       }
     });
+
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
     mAnimation.setDuration(60000);
     mAnimation.addListener(new Animator.AnimatorListener() {
+
       /**
        * Initializes the time bar.
        *
-       * @param animator the visible time bar
+       * @param animator the time bar
        */
       @Override
       public void onAnimationStart(Animator animator) {
@@ -186,7 +195,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
        * When the animation ends (the time bar is empty after a minute) this method will
        * bring the user to the HighScore class.
        *
-       * @param animator the visible time bar
+       * @param animator the time bar
        */
       @Override
       public void onAnimationEnd(Animator animator) {
@@ -201,6 +210,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
       @Override
       public void onAnimationCancel(Animator animator) {
+
       }
 
       @Override
@@ -217,10 +227,10 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   @Override
   protected void onStart() {
     super.onStart();
+    findItems();
     sound.enableSound();
     mAnimation.start();
     createNewImages();
-    findItems();
 
   }//onStart
 
@@ -234,28 +244,32 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
         long numChildren = dataSnapshot.getChildrenCount();
         String[] randKey = new String[(int) numChildren];
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildren);
         int randNum = new Random().nextInt(Integer.parseInt(num));
         System.out.println(randNum);
+
         if (itemsChosen.contains(randNum)) {
           createNewImages();
         } else {
-          //System.out.println(itemsChosen);
+
           String rand = String.valueOf(randNum);
           String link = dataSnapshot.child(rand).child("Image").getValue(String.class);
           String data = dataSnapshot.child(rand).child("Color").getValue(String.class);
           String ItemName = dataSnapshot.child(rand).child("Item").getValue(String.class);
           color = data;
-          Picasso.get().load(link).into(imageView2);
-          imageView2.setVisibility(View.VISIBLE);
+          Picasso.get().load(link).into(spawnedImage);
+          spawnedImage.setVisibility(View.VISIBLE);
           itemNameTextView.setText(ItemName);
           itemsChosen.add(randNum);
+
           if (itemsChosen.size() == numChildren) {
             itemsChosen.clear();
-          }//if
+          }
+          //  }//if
         }//else
       }//onDataChange
 
@@ -269,16 +283,30 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    * Finds all of the ConstraintLayouts and Views that will be used within the activity
    */
   private void findItems() {
-    enableSoundButton = findViewById(R.id.soundOffImage);
-    disableSoundButton = findViewById(R.id.soundOnImage);
-    constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
+    yellowBin = findViewById(R.id.beverageBin);
+    blueBin = findViewById(R.id.recycleBin);
+    greenBin = findViewById(R.id.organicBin);
+    blackBin = findViewById(R.id.trashCan);
+    progressBar = findViewById(R.id.timerBar);
+    timerText = findViewById(R.id.timeText);
+    scoreText = findViewById(R.id.scoreText);
+    scoreDisplay = findViewById(R.id.score);
+    organicLabel = findViewById(R.id.organicLabel);
+    recycleLabel = findViewById(R.id.recycleLabel);
+    landFillLabel = findViewById(R.id.landFillLabel);
+    beverageLabel = findViewById(R.id.beverageLabel);
+    backBtn = findViewById(R.id.backBtn);
     scoreView = findViewById(R.id.scoreView);
+    constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
+    enableSoundButton = findViewById(R.id.soundOnImage);
+    disableSoundButton = findViewById(R.id.soundOffImage);
+    itemNameTextView = findViewById(R.id.itemNameTextView);
     dropLayoutGreen = findViewById(R.id.dropLayoutGreen);
     dropLayoutBlue = findViewById(R.id.dropLayoutBlue);
     dropLayoutYellow = findViewById(R.id.dropLayoutYellow);
     dropLayoutBlack = findViewById(R.id.dropLayoutBlack);
     itemSpawnLocation = findViewById(R.id.itemSpawnLocation);
-    imageView2 = findViewById(R.id.imageView2);
+    spawnedImage = findViewById(R.id.spawnedImage);
     itemNameTextView = findViewById(R.id.itemNameTextView);
     setItemAttributes();
   }//findItems
@@ -295,7 +323,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     dropLayoutYellow.setOnDragListener(this);
     dropLayoutBlack.setOnDragListener(this);
     itemSpawnLocation.setOnDragListener(this);
-    imageView2.setOnTouchListener(this);
+    spawnedImage.setOnTouchListener(this);
     dropLayoutGreen.setTag("Green");
     dropLayoutBlue.setTag("Blue");
     dropLayoutYellow.setTag("Yellow");
@@ -313,7 +341,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   private void checkForPoint(String binChoice) {
     if (binChoice.equals("Outside")) {
-      imageView2.setVisibility(View.VISIBLE);
+      spawnedImage.setVisibility(View.VISIBLE);
     }//if
     else if (binChoice.equals(color)) {
       increaseScore(true);
@@ -392,6 +420,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
     v.setVisibility(View.INVISIBLE);
+
     return true;
   }//onTouch
 
@@ -403,7 +432,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   private void outOfBoundsCheck(boolean wasThereDrop) {
     if (!wasThereDrop) {
-      imageView2.setVisibility(View.VISIBLE);
+      spawnedImage.setVisibility(View.VISIBLE);
     }//if
   }//outOfBoundsCheck
 
@@ -437,8 +466,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
+
     confirmation.setMessage("Are you sure you want to go exit?")
-        //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
@@ -449,6 +478,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
             startActivity(intent);
           }
         })
+
         .setNegativeButton("No", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
@@ -466,6 +496,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    */
   private void backBtnPress() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
+
     confirmation.setMessage("Are you sure you want to go back?")
         .setCancelable(false)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -477,8 +508,10 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
             timer.cancel();
             finish();
             startActivity(goBack);
+
           }
         })
+
         .setNegativeButton("No", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
@@ -489,4 +522,33 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     alertDialog.show();
 
   }//backBtnPressed
+
+  /**
+   * All the animations at using such as fly in from top and bottom for transition
+   */
+  private void animationDisplay() {
+    //Animation Setup
+    Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+    Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
+
+    //Animations
+    organicLabel.setAnimation(fromBottom);
+    beverageLabel.setAnimation(fromBottom);
+    landFillLabel.setAnimation(fromBottom);
+    recycleLabel.setAnimation(fromBottom);
+    yellowBin.setAnimation(fromBottom);
+    blackBin.setAnimation(fromBottom);
+    blueBin.setAnimation(fromBottom);
+    greenBin.setAnimation(fromBottom);
+    progressBar.setAnimation(fromTop);
+    timerText.setAnimation(fromTop);
+    scoreText.setAnimation(fromTop);
+    scoreDisplay.setAnimation(fromTop);
+    enableSoundButton.setAnimation(fromTop);
+    disableSoundButton.setAnimation(fromTop);
+    scoreView.setAnimation(fromTop);
+    itemNameTextView.setAnimation(fromTop);
+    backBtn.setAnimation(fromTop);
+  }//animationDisplay
+
 }//gameActivity

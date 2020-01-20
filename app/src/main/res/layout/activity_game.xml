@@ -12,6 +12,7 @@
     android:id="@+id/backBtn"
     android:layout_width="22dp"
     android:layout_height="24dp"
+    android:contentDescription="back button"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.024"
@@ -59,9 +60,10 @@
     app:layout_constraintVertical_bias="0.329">
 
     <ImageView
-      android:id="@+id/imageView2"
+      android:id="@+id/spawnedImage"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:contentDescription="spawned item"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.0"
@@ -85,6 +87,7 @@
     android:layout_marginStart="5dp"
     android:layout_marginTop="500dp"
     android:layout_marginEnd="35dp"
+    android:contentDescription="trach can"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toEndOf="@+id/organicBin"

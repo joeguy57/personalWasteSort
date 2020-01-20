@@ -13,6 +13,8 @@
  *  - onBackPressed()
  *      Will take the user out of the application if they hit the back button on the navigation
  *      bar, will ask for confirmation through a dialog box before doing so
+ *
+ * @author Harshil Vyas
  */
 package com.example.wastesortapp;
 
