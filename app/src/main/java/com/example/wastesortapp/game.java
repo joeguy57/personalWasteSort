@@ -45,7 +45,7 @@
  *   - backBtnPress()
  *      Will take the user back to the Main Menu.
  * </p>
- */
+ **/
 package com.example.wastesortapp;
 
 import android.animation.Animator;

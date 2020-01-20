@@ -1,4 +1,4 @@
-/*
+/**
  * HighScore.java
  * This Activity sends the data to the firebase for saved Data.
  * Here score will be sent from the game.java and request (but not require),
@@ -10,6 +10,8 @@
  * onBackPressed - When the back button on the interface is pressed, a Dialog (alert pops up)...
  * created on: 13/01/2019
  * Completed and ready for MVP
+ *
+ * @author Joseph Menezes - 1510740
  * */
 package com.example.wastesortapp;
 
@@ -32,7 +34,7 @@ public class HighScore extends AppCompatActivity {
 
   private int score;
   private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-  private EditText nameInput;
+  private EditText nameTextView;
   private EditText emailTextView;
   private String emailInput;
   //--------------------------------------------------------------------------------------------
@@ -42,7 +44,7 @@ public class HighScore extends AppCompatActivity {
     setContentView(R.layout.activity_high_score);
     Bundle intent = getIntent().getExtras();
     score = intent.getInt("Score", 1);
-    nameInput = findViewById(R.id.userInputName);
+    nameTextView = findViewById(R.id.userInputName);
     emailTextView = findViewById(R.id.userEmailName);
     TextView playerScore = findViewById(R.id.playerScore);
     playerScore.setText("Your Score is: " + score);
@@ -89,10 +91,10 @@ public class HighScore extends AppCompatActivity {
    */
   private void sendData() {
     //if user doesn't enter values and presses the submit button an error message is produced.
-    if (nameInput.getText().length() == 0 && emailTextView.getText().length() == 0) {
-      nameInput.setText("");
+    if (nameTextView.getText().length() == 0 && emailTextView.getText().length() == 0) {
+      nameTextView.setText("");
       emailTextView.setText("");
-      nameInput.setError(
+      nameTextView.setError(
           "If you do not want to submit your high score, hit the main menu button. "
               + "Else fill in either your Name or both Name and Email Address");
     }//if
@@ -111,7 +113,7 @@ public class HighScore extends AppCompatActivity {
       Date date = new Date(System.currentTimeMillis());
       writeData.child(key).child("Date").setValue(formatter.format(date));
       writeData.child(key).child("Score").setValue(score);
-      writeData.child(key).child("Name").setValue(nameInput.getText().toString());
+      writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
       startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }//else if
     //if user types in the email address
@@ -129,7 +131,7 @@ public class HighScore extends AppCompatActivity {
       Date date = new Date(System.currentTimeMillis());
       writeData.child(key).child("Date").setValue(formatter.format(date));
       writeData.child(key).child("Score").setValue(score);
-      writeData.child(key).child("Name").setValue(nameInput.getText().toString());
+      writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
 
       writeData.child(key).child("emailAddress").setValue(emailInput);
       startActivity(new Intent(getApplicationContext(), MainActivity.class));

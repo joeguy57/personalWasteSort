@@ -27,8 +27,8 @@ class GarbageInfo {
   private String Name;
   private String Description;
 
-  public GarbageInfo() {
-  }
+//  public GarbageInfo() {
+//  }
 
   /**
    * Constructor for GarbageInfo
