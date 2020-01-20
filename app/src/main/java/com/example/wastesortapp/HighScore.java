@@ -47,14 +47,12 @@ public class HighScore extends AppCompatActivity {
     playerScore.setText("Your Score is: " + score);
     ImageView mainMenu = findViewById(R.id.mainMenuBtn);
     ImageView submitBtn = findViewById(R.id.submitBtn);
-
     submitBtn.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         sendData();
       }
     });
-
     mainMenu.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -75,10 +73,8 @@ public class HighScore extends AppCompatActivity {
   private Boolean checkEmail(EditText emailTextView) {
     String emailPref = "ualberta.ca";
     String emailInput = emailTextView.getText().toString();
-
     int emailStartIndex = emailInput.indexOf('@');
     String emailSubString = emailInput.substring(emailStartIndex + 1);
-
     return emailSubString.equals(emailPref);
   }//checkEmail
 
@@ -95,6 +91,7 @@ public class HighScore extends AppCompatActivity {
 
   /**
    * Data will be sent to firebase in order to load the
+   *
    * @param writeData- Database connection with android
    * @param key - the parent Index
    * @param isEmail - checks to see if email is required
@@ -161,7 +158,6 @@ public class HighScore extends AppCompatActivity {
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
-
     confirmation.setMessage("Are you sure you want to go exit?")
         //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
