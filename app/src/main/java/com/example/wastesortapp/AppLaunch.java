@@ -35,7 +35,7 @@ public class AppLaunch extends AppCompatActivity {
   /**
    * From the boot up page to go to the Main Menu activity is has a 2.5 sec delay
    */
-  public void goToMainMenu(){
+  private void goToMainMenu(){
     Timer timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override

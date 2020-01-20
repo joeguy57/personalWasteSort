@@ -68,7 +68,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
   }
 
   /**
-   * this class will allow for the information to be used for the cardView.
+   * This class will allow for the information to be used for the cardView.
    */
   class viewHolder extends RecyclerView.ViewHolder {
 

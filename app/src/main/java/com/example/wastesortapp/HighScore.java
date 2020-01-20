@@ -31,7 +31,7 @@ import java.util.Date;
 public class HighScore extends AppCompatActivity {
 
   private int score;
-  private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+  private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   private EditText nameInput;
   private EditText emailTextView;
   private String emailInput;
@@ -87,7 +87,7 @@ public class HighScore extends AppCompatActivity {
    * Takes the data that a user chooses to input and then sends into be processed to
    * be used as a google sheets.
    */
-  public void sendData() {
+  private void sendData() {
     //if user doesn't enter values and presses the submit button an error message is produced.
     if (nameInput.getText().length() == 0 && emailTextView.getText().length() == 0) {
       nameInput.setText("");
@@ -119,7 +119,7 @@ public class HighScore extends AppCompatActivity {
       String key;
       DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk")
           .child("HighScore");
-      if (writeData.getKey() != String.valueOf(1)) {
+      if (!writeData.getKey().equals(String.valueOf(1))) {
         key = writeData.push().getKey();
       }//if
       else {

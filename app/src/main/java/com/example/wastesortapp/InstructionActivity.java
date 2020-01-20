@@ -26,7 +26,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class InstructionActivity extends AppCompatActivity {
-  Timer timer;
+  private Timer timer;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -37,7 +37,7 @@ public class InstructionActivity extends AppCompatActivity {
   /**
    * After 5 seconds, will bring the user to the game
    */
-  public void goToGame() {
+  private void goToGame() {
     timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override

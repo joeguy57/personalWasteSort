@@ -52,25 +52,21 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -82,26 +78,23 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.MissingFormatArgumentException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
 import java.util.TimerTask;
 import java.util.Timer;
 
 public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView.OnTouchListener {
 
-  Sound sound = new Sound(this);
-  ImageView imageView2;
-  public ImageView enableSoundButton;
+  private final Sound sound = new Sound(this);
+  private ImageView imageView2;
+  private ImageView enableSoundButton;
   public ImageView disableSoundButton;
   private ObjectAnimator mAnimation;
-  private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-  private DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
+  private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+  private final DatabaseReference imagesUrlsRef = rootRef.child("GameObjects");
   private ConstraintLayout constraintLayout;
   private ConstraintLayout dropLayoutGreen;
   private ConstraintLayout dropLayoutBlue;
@@ -115,7 +108,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   private static final String TAG = "MyActivity";
   private boolean wasThereDrop = false;
   private CountDownTimer timer;
-  ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
+  private final ArrayList<Integer> itemsChosen = new ArrayList<Integer>();
 
   //-----------------------------------------------------------------------------------
   @Override
@@ -144,7 +137,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView blueBin = findViewById(R.id.recycleBin);
     ImageView greenBin = findViewById(R.id.organicBin);
     ImageView blackBin = findViewById(R.id.trashCan);
-    ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
+    ProgressBar progressBar = findViewById(R.id.timerBar);
     ImageView timerText = findViewById(R.id.timeText);
     ImageView scoreText = findViewById(R.id.scoreText);
     ImageView scoreDisplay = findViewById(R.id.score);
@@ -250,7 +243,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    * bin it goes in. This information is used to determine points and give the user more information
    * about what is being sorted.
    */
-  protected void createNewImages() {
+  private void createNewImages() {
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -291,7 +284,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   /**
    * Finds all of the ConstraintLayouts and Views that will be used within the activity
    */
-  public void findItems() {
+  private void findItems() {
     enableSoundButton = findViewById(R.id.soundOffImage);
     disableSoundButton = findViewById(R.id.soundOnImage);
     constraintLayout = findViewById(R.id.ConstraintLayoutDrop);
@@ -311,7 +304,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    * where the game items spawn, and the game screen as a whole. Will also set tags to these
    * constraint layouts which will help determine point scoring.
    */
-  public void setItemAttributes() {
+  private void setItemAttributes() {
     constraintLayout.setOnDragListener(this);
     dropLayoutGreen.setOnDragListener(this);
     dropLayoutBlue.setOnDragListener(this);
@@ -334,7 +327,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    *
    * @param binChoice Color of bin the item was dropped in
    */
-  public void checkForPoint(String binChoice) {
+  private void checkForPoint(String binChoice) {
     if (binChoice.equals("Outside")) {
       imageView2.setVisibility(View.VISIBLE);
     }//if
@@ -357,7 +350,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    *
    * @param wasPointScored did the person sort the image correctly
    */
-  public void increaseScore(boolean wasPointScored) {
+  private void increaseScore(boolean wasPointScored) {
     if (wasPointScored) {
       score += 1;
     }//if
@@ -376,7 +369,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    * @return was there a drag event
    */
   public boolean onDrag(View v, DragEvent event) {
-    ConstraintLayout container = null;
+    ConstraintLayout container;
     switch (event.getAction()) {
       case DragEvent.ACTION_DRAG_STARTED:
         wasThereDrop = false;
@@ -414,7 +407,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   public boolean onTouch(View v, MotionEvent event) {
     DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(v);
     v.startDrag(null, shadowBuilder, v, 0);
-    v.setVisibility(v.INVISIBLE);
+    v.setVisibility(View.INVISIBLE);
 
     return true;
   }//onTouch
@@ -425,8 +418,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    *
    * @param wasThereDrop was the item placed in a constraint layout provided
    */
-  public void outOfBoundsCheck(boolean wasThereDrop) {
-    if (wasThereDrop == false) {
+  private void outOfBoundsCheck(boolean wasThereDrop) {
+    if (!wasThereDrop) {
       imageView2.setVisibility(View.VISIBLE);
     }//if
   }//outOfBoundsCheck
@@ -490,7 +483,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
    * Will bring the user to the Main Menu. This will be called if the back button at the top left of
    * the activity is pressed.
    */
-  protected void backBtnPress() {
+  private void backBtnPress() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
     confirmation.setMessage("Are you sure you want to go back?")

@@ -5,7 +5,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.junit.Test;
 
 public class HighScoreTest {
-  private DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+  private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   @Test
   public void sendData() {
     String key;

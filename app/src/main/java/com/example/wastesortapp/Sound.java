@@ -30,9 +30,9 @@ package com.example.wastesortapp;
 import android.content.Context;
 import android.media.MediaPlayer;
 
-public class Sound {
+class Sound {
 
-  private Context context;
+  private final Context context;
   private MediaPlayer correctSortSound;
   private MediaPlayer incorrectSortSound;
   private MediaPlayer tickingSound;
@@ -104,7 +104,7 @@ public class Sound {
    * Plays the correctSound sound (if player scores a point)
    */
   public void playCorrectSound() {
-    if (soundToggle == true) {
+    if (soundToggle) {
       correctSortSound.start();
     }//if
 
@@ -114,7 +114,7 @@ public class Sound {
    * Plays the incorrectSound sound (if player loses a point)
    */
   public void playIncorrectSound() {
-    if (soundToggle == true) {
+    if (soundToggle) {
       incorrectSortSound.start();
     }//if
   }//playIncorrectSound
@@ -123,7 +123,7 @@ public class Sound {
    * Plays the tickingSound sound when there is only 15 seconds left in the game
    */
   public void playTickingSound() {
-    if (soundToggle == true) {
+    if (soundToggle) {
       tickingSound.start();
     }//if
   }//playTickingSound
@@ -132,7 +132,7 @@ public class Sound {
    * Plays the gameOverSound sound when the game is completed
    */
   public void playGameOverSound() {
-    if(soundToggle ==true) {
+    if(soundToggle) {
       gameOverSound.start();
     }
   }//playGameOverSound

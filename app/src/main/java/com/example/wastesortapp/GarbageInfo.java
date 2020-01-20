@@ -21,7 +21,7 @@
  */
 package com.example.wastesortapp;
 
-public class GarbageInfo {
+class GarbageInfo {
 
   private String binType;
   private String Name;

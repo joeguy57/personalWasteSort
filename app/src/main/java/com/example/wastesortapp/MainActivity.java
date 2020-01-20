@@ -33,7 +33,7 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
   //Global Variables
-  protected Intent goToActivity;
+  private Intent goToActivity;
 
   @Override
   /**
