@@ -1,15 +1,20 @@
 /**
- * In the Contact Us class so I there is link for to connect to the internet to get more information
+ * In the Contact Us class so I there is link for to connect to the internet to get more
+ * information
  *
  * The following methods are used:
  *
  * goToBrowser(): For uses how need to more information about Sustainability there is a link
- *                (University of Alberta) for that
+ *               (University of Alberta) for that
  *
  * Note : The user needs to be connected to the internet to be able to access the link
  *
  * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
- *  *                   confirmation message. If YES the exit the app, else don't
+ *                  confirmation message. If YES the exit the app, else don't
+ *
+ * @author Harshil Vyas
+ * ID : 158162
+ * Date:   2020 - 01 - 19
  */
 
 package com.example.wastesortapp;
