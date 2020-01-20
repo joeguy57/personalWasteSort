@@ -160,6 +160,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     timerText.setAnimation(fromTop);
     scoreText.setAnimation(fromTop);
     scoreDisplay.setAnimation(fromTop);
+    itemNameTextView.setAnimation(fromTop);
 
     ImageView backBtn = findViewById(R.id.backBtn);
 
