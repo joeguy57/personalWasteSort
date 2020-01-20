@@ -116,8 +116,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    timer = new CountDownTimer(45000, 1000) { //45 second timer to do ticking sound
-      //which will inform user game is coming to end
+    timer = new CountDownTimer(45000, 1000) { //45 second timer
+      // to do ticking sound which will inform user game is coming to end
       @Override
       public void onTick(long millisUntilFinished) {
       }
@@ -284,8 +284,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
           itemsChosen.add(randNum);
           if (itemsChosen.size() == numChildren) {
             itemsChosen.clear();
-          }
-          //  }//if
+          }//if
         }//else
       }//onDataChange
 
