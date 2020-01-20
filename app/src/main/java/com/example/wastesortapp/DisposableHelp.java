@@ -15,14 +15,14 @@ package com.example.wastesortapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.SearchView.OnQueryTextListener;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,38 +41,38 @@ public class DisposableHelp extends AppCompatActivity {
   private ArrayList<GarbageInfo> garbageInfoArrayList;
   private ConstraintLayout creditsLay;
 //--------------------------------------------------------------------------------------------
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_disposable_help);
-    creditsLay = findViewById(R.id.creditsLayout);
-    creditsLay.setVisibility(View.INVISIBLE);
-    //back button
-    ImageView backBtn = findViewById(R.id.backBtn);
-    backBtn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(goToMain);
-        finish();
-      }
-    });
-    //Assigning the Global variables.
-    garbageRecycleView = findViewById(R.id.recycleView);
-    searchView = findViewById(R.id.searchView);
-    garbageRecycleView.setHasFixedSize(true);
-    garbageRecycleView.setLayoutManager(new LinearLayoutManager(this));
-    //Creating the entry point to Firebase.
-    databaseReference = FirebaseDatabase.getInstance().getReference()
-        .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
-  }
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_disposable_help);
+  creditsLay = findViewById(R.id.creditsLayout);
+  creditsLay.setVisibility(View.INVISIBLE);
+  //back button
+  ImageView backBtn = findViewById(R.id.backBtn);
+  backBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+      Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
+      startActivity(goToMain);
+      finish();
+    }
+  });
+  //Assigning the Global variables.
+  garbageRecycleView = findViewById(R.id.recycleView);
+  searchView = findViewById(R.id.searchView);
+  garbageRecycleView.setHasFixedSize(true);
+  garbageRecycleView.setLayoutManager(new LinearLayoutManager(this));
+  //Creating the entry point to Firebase.
+  databaseReference = FirebaseDatabase.getInstance().getReference()
+      .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
+}
 
   /**
-   * on start runs on the initialization of the app. Here we go through the Firebase database,
-   * in order to display the item information to the user.
+   * on start runs on the initialization of the app. Here we go through the Firebase database, in
+   * order to display the item information to the user.
    *
-   * if the user starts typing in the search bar, then a filtering on the recycler view is then
-   * made to get the closet answer to the search.
+   * if the user starts typing in the search bar, then a filtering on the recycler view is then made
+   * to get the closet answer to the search.
    */
   @Override
   protected void onStart() {
@@ -86,19 +86,20 @@ public class DisposableHelp extends AppCompatActivity {
             for (DataSnapshot currentSnapshot : dataSnapshot.getChildren()) {
               if (!currentSnapshot.getKey().equals("0")) {
                 garbageInfoArrayList.add(currentSnapshot.getValue(GarbageInfo.class));
-              }
-            }
+              }//if
+            }//for
             Adapter adapter = new Adapter(garbageInfoArrayList);
             garbageRecycleView.setAdapter(adapter);
-          }
-        }
+          }//if
+        }//onDataChange
 
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {
 
-        }
+        }//onCancelled
       });
-    }
+    }//if
+
     if (searchView != null) {
       searchView.setOnQueryTextListener(new OnQueryTextListener() {
         @Override
@@ -110,38 +111,39 @@ public class DisposableHelp extends AppCompatActivity {
         public boolean onQueryTextChange(String newText) {
           search(newText);
           return true;
-        }
+        }//onQueryTextChange
       });
     } else {
       onStart();
-    }
-  }
+    }//else
+  }//onStart
 
   /**
-   * This method takes in a users input this then causes the recycler view to reduce
-   * the number of options viewed.
-   * @param newText - the text being typed by the user gets added in to this function to narrow
-   * down the the options
+   * This method takes in a users input this then causes the recycler view to reduce the number of
+   * options viewed.
+   *
+   * @param newText - the text being typed by the user gets added in to this function to narrow down
+   * the the options
    */
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
     for (GarbageInfo object : garbageInfoArrayList) {
       if (object.getName().toLowerCase().contains(newText.toLowerCase())) {
         myList.add(object);
-      }
-    }
+      }//if
+    }//for
     Adapter adapter = new Adapter(myList);
     garbageRecycleView.setAdapter(adapter);
     if (newText.toLowerCase().contains("credits")) {
       creditsLay.setVisibility(View.VISIBLE);
       return;
-    }
+    }//if
     creditsLay.setVisibility(View.INVISIBLE);
   }//search
 
   /**
-   *When the back button on Navigation is pressed then a Dialog box alerts
-   *the user of what they are doing and exits thee app.
+   * When the back button on Navigation is pressed then a Dialog box alerts the user of what they
+   * are doing and exits thee app.
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
