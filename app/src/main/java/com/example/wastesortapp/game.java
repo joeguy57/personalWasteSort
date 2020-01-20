@@ -493,8 +493,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//onbackpressed
 
   /**
-   * Will bring the user to the Main Menu. This will be called if the back button at the top left of
-   * the activity is pressed.
+   * Will bring the user to the Main Menu. This will be called if the back button at the top
+   * left of the activity is pressed.
    */
   private void backBtnPress() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
