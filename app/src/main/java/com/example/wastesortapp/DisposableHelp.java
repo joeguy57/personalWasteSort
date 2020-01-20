@@ -5,9 +5,11 @@
  *
  * This app holds the features to scroll through item and search for an option that is needed.
  *
- * Methods: onStart() - on start runs on the initialization of the app...
- * search() - Goes through a global list created in other to store the cardView place holder.
- * onBackPressed- When the back button on the interface is pressed, a Dialog (alert pops up)...
+ * Methods: onStart() - on start runs on the initialization of the app... search() - Goes through a
+ * global garbageInfoArrayList created in other to store the cardView place holder. onBackPressed-
+ * When the back button on the interface is pressed, a Dialog (alert pops up)...
+ *
+ * 16/01/2019 Completed and ready for MVP.
  */
 package com.example.wastesortapp;
 
@@ -34,9 +36,9 @@ import java.util.ArrayList;
 public class DisposableHelp extends AppCompatActivity {
 
   private SearchView searchView;
-  private RecyclerView mGarbageList;
-  private DatabaseReference mData;
-  private ArrayList<GarbageInfo> list;
+  private RecyclerView garbageRecycleView;
+  private DatabaseReference databaseReference;
+  private ArrayList<GarbageInfo> garbageInfoArrayList;
   private ConstraintLayout creditsLay;
 
   @Override
@@ -55,12 +57,13 @@ public class DisposableHelp extends AppCompatActivity {
         finish();
       }
     });
-    mGarbageList = findViewById(R.id.recycleView);
+    //Assigning the Global variables.
+    garbageRecycleView = findViewById(R.id.recycleView);
     searchView = findViewById(R.id.searchView);
-    mGarbageList.setHasFixedSize(true);
-    mGarbageList.setLayoutManager(new LinearLayoutManager(this));
-
-    mData = FirebaseDatabase.getInstance().getReference()
+    garbageRecycleView.setHasFixedSize(true);
+    garbageRecycleView.setLayoutManager(new LinearLayoutManager(this));
+    //Creating the entry point to Firebase.
+    databaseReference = FirebaseDatabase.getInstance().getReference()
         .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
   }
 
@@ -74,20 +77,19 @@ public class DisposableHelp extends AppCompatActivity {
   @Override
   protected void onStart() {
     super.onStart();
-    if (mData != null) {
-      mData.addValueEventListener(new ValueEventListener() {
+    if (databaseReference != null) {
+      databaseReference.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
           if (dataSnapshot.exists()) {
-            list = new ArrayList<>();
-
-            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-              if (!ds.getKey().equals("0")) {
-                list.add(ds.getValue(GarbageInfo.class));
+            garbageInfoArrayList = new ArrayList<>();
+            for (DataSnapshot currentSnapshot : dataSnapshot.getChildren()) {
+              if (!currentSnapshot.getKey().equals("0")) {
+                garbageInfoArrayList.add(currentSnapshot.getValue(GarbageInfo.class));
               }
             }
-            Adapter adapter = new Adapter(list);
-            mGarbageList.setAdapter(adapter);
+            Adapter adapter = new Adapter(garbageInfoArrayList);
+            garbageRecycleView.setAdapter(adapter);
           }
         }
 
@@ -123,13 +125,13 @@ public class DisposableHelp extends AppCompatActivity {
    */
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
-    for (GarbageInfo object : list) {
+    for (GarbageInfo object : garbageInfoArrayList) {
       if (object.getName().toLowerCase().contains(newText.toLowerCase())) {
         myList.add(object);
       }
     }
     Adapter adapter = new Adapter(myList);
-    mGarbageList.setAdapter(adapter);
+    garbageRecycleView.setAdapter(adapter);
     if (newText.toLowerCase().contains("credits")) {
       creditsLay.setVisibility(View.VISIBLE);
       return;
@@ -138,14 +140,12 @@ public class DisposableHelp extends AppCompatActivity {
   }//search
 
   /**
-   *When the back button on Navigation is pressed then we
-   *
+   *When the back button on Navigation is pressed then a Dialog box alerts
+   *the user of what they are doing and exits thee app.
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
-
     confirmation.setMessage("Are you sure you want to go exit?")
-        //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
@@ -155,7 +155,6 @@ public class DisposableHelp extends AppCompatActivity {
             startActivity(intent);
           }
         })
-
         .setNegativeButton("No", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
