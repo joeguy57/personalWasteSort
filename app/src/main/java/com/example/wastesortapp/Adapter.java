@@ -32,7 +32,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
     View view = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.card_view, parent, false);
     return new viewHolder(view);
-  }
+  }//onCreateViewHolder
 
   @Override
   public void onBindViewHolder(@NonNull viewHolder holder, int position) {
@@ -59,8 +59,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
         break;
       default:
         break;
-    }
-  }
+    }//switch
+  }//onBindViewHolder
 
   @Override
   public int getItemCount() {
@@ -87,8 +87,8 @@ public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
       binTypeView = itemView.findViewById(R.id.itemBinType);
       descriptionView = itemView.findViewById(R.id.itemDescription);
       imageView = itemView.findViewById(R.id.binImage);
-    }
-  }
-}
+    }//viewHolder
+  }//viewHolder
+}//Adapter
 
 
