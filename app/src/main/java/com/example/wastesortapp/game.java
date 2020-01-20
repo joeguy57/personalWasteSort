@@ -196,7 +196,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
       /**
        * Initializes the time bar.
        *
-       * @param animator the time bar
+       * @param animator the visible time bar
        */
       @Override
       public void onAnimationStart(Animator animator) {
@@ -212,7 +212,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
        * When the animation ends (the time bar is empty after a minute) this method will
        * bring the user to the HighScore class.
        *
-       * @param animator the time bar
+       * @param animator the visible time bar
        */
       @Override
       public void onAnimationEnd(Animator animator) {
