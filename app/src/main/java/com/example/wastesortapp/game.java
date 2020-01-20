@@ -62,6 +62,7 @@ import android.view.View;
 import android.view.View.DragShadowBuilder;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -141,11 +142,22 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView timerText = findViewById(R.id.timeText);
     ImageView scoreText = findViewById(R.id.scoreText);
     ImageView scoreDisplay = findViewById(R.id.score);
+    TextView organicLabel = findViewById(R.id.organicLabel);
+    TextView recycleLabel = findViewById(R.id.recycleLabel);
+    TextView landFillLabel = findViewById(R.id.landFillLabel);
+    TextView beverageLabel = findViewById(R.id.beverageLabel);
+    ImageView backBtn = findViewById(R.id.backBtn);
     itemNameTextView = findViewById(R.id.itemNameTextView);
 
+    //Animation Setup
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
     Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
 
+    //Animations
+    organicLabel.setAnimation(fromBottom);
+    beverageLabel.setAnimation(fromBottom);
+    landFillLabel.setAnimation(fromBottom);
+    recycleLabel.setAnimation(fromBottom);
     yellowBin.setAnimation(fromBottom);
     blackBin.setAnimation(fromBottom);
     blueBin.setAnimation(fromBottom);
@@ -155,12 +167,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     scoreText.setAnimation(fromTop);
     scoreDisplay.setAnimation(fromTop);
     itemNameTextView.setAnimation(fromTop);
-
-    ImageView backBtn = findViewById(R.id.backBtn);
-
     backBtn.setAnimation(fromTop);
-
-    //ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
 
     backBtn.setOnClickListener(new View.OnClickListener() {
       /**
@@ -177,7 +184,6 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
     mAnimation = ObjectAnimator.ofInt(progressBar, "progress", 100, 0);
     mAnimation.setDuration(60000);
-    //mAnimation.setInterpolator(new DecelerateInterpolator());
     mAnimation.addListener(new Animator.AnimatorListener() {
       /**
        * Initializes the time bar.

@@ -18,4 +18,7 @@
   <string name="item_name">itemName</string>
   <string name="item_bin_type">itemBinType</string>
   <string name="description">Description</string>
+  <string name="beverage_containers">Beverage Containers</string>
+  <string name="landfill">Landfill</string>
+  <string name="recyclables">Recyclables</string>
 </resources>
