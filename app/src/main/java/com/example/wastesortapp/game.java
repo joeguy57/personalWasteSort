@@ -7,7 +7,43 @@
  * send the players score to the HighScore class where the user may enter their email which will be
  * sent to a Google Sheet.
  *
- * Methods :
+ * Methods (Non trivial) :
+ *  - OnCreate(Bundle)
+ *     Initializes activity
+ *  - onFinish()
+ *     When the timer for the 45 second marker ends, will play the timer ticking sound.
+ *  - onAnimationStart(Animator)
+ *     Will initialize the time bar which dictates the time left in the game.
+ *  - onAnimationEnd(Animator)
+ *     Will take the user to the HighScore class when the timer bar animation ends
+ *  - onStart()
+ *     On the start of the activity, will initialize sound and the time bar animation
+ *  - createNewImages()
+ *     Pulls an item from the FireBase and will assign that item a name/bin color/image
+ *  - findItems()
+ *      Method that finds all the ConstraintLayout and Views that are used in the activity
+ *  - setItemAttributes()
+ *      Sets attributes to the objects found in findItems() will either assign an onDragListener,
+ *      onTouchListener, or a Tag
+ *   - checkForPoint(String)
+ *      Will check to see if the user placed the item in the right bin
+ *   - increaseScore(boolean)
+ *      Will either increment or decrement the score, based on if the user sorted an item correctly
+ *   - onDrag(View, DragEvent)
+ *      Allows for constraint layouts to determine if an item was dragged over top of them.
+ *   - onTouch(View, MotionEvent)
+ *      Allows for items spawned in the game to be draggable
+ *   - outOfBoundsCheck(boolean)
+ *      Will make sure the image being sorted will still be visible if the user dragged the item
+ *      to either the navigation bar or the top of the screen where there are no constraint layouts
+ *   - enableVolume(View)
+ *      Enables volume in game
+ *   - disableVolume(View)
+ *      Disables volume in game
+ *   - onBackPressed()
+ *      Will take the user out of the application if they hit the back arrow on the navigation bar
+ *   - backBtnPress()
+ *      Will take the user back to the Main Menu.
  * </p>
  */
 package com.example.wastesortapp;
@@ -32,17 +68,20 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+
 import java.util.MissingFormatArgumentException;
 
 import java.util.ArrayList;
@@ -81,7 +120,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
-    timer = new CountDownTimer(45000, 1000) {
+    timer = new CountDownTimer(45000, 1000) { //45 second timer to do ticking sound
+      //which will inform user game is coming to end
       @Override
       public void onTick(long millisUntilFinished) {
       }
@@ -109,9 +149,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     ImageView scoreText = findViewById(R.id.scoreText);
     ImageView scoreDisplay = findViewById(R.id.score);
 
-
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
-    Animation fromTop = AnimationUtils.loadAnimation(this,R.anim.from_top);
+    Animation fromTop = AnimationUtils.loadAnimation(this, R.anim.from_top);
 
     yellowBin.setAnimation(fromBottom);
     blackBin.setAnimation(fromBottom);
@@ -122,17 +161,20 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     scoreText.setAnimation(fromTop);
     scoreDisplay.setAnimation(fromTop);
 
-
     ImageView backBtn = findViewById(R.id.backBtn);
 
     backBtn.setAnimation(fromTop);
 
-
     //ProgressBar progressBar = (ProgressBar) findViewById(R.id.timerBar);
+
     backBtn.setOnClickListener(new View.OnClickListener() {
+      /**
+       * Will bring the user back to the main menu if the back button is pressed
+       * @param v the back button being pressed
+       */
       @Override
       public void onClick(View v) {
-       backBtnPress();
+        backBtnPress();
 
       }
     });
@@ -141,17 +183,25 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     mAnimation.setDuration(60000);
     //mAnimation.setInterpolator(new DecelerateInterpolator());
     mAnimation.addListener(new Animator.AnimatorListener() {
-
+      /**
+       * Initializes the time bar.
+       * @param animator the time bar
+       */
       @Override
       public void onAnimationStart(Animator animator) {
-          Timer timer = new Timer();
-           timer.schedule(new TimerTask() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
           @Override
           public void run() {
           }
-        },2500);
+        }, 2500);
       }
 
+      /**
+       * When the animation ends (the time bar is empty after a minute) this method will bring
+       * the user to the HighScore class.
+       * @param animator the time bar
+       */
       @Override
       public void onAnimationEnd(Animator animator) {
         mAnimation.cancel();
@@ -175,6 +225,10 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
     });
   }
 
+  /**
+   * On the start of the activity, will initiate sound, start the time bar animation, and spawn a
+   * single image for the user to sort.
+   */
   @Override
   protected void onStart() {
     super.onStart();
@@ -185,13 +239,18 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
   }//onStart
 
-
+  /**
+   * This function will randomly pull items from our FireBase server, it will then pull specific
+   * information from these items such as its name, the image associated with it, and the color of
+   * bin it goes in. This information is used to determine points and give the user more information
+   * about what is being sorted.
+   */
   protected void createNewImages() {
     imagesUrlsRef.addValueEventListener(new ValueEventListener() {
       @Override
       public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        long numChildren =  dataSnapshot.getChildrenCount();
+        long numChildren = dataSnapshot.getChildrenCount();
         String[] randKey = new String[(int) numChildren];
         List<String> list = Arrays.asList(randKey);
         String num = String.valueOf(numChildren);
@@ -225,7 +284,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//createNewImages
 
   /**
-   * Finds all of the ConstraintLayouts and Views that will be used within the game
+   * Finds all of the ConstraintLayouts and Views that will be used within the activity
    */
   public void findItems() {
     enableSoundButton = findViewById(R.id.soundOffImage);
@@ -243,9 +302,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//findItems
 
   /**
-   * Will set onDragListeners for all the constraint layouts in the game. This
-   * include all binds, where the game items spawn, and the game screen as a whole. Will
-   * also set tags to these constraint layouts which will help determine point scoring.
+   * Will set onDragListeners for all the constraint layouts in the game. This include all binds,
+   * where the game items spawn, and the game screen as a whole. Will also set tags to these
+   * constraint layouts which will help determine point scoring.
    */
   public void setItemAttributes() {
     constraintLayout.setOnDragListener(this);
@@ -264,10 +323,10 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//setItemAttributes
 
   /**
-   * Will check to see if the user placed the item in the right bin, it will do this
-   * by matching the color of where the item is supposed to go, and the tag of the bin
-   * that it was dropped in. If the color and tag match, then a point is awarded, otherwise
-   * a point is deducted
+   * Will check to see if the user placed the item in the right bin, it will do this by matching the
+   * color of where the item is supposed to go, and the tag of the bin that it was dropped in. If
+   * the color and tag match, then a point is awarded, otherwise a point is deducted
+   *
    * @param binChoice Color of bin the item was dropped in
    */
   public void checkForPoint(String binChoice) {
@@ -290,6 +349,7 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
   /**
    * Will either increment or decrement the score, based on if they sorted an item correctly
+   *
    * @param wasPointScored did the person sort the image correctly
    */
   public void increaseScore(boolean wasPointScored) {
@@ -303,8 +363,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//changeScore
 
   /**
-   * Allows for constraint layouts to determine if an item was dragged overtop of them. Applied
-   * to where the item spawns, the game screen as a whole, and each individual bin.
+   * Allows for constraint layouts to determine if an item was dragged overtop of them. Applied to
+   * where the item spawns, the game screen as a whole, and each individual bin.
+   *
    * @param v What is being drug around
    * @param event what is happening during the drag event
    * @return was there a drag event
@@ -338,8 +399,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//onDrag
 
   /**
-   * Allows for items spawned in the game to be draggable, the item technically does not
-   * delete when dragged, it just goes invisible
+   * Allows for items spawned in the game to be draggable, the item technically does not delete when
+   * dragged, it just goes invisible
+   *
    * @param v the imageView being dragged (in our case)
    * @param event what is happening to this imageView
    * @return was the item dragged
@@ -353,9 +415,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//onTouch
 
   /**
-   * Will make sure the image being sorted will still be visible if the user
-   * dragged the item to either the navigation bar or the top of the screen where
-   * there are no constraint layouts
+   * Will make sure the image being sorted will still be visible if the user dragged the item to
+   * either the navigation bar or the top of the screen where there are no constraint layouts
+   *
    * @param wasThereDrop was the item placed in a constraint layout provided
    */
   public void outOfBoundsCheck(boolean wasThereDrop) {
@@ -365,8 +427,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//outOfBoundsCheck
 
   /**
-   * Enables volume if volume is disabled, must click on enableSoundButton in top right
-   * of game activity to do so
+   * Enables volume if volume is disabled, must click on enableSoundButton in top right of game
+   * activity to do so
+   *
    * @param v the enable volume button being pressed
    */
   public void enableVolume(View v) {
@@ -376,8 +439,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   } // enableVolume
 
   /**
-   * Disables volume if volume is enabled, must click on disableSoundButton in top right
-   * of game activity to do so
+   * Disables volume if volume is enabled, must click on disableSoundButton in top right of game
+   * activity to do so
+   *
    * @param v the disable volume button being pressed
    */
   public void disableVolume(View v) {
@@ -387,8 +451,8 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   } // enableVolume
 
   /**
-   * Looks to see if the back button was pressed on the navigation bar, will close app
-   * if it was hit
+   * Looks to see if the back button was pressed on the navigation bar, will close app if it was
+   * hit
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
@@ -417,8 +481,11 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
 
   }//onbackpressed
 
-
-  protected void backBtnPress(){
+  /**
+   * Will bring the user to the Main Menu. This will be called if the back button at the top left of
+   * the activity is pressed.
+   */
+  protected void backBtnPress() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
     confirmation.setMessage("Are you sure you want to go back?")
