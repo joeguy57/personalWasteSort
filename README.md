@@ -5,7 +5,7 @@ Developers : Jared Matson, Joseph Menezes, Harshil Vyas
 
 This project was created to tackle the problem of waste contamination within Augustana. Augustana campus has
 had a waste contamination problem for quite some time now and it is our goal to try and educate students and faculty
-to potentially reduce contamination.
+to potentially reduce these contamination levels.
 
 To achieve this, we decided to implement a game aspect for students, and a "waste guide" for faculty. This waste guide allows for users
 to enter what item they currently want to dispose of, and the application will search through a database in hopes of letting
