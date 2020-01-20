@@ -7,6 +7,8 @@
  * send the players score to the HighScore class where the user may enter their email which will be
  * sent to a Google Sheet.
  *
+ * @author Joseph Menenez, Jared Matson, Harshil Vyas
+ *
  * Methods (Non trivial) :
  *  - OnCreate(Bundle)
  *     Initializes activity

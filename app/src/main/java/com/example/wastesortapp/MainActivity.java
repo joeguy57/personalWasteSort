@@ -9,6 +9,15 @@
  *
  *-------------------------------------------------------------------------------------------------
  *
+ * findItems(): Finds all views in MainActivity where animations will be applied
+ *
+ *-------------------------------------------------------------------------------------------------
+ *
+ * setAnimations(): Initializes animations and sets these animation to the items found in
+ *                                                                                   findItems()
+ *
+ * ------------------------------------------------------------------------------------------------
+ *
  * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
  *                  confirmation message. If YES the exit the app, else don't
  *
@@ -18,7 +27,7 @@
  *
  *-------------------------------------------------------------------------------------------------
  *
- *      goToGame():  Take the user to a waste sorting game
+ * goToGame():  Take the user to a waste sorting game
  *
  * ------------------------------------------------------------------------------------------------
  *
@@ -51,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
   Button disposableHelpBtn;
   Button moreInfo;
   Button gameBtn;
+  ImageView mainMenuLogo;
+  TextView title;
 
   @Override
   /**
@@ -62,12 +73,30 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     //View Objects
-    ImageView mainMenuLogo = findViewById(R.id.mainMenuLogo);
+    findItems();
+    setAnimations();
+    goToContactUs();
+    goToGame();
+    goToWasteSort();
+
+  }//OnCreate
+
+  /**
+   * Finds the appropriate items to set animations to
+   */
+  public void findItems(){
+    mainMenuLogo = findViewById(R.id.mainMenuLogo);
     gameBtn = findViewById(R.id.gameBtn);
     disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
     moreInfo = findViewById(R.id.moreInfoBtn);
-    TextView title = findViewById(R.id.title);
+    title = findViewById(R.id.title);
+  }//findItems
 
+  /**
+   * Initializes  fade in and from bottom animations, assigngs the items from findItems()
+   * one of these two animations
+   */
+  public void setAnimations(){
     //Animations Variables
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
     Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
@@ -78,13 +107,7 @@ public class MainActivity extends AppCompatActivity {
     moreInfo.setAnimation(fromBottom);
     mainMenuLogo.setAnimation(fadeIn);
     title.setAnimation(fadeIn);
-
-    goToContactUs();
-    goToGame();
-    goToWasteSort();
-
-  }//OnCreate
-
+  }
   /**
    * Takes the user to a the Waste Sort Game
    */
