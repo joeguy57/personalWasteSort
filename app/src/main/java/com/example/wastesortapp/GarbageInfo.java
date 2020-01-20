@@ -27,8 +27,13 @@ class GarbageInfo {
   private String Name;
   private String Description;
 
-//  public GarbageInfo() {
-//  }
+  /**
+   * Even if this constructor is empty this line of code must remain in order for code to
+   * run successfully. This is not a bug, as GarbageInfo() call the constructor in object
+   * class to perform the necessary actions.
+   */
+  public GarbageInfo() {
+  }
 
   /**
    * Constructor for GarbageInfo

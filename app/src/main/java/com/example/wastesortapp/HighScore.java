@@ -1,18 +1,14 @@
 /**
- * HighScore.java
- * This Activity sends the data to the firebase for saved Data.
- * Here score will be sent from the game.java and request (but not require),
- * the user to input either their name or email.
+ * HighScore.java This Activity sends the data to the firebase for saved Data. Here score will be
+ * sent from the game.java and request (but not require), the user to input either their name or
+ * email.
  *
- * Methods:
- * checkEmail() - check to see if its a ualberta.ca email.
- * sendData()- Writes the data to google sheet to be viewed by the Client.
- * onBackPressed - When the back button on the interface is pressed, a Dialog (alert pops up)...
- * created on: 13/01/2019
- * Completed and ready for MVP
+ * Methods: checkEmail() - check to see if its a ualberta.ca email. sendData()- Writes the data to
+ * google sheet to be viewed by the Client. onBackPressed - When the back button on the interface is
+ * pressed, a Dialog (alert pops up)... created on: 13/01/2019 Completed and ready for MVP
  *
  * @author Joseph Menezes - 1510740
- * */
+ */
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
@@ -37,13 +33,14 @@ public class HighScore extends AppCompatActivity {
   private EditText nameTextView;
   private EditText emailTextView;
   private String emailInput;
+
   //--------------------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_high_score);
-    Bundle intent = getIntent().getExtras();
-    score = intent.getInt("Score", 1);
+    Bundle bundleIntent = getIntent().getExtras();
+    score = bundleIntent.getInt("Score", 1);
     nameTextView = findViewById(R.id.userInputName);
     emailTextView = findViewById(R.id.userEmailName);
     TextView playerScore = findViewById(R.id.playerScore);
@@ -72,7 +69,8 @@ public class HighScore extends AppCompatActivity {
 
   /**
    * This function does a check on the users email if it has been inputted.
-   * @param emailTextView
+   *
+   * @param emailTextView - textView where email is added1
    * @return true if its a ualberta email address
    */
   private Boolean checkEmail(EditText emailTextView) {
@@ -86,47 +84,56 @@ public class HighScore extends AppCompatActivity {
   }//checkEmail
 
   /**
-   * Takes the data that a user chooses to input and then sends into be processed to
-   * be used as a google sheets.
+   * this error will be run when user presses submit leaving an error message to make the
+   * correction.
+   */
+  private void submissionErrorBlank() {
+    nameTextView.setText("");
+    emailTextView.setText("");
+    nameTextView.setError("If you do not want to submit your high score, hit the main menu button."
+        + " Else fill in either your Name or both Name and Email Address");
+  }//submissionErrorBlank
+
+  /**
+   * Data will be sent to firebase in order to load the
+   * @param writeData- Database connection with android
+   * @param key - the parent Index
+   */
+  private void sendNameData(DatabaseReference writeData, String key) {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss z");
+    Date date = new Date(System.currentTimeMillis());
+    writeData.child(key).child("Date").setValue(formatter.format(date));
+    writeData.child(key).child("Score").setValue(score);
+    writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
+    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+  }
+
+  /**
+   * Takes the data that a user chooses to input and then sends into be processed to be used as a
+   * google sheets.
    */
   private void sendData() {
+    //Create DatabaseReference
+    DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk")
+        .child("HighScore");
     //if user doesn't enter values and presses the submit button an error message is produced.
     if (nameTextView.getText().length() == 0 && emailTextView.getText().length() == 0) {
-      nameTextView.setText("");
-      emailTextView.setText("");
-      nameTextView.setError(
-          "If you do not want to submit your high score, hit the main menu button. "
-              + "Else fill in either your Name or both Name and Email Address");
+      submissionErrorBlank();
+
     }//if
     // if user choose to not  provide their email and press the submit button.
     else if (emailTextView.getText().length() == 0) {
       String key;
-      DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk")
-          .child("HighScore");
-      if (!writeData.getKey().equals(String.valueOf(1))) {
-        key = writeData.push().getKey();
-      } //if
-      else {
-        key = "1";
-      }//else
-      SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss z");
-      Date date = new Date(System.currentTimeMillis());
-      writeData.child(key).child("Date").setValue(formatter.format(date));
-      writeData.child(key).child("Score").setValue(score);
-      writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
-      startActivity(new Intent(getApplicationContext(), MainActivity.class));
+      //creates the key value to check the parent of the database.
+      key = createKey(writeData);
+      //Sends only the name to the user.
+      sendNameData(writeData, key);
     }//else if
     //if user types in the email address
     if (checkEmail(emailTextView)) {
       String key;
-      DatabaseReference writeData = rootRef.child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk")
-          .child("HighScore");
-      if (!writeData.getKey().equals(String.valueOf(1))) {
-        key = writeData.push().getKey();
-      }//if
-      else {
-        key = "1";
-      }//else
+
+      key = createKey(writeData);
       SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy 'at' HH:mm:ss z");
       Date date = new Date(System.currentTimeMillis());
       writeData.child(key).child("Date").setValue(formatter.format(date));
@@ -144,9 +151,20 @@ public class HighScore extends AppCompatActivity {
     }//else
   }//sendData
 
+  private String createKey(DatabaseReference writeData) {
+    String key;
+    if (!writeData.getKey().equals(String.valueOf(1))) {
+      key = writeData.push().getKey();
+    }//if
+    else {
+      key = "1";
+    }//else
+    return key;
+  }
+
   /**
-   *When the back button on Navigation is pressed then a Dialog box alerts
-   *the user of what they are doing and exits thee app.
+   * When the back button on Navigation is pressed then a Dialog box alerts the user of what they
+   * are doing and exits thee app.
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
