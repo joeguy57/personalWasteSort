@@ -1,7 +1,7 @@
 # WasteSortApp
 AUCSC 320 Winter 2020 An App for Learning and Beyond for a Waste Sort Game
 
-Developers : Jared Matson, Joseph Menenez, Harshil Vyas
+Developers : Jared Matson, Joseph Menezes, Harshil Vyas
 
 This project was created to tackle the problem of waste contamination within Augustana. Augustana campus has
 had a waste contamination problem for quite some time now and it is our goal to try and educate students and faculty
