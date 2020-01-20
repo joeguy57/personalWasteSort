@@ -1,16 +1,30 @@
 /**
- * In Main Menu Class the user are able to navigate to the their desired activity which are :
- *    - The Waste Sort Game
- *    - Waste Guide
- *    - Contact Us / More Information
+ * In Main Menu Class the user are able to navigate to the their desired activity which are : - The
+ * Waste Sort Game - Waste Guide - Contact Us / More Information
  *
  * This class uses the following methods :
+ *-------------------------------------------------------------------------------------------------
  *
  * onCreate(Bundle savedInstanceState): All the navigation is declared in here and the animations
  *
- * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
- *                   confirmation message. If YES the exit the app, else don't
+ *-------------------------------------------------------------------------------------------------
  *
+ * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
+ *                  confirmation message. If YES the exit the app, else don't
+ *
+ *-------------------------------------------------------------------------------------------------
+ *
+ * goToContactUs(): Takes the user to the Contact page for more information
+ *
+ *-------------------------------------------------------------------------------------------------
+ *
+ *      goToGame():  Take the user to a waste sorting game
+ *
+ * ------------------------------------------------------------------------------------------------
+ *
+ * goToWasteSort(): Take the user to a activity to search for objects to dispose
+ *
+ *--------------------------------------------------------------------------------------------------
  * @author Harshil Vyas
  * ID : 158162
  * Date:   2020 - 01 - 19
@@ -33,7 +47,10 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
   //Global Variables
-  private Intent goToActivity;
+  protected Intent goToActivity;
+  Button disposableHelpBtn;
+  Button moreInfo;
+  Button gameBtn;
 
   @Override
   /**
@@ -46,9 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
     //View Objects
     ImageView mainMenuLogo = findViewById(R.id.mainMenuLogo);
-    Button gameBtn = findViewById(R.id.gameBtn);
-    Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
-    Button moreInfo = findViewById(R.id.moreInfoBtn);
+    gameBtn = findViewById(R.id.gameBtn);
+    disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
+    moreInfo = findViewById(R.id.moreInfoBtn);
     TextView title = findViewById(R.id.title);
 
     //Animations Variables
@@ -62,18 +79,30 @@ public class MainActivity extends AppCompatActivity {
     mainMenuLogo.setAnimation(fadeIn);
     title.setAnimation(fadeIn);
 
-    //Game Activity Navigation
+    goToContactUs();
+    goToGame();
+    goToWasteSort();
+
+  }//OnCreate
+
+  /**
+   * Takes the user to a the Waste Sort Game
+   */
+  public void goToGame() {
     gameBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         startActivity(
             goToActivity = new Intent(getApplicationContext(), InstructionActivity.class));
         finish();
-
       }
     });
+  }//goToGame
 
-    //Waste Sort Activity Navigation
+  /**
+   * Take the user to a page to search object to learn to dispose
+   */
+  public void goToWasteSort() {
     disposableHelpBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -81,8 +110,12 @@ public class MainActivity extends AppCompatActivity {
         finish();
       }
     });
+  }//goToWasteSort
 
-    //Contact Us Navigation
+  /**
+   * Take the user to a page to get more information for help and contact information
+   */
+  public void goToContactUs() {
     moreInfo.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -90,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
       }
     });
-
-  }//OnCreate
+  }//goToContactUs
 
   /**
    * If the user pressed on the back button on the users phone from the navigation bar then the user
