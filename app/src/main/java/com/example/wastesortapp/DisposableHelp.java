@@ -40,7 +40,7 @@ public class DisposableHelp extends AppCompatActivity {
   private DatabaseReference databaseReference;
   private ArrayList<GarbageInfo> garbageInfoArrayList;
   private ConstraintLayout creditsLay;
-
+//--------------------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

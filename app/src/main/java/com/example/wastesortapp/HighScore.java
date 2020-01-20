@@ -35,7 +35,7 @@ public class HighScore extends AppCompatActivity {
   private EditText nameInput;
   private EditText emailTextView;
   private String emailInput;
-
+  //--------------------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);

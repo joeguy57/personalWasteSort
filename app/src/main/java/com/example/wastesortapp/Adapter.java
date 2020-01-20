@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Adapter extends RecyclerView.Adapter<Adapter.viewHolder> {
 
   private final ArrayList<GarbageInfo> list;
-
+  //--------------------------------------------------------------------------------------------
   Adapter(ArrayList<GarbageInfo> list) {
     this.list = list;
   }
