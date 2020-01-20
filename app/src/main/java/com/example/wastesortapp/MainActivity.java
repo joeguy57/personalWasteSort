@@ -5,6 +5,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AlertDialog.Builder;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Button gameBtn = findViewById(R.id.gameBtn);
         Button disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
         Button moreInfo = findViewById(R.id.moreInfoBtn);
+        TextView title = findViewById(R.id.title);
+
 
         fromBottom = AnimationUtils.loadAnimation(this,R.anim.from_bottom);
         fadeIn = AnimationUtils.loadAnimation(this,R.anim.fade_in);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         disposableHelpBtn.setAnimation(fromBottom);
         moreInfo.setAnimation(fromBottom);
         mainMenuLogo.setAnimation(fadeIn);
+        title.setAnimation(fadeIn);
 
 
         gameBtn.setOnClickListener(new View.OnClickListener() {
