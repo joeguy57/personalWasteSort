@@ -334,9 +334,9 @@ public class game extends AppCompatActivity implements ImageView.OnDragListener,
   }//setItemAttributes
 
   /**
-   * Will check to see if the user placed the item in the right bin, it will do this by matching the
-   * color of where the item is supposed to go, and the tag of the bin that it was dropped in. If
-   * the color and tag match, then a point is awarded, otherwise a point is deducted
+   * Will check to see if the user placed the item in the right bin, it will do this by matching
+   * the color of where the item is supposed to go, and the tag of the bin that it was dropped in.
+   * If the color and tag match, then a point is awarded, otherwise a point is deducted
    *
    * @param binChoice Color of bin the item was dropped in
    */
