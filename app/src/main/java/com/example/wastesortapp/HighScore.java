@@ -103,6 +103,9 @@ public class HighScore extends AppCompatActivity {
     writeData.child(key).child("Score").setValue(score);
     writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
     startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    if (isEmail){
+      writeData.child(key).child("emailAddress").setValue(emailTextView.getText().toString());
+    }
   }
 
   /**
