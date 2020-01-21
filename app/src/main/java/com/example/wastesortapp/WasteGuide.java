@@ -45,7 +45,7 @@ public class WasteGuide extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_disposable_help);
+    setContentView(R.layout.activity_waste_guide);
     creditsLay = findViewById(R.id.creditsLayout);
     creditsLay.setVisibility(View.INVISIBLE);
 

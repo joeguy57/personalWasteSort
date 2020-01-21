@@ -547,7 +547,7 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
     enableSoundButton.setAnimation(fromTop);
     disableSoundButton.setAnimation(fromTop);
     scoreView.setAnimation(fromTop);
-    itemNameTextView.setAnimation(fromTop);
+    itemNameTextView.setAnimation(fromBottom);
     backBtn.setAnimation(fromTop);
   }//animationDisplay
 

@@ -20,6 +20,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,16 @@ public class HighScore extends AppCompatActivity {
   private final DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
   private EditText nameTextView;
   private EditText emailTextView;
+  private ImageView yourScoreLocation;
+  private TextView playerScore;
+  private ImageView mainMenuBtn;
+  private ImageView submitBtn;
+  private ImageView nameLocation;
+  private TextView enterNameView;
+  private ImageView emailLocation;
+  private TextView userEmailView;
+  private ImageView nameInputLocation;
+  private ImageView emailInputLocation;
 
   //--------------------------------------------------------------------------------------------
   @Override
@@ -43,20 +55,34 @@ public class HighScore extends AppCompatActivity {
     setContentView(R.layout.activity_high_score);
     Bundle bundleIntent = getIntent().getExtras();
     assert bundleIntent != null;
+
     score = bundleIntent.getInt("Score", 1);
     nameTextView = findViewById(R.id.userInputName);
     emailTextView = findViewById(R.id.userEmailName);
-    TextView playerScore = findViewById(R.id.playerScore);
-    playerScore.setText("Your Score is: " + score);
-    ImageView mainMenu = findViewById(R.id.mainMenuBtn);
-    ImageView submitBtn = findViewById(R.id.submitBtn);
+    playerScore = findViewById(R.id.playerScore);
+    mainMenuBtn = findViewById(R.id.mainMenuBtn);
+    submitBtn = findViewById(R.id.submitBtn);
+    nameLocation = findViewById(R.id.nameLocation);
+    yourScoreLocation = findViewById(R.id.yourScoreLocation);
+    nameLocation = findViewById(R.id.nameLocation);
+    enterNameView = findViewById(R.id.enterName);
+    emailLocation = findViewById(R.id.emaillocation);
+    userEmailView = findViewById(R.id.userEmail);
+    nameInputLocation = findViewById(R.id.nameinputlocation);
+    emailInputLocation = findViewById(R.id.emailinputlocation);
+
+    animationDisplay();
+
+    playerScore.setText(String.format("Your Score is: %d", score));
+
+
     submitBtn.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         sendData();
       }
     });
-    mainMenu.setOnClickListener(new OnClickListener() {
+    mainMenuBtn.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent goToMainMenu = new Intent(getApplicationContext(), MainActivity.class);
@@ -159,6 +185,37 @@ public class HighScore extends AppCompatActivity {
       key = "1";
     }//else
     return key;
-  }
+  }//createKey
+
+  /**
+   * All the animations at using such as fly in from top and bottom for transition
+   */
+  private void animationDisplay() {
+    //Animation Setup
+    Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
+    Animation fromRight = AnimationUtils.loadAnimation(this, R.anim.fly_in_right);
+    Animation fromLeft = AnimationUtils.loadAnimation(this, R.anim.fly_in_left);
+    Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
+
+
+    //Animations
+    submitBtn.setAnimation(fromBottom);
+    mainMenuBtn.setAnimation(fromBottom);
+
+    yourScoreLocation.setAnimation(fadeIn);
+    playerScore.setAnimation(fadeIn);
+
+    nameInputLocation.setAnimation(fromLeft);
+    nameTextView.setAnimation(fromLeft);
+    emailTextView.setAnimation(fromLeft);
+    emailInputLocation.setAnimation(fromLeft);
+
+    userEmailView.setAnimation(fromRight);
+    nameLocation.setAnimation(fromRight);
+    enterNameView.setAnimation(fromRight);
+    emailLocation.setAnimation(fromRight);
+
+
+  }//animationDisplay
 
 }//HighScore
