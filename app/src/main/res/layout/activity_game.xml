@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/ConstraintLayoutDrop"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@mipmap/gamebackground"
+  tools:context=".Game">
+
+  <ImageView
+    android:id="@+id/backBtn"
+    android:layout_width="22dp"
+    android:layout_height="24dp"
+    android:contentDescription="back button"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.024"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.044"
+    app:srcCompat="@mipmap/backbtn" />
+
+  <ProgressBar
+    android:id="@+id/timerBar"
+    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+    android:layout_width="214dp"
+    android:layout_height="29dp"
+    android:layout_marginStart="8dp"
+    android:max="100"
+    android:progress="0"
+    android:progressDrawable="@drawable/custom_progress_bar"
+    android:scrollbarSize="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/timeText"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.047" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/dropLayoutYellow"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    app:layout_constraintBottom_toBottomOf="@+id/beverageBin"
+    app:layout_constraintEnd_toEndOf="@+id/beverageBin"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/beverageBin"
+    app:layout_constraintTop_toTopOf="@+id/beverageBin">
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/itemSpawnLocation"
+    android:layout_width="127dp"
+    android:layout_height="89dp"
+    android:layout_marginEnd="4dp"
+    android:foregroundGravity="center"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.503"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.329">
+
+    <ImageView
+      android:id="@+id/spawnedImage"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:contentDescription="spawned item"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.0"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/dropLayoutBlack"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    app:layout_constraintBottom_toBottomOf="@+id/trashCan"
+    app:layout_constraintEnd_toEndOf="@+id/trashCan"
+    app:layout_constraintStart_toStartOf="@+id/trashCan"
+    app:layout_constraintTop_toTopOf="@+id/trashCan">
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <ImageView
+    android:id="@+id/trashCan"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="500dp"
+    android:layout_marginEnd="35dp"
+    android:contentDescription="trach can"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toEndOf="@+id/organicBin"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.996"
+    app:srcCompat="@mipmap/blackbin" />
+  <ImageView
+    android:id="@+id/beverageBin"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="5dp"
+    android:foregroundGravity="bottom"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/dropLayoutBlue"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="1.0"
+    app:srcCompat="@mipmap/yellowbin" />
+  <ImageView
+    android:id="@+id/organicBin"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="500dp"
+    android:layout_marginEnd="5dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/dropLayoutBlack"
+    app:layout_constraintStart_toEndOf="@+id/dropLayoutBlue"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.993"
+    app:srcCompat="@mipmap/greenbin" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/dropLayoutGreen"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    app:layout_constraintBottom_toBottomOf="@+id/organicBin"
+    app:layout_constraintEnd_toEndOf="@+id/organicBin"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="@+id/organicBin"
+    app:layout_constraintTop_toTopOf="@+id/organicBin"
+    app:layout_constraintVertical_bias="1.0">
+
+    <TextView
+      android:id="@+id/organicLabel"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:fontFamily="@font/arial_rounded_mt_bold"
+      android:text="Organics"
+      android:textColor="#FFFFFF"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <ImageView
+    android:id="@+id/soundOffImage"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:onClick="enableVolume"
+    app:layout_constraintBottom_toBottomOf="@+id/soundOnImage"
+    app:layout_constraintEnd_toEndOf="@+id/soundOnImage"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="@+id/soundOnImage"
+    app:layout_constraintTop_toTopOf="@+id/soundOnImage"
+    app:layout_constraintVertical_bias="0.0"
+    app:srcCompat="@drawable/sound_off" />
+  <ImageView
+    android:id="@+id/soundOnImage"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:onClick="disableVolume"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.978"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.044"
+    app:srcCompat="@drawable/sound_on" />
+  <ImageView
+    android:id="@+id/timeText"
+    android:layout_width="85dp"
+    android:layout_height="30dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.108"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.044"
+    app:srcCompat="@mipmap/time" />
+  <ImageView
+    android:id="@+id/scoreText"
+    android:layout_width="85dp"
+    android:layout_height="30dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.655"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.044"
+    app:srcCompat="@mipmap/score" />
+  <TextView
+    android:id="@+id/scoreView"
+    android:layout_width="34dp"
+    android:layout_height="30dp"
+    android:fontFamily="@font/oxygen_light"
+    android:gravity="center"
+    android:text="0"
+    android:textColor="#000000"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="@+id/score"
+    app:layout_constraintEnd_toEndOf="@+id/score"
+    app:layout_constraintHorizontal_bias="0.597"
+    app:layout_constraintStart_toEndOf="@+id/scoreText"
+    app:layout_constraintTop_toTopOf="@+id/score"
+    app:layout_constraintVertical_bias="0.0" />
+  <ImageView
+    android:id="@+id/score"
+    android:layout_width="90dp"
+    android:layout_height="30dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.09"
+    app:layout_constraintStart_toEndOf="@+id/scoreText"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.041"
+    app:srcCompat="@mipmap/scorelocation" />
+  <TextView
+    android:id="@+id/itemNameTextView"
+    android:layout_width="108dp"
+    android:layout_height="19dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:gravity="center"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/itemSpawnLocation"
+    app:layout_constraintVertical_bias="0.061" />
+  <TextView
+    android:id="@+id/beverageLabel"
+    android:layout_width="90dp"
+    android:layout_height="34dp"
+    android:layout_marginTop="20dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:gravity="center"
+    android:text="@string/beverage_containers"
+    android:textColor="#F7F7F7"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="@+id/dropLayoutYellow"
+    app:layout_constraintStart_toStartOf="@+id/dropLayoutYellow"
+    app:layout_constraintTop_toTopOf="@+id/dropLayoutYellow" />
+  <TextView
+    android:id="@+id/landFillLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:text="@string/landfill"
+    android:textColor="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="@+id/dropLayoutBlack"
+    app:layout_constraintEnd_toEndOf="@+id/dropLayoutBlack"
+    app:layout_constraintStart_toStartOf="@+id/dropLayoutBlack"
+    app:layout_constraintTop_toTopOf="@+id/dropLayoutBlack" />
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/dropLayoutBlue"
+    android:layout_width="135dp"
+    android:layout_height="105dp"
+    app:layout_constraintBottom_toBottomOf="@+id/recycleBin"
+    app:layout_constraintEnd_toEndOf="@+id/recycleBin"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="@+id/recycleBin"
+    app:layout_constraintTop_toTopOf="@+id/recycleBin"
+    app:layout_constraintVertical_bias="0.0">
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+  <ImageView
+    android:id="@+id/recycleBin"
+    android:layout_width="135dp"
+    android:layout_height="104dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="500dp"
+    android:layout_marginEnd="5dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toStartOf="@+id/organicBin"
+    app:layout_constraintStart_toEndOf="@+id/dropLayoutYellow"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.993"
+    app:srcCompat="@mipmap/bluebin" />
+  <TextView
+    android:id="@+id/recycleLabel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:text="Recyclables"
+    android:textColor="#FFFFFF"
+    app:layout_constraintBottom_toBottomOf="@+id/dropLayoutBlue"
+    app:layout_constraintEnd_toEndOf="@+id/dropLayoutBlue"
+    app:layout_constraintStart_toStartOf="@+id/dropLayoutBlue"
+    app:layout_constraintTop_toTopOf="@+id/dropLayoutBlue" />
+</androidx.constraintlayout.widget.ConstraintLayout>

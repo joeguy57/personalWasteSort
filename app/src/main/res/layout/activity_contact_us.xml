@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ContactUs"
+    android:background="@mipmap/background">
+
+  <ImageView
+    android:id="@+id/backBtn"
+    android:layout_width="25dp"
+    android:layout_height="33dp"
+    android:contentDescription="@string/todo"
+    android:onClick="goToBrowser"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.044"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.026"
+    app:srcCompat="@mipmap/backbtn" />
+
+  <TextView
+    android:id="@+id/textView2"
+    android:layout_width="335dp"
+    android:layout_height="216dp"
+    android:layout_marginStart="32dp"
+    android:layout_marginEnd="32dp"
+    android:layout_marginBottom="320dp"
+    android:fontFamily="@font/arial_rounded_mt_bold"
+    android:gravity="center"
+    android:text="@string/if_this_app_does_not_provide_you_with_the_information_you_require_we_recommend_going_to_the_link_below_for_more_information"
+    android:textSize="18sp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent" />
+  <ImageView
+    android:id="@+id/mainMenuLogo"
+    android:layout_width="133dp"
+    android:layout_height="61dp"
+    android:layout_marginStart="168dp"
+    android:layout_marginTop="66dp"
+    android:layout_marginEnd="171dp"
+    android:layout_marginBottom="156dp"
+    android:background="@drawable/help_btn"
+    android:clickable="true"
+    android:contentDescription="@string/todo"
+    android:focusable="true"
+    android:onClick="goToBrowser"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+  <ImageView
+    android:id="@+id/imageView6"
+    android:layout_width="282dp"
+    android:layout_height="65dp"
+    app:layout_constraintBottom_toTopOf="@+id/textView2"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.496"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.261"
+    app:srcCompat="@mipmap/contectustitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

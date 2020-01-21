@@ -1,3 +1,23 @@
 <resources>
-    <string name="app_name">WasteSortApp</string>
+  <string name="app_name">URecycle</string>
+  <string name="more_information">More Information</string>
+  <string name="if_this_app_does_not_provide_you_with_the_information_you_require_we_recommend_going_to_the_link_below_for_more_information">If you have any further questions or concerns, please visit the University of Alberta  website by clicking on the link below. If you still have questions, you can contact members of the sustainability lab at: \n\n Email : augustana.info@ualberta.ca \n Phone: (780) 679–1100 \n Location : 2nd Floor Founders Hall </string>
+  <string name="todo">TODO</string>
+  <string name="instruction_zone">instruction zone</string>
+  <string name ="GameInstructions">Instructions :  \nItems will appear on the screen for 60 seconds. Drag each item into the appropriate waste bin, and try to sort as many items as you can before the time runs out!</string>
+  <string name="waste_guide">Waste Guide</string>
+  <string name="harshil_vyas">Harshil Vyas</string>
+  <string name="jared_matson">Jared Matson</string>
+  <string name="joseph_menezes">Joseph Menezes</string>
+  <string name="created_by">Created by:</string>
+  <string name="email">Email :</string>
+  <string name="enter_your_name">Enter your name</string>
+  <string name="name">Name :</string>
+  <string name="enter_your_email">Enter your email</string>
+  <string name="your_score">Your Score</string>
+  <string name="item_name">itemName</string>
+  <string name="item_bin_type">itemBinType</string>
+  <string name="description">Description</string>
+  <string name="beverage_containers">Beverage Containers</string>
+  <string name="landfill">Landfill</string>
 </resources>

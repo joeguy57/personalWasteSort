@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#131313</color>
+    <color name="lightBlue">#8CD9FF</color>
+    <color name="lightYellow">#E1FF9D</color>
+    <color name="statusBar">#158FE8</color>
+    <color name ="cardBackground">#BFE8EAEE</color>
+
 </resources>
