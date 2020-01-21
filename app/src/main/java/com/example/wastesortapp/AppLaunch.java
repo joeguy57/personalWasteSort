@@ -20,8 +20,15 @@
 
 package com.example.wastesortapp;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,12 +37,32 @@ import java.util.TimerTask;
 
 public class AppLaunch extends AppCompatActivity {
 
+  protected Boolean wifiStatus;
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_app_launch);
+    checkWifi();
     goToMainMenu();
   }//onCreate
+
+  private void checkWifi() {
+    WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    if (wifiMgr.isWifiEnabled()) { // WiFi adapter is ON
+      wifiStatus = true;
+      Toast.makeText(getApplicationContext(), "Online",
+          Toast.LENGTH_LONG).show();
+    }//if
+
+    else {
+      wifiStatus = false;
+      Toast.makeText(getApplicationContext(), "Offline",
+          Toast.LENGTH_LONG).show();
+    }//else
+
+  }//checkWifi
 
   /**
    * From the boot up page to go to the Main Menu activity is has a 2.5 sec delay
@@ -46,6 +73,7 @@ public class AppLaunch extends AppCompatActivity {
       @Override
       public void run() {
         Intent mainMenu = new Intent(getApplicationContext() , MainMenu.class);
+        mainMenu.putExtra("wifiStatus", wifiStatus);
         startActivity(mainMenu);
         finish();
       }//run

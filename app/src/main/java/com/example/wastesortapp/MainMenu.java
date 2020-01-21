@@ -46,6 +46,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -57,11 +58,12 @@ public class MainMenu extends AppCompatActivity {
 
   //Global Variables
   protected Intent goToActivity;
-  Button disposableHelpBtn;
-  Button moreInfo;
-  Button gameBtn;
-  ImageView mainMenuLogo;
-  TextView title;
+  protected Boolean wifiStatus;
+  protected Button disposableHelpBtn;
+  protected Button moreInfo;
+  protected Button gameBtn;
+  protected ImageView mainMenuLogo;
+  protected TextView title;
 
   @Override
   /**
@@ -72,13 +74,22 @@ public class MainMenu extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main_menu);
 
+    Bundle wifiControl = getIntent().getExtras();
+    wifiStatus = wifiControl.getBoolean("wifiStatus");
+
     //View Objects
     findItems();
     setAnimations();
     goToContactUs();
     goToGame();
     goToWasteSort();
-
+    if (!wifiStatus){
+      Toast.makeText(getApplicationContext(), "Connect to the Internet",
+          Toast.LENGTH_LONG).show();
+      gameBtn.setEnabled(false);
+      disposableHelpBtn.setEnabled(false);
+      moreInfo.setEnabled(false);
+    }
   }//OnCreate
 
   /**
