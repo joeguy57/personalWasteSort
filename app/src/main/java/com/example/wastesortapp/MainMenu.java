@@ -34,6 +34,11 @@
  * goToWasteSort(): Take the user to a activity to search for objects to dispose
  *
  *--------------------------------------------------------------------------------------------------
+ *
+ * setWifiStatus(): This methods find the wifi status and informs the user their status
+ *                  and the steps to take
+ *
+ *--------------------------------------------------------------------------------------------------
  * @author Harshil Vyas
  * ID : 158162
  * Date:   2020 - 01 - 19
@@ -42,6 +47,7 @@
 package com.example.wastesortapp;
 
 import android.content.DialogInterface;
+import android.os.CountDownTimer;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -65,6 +71,7 @@ public class MainMenu extends AppCompatActivity {
   protected ImageView mainMenuLogo;
   protected TextView title;
 
+
   @Override
   /**
    * Navigation to the other feature and aspects of the app is declared in here and the animations
@@ -74,23 +81,58 @@ public class MainMenu extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main_menu);
 
-    Bundle wifiControl = getIntent().getExtras();
-    wifiStatus = wifiControl.getBoolean("wifiStatus");
-
     //View Objects
     findItems();
     setAnimations();
     goToContactUs();
     goToGame();
     goToWasteSort();
-    if (!wifiStatus){
-      Toast.makeText(getApplicationContext(), "Connect to the Internet",
-          Toast.LENGTH_LONG).show();
-      gameBtn.setEnabled(false);
-      disposableHelpBtn.setEnabled(false);
-      moreInfo.setEnabled(false);
-    }
+
+    setWifiStatus();
+
   }//OnCreate
+
+  /**
+   * This methods find the wifi status and informs the user their status and the steps to take
+   */
+  protected void setWifiStatus(){
+
+    Bundle wifiControl = getIntent().getExtras();
+
+    if(wifiControl!= null){
+      wifiStatus = wifiControl.getBoolean("wifiStatus");
+      if (!wifiStatus){
+        int toastDurationInMilliSeconds = 10000;
+        final Toast connectionTest = Toast.makeText(getApplicationContext(), "Connect to the internet, by turning it on "
+            + "in settings and relaunch the app", Toast.LENGTH_LONG);
+        CountDownTimer toastCountDown;
+        toastCountDown = new CountDownTimer(toastDurationInMilliSeconds, 3500) {
+          @Override
+          public void onTick(long millisUntilFinished) {
+            connectionTest.show();
+          }
+
+          @Override
+          public void onFinish() {
+            connectionTest.cancel();
+          }
+        };
+        connectionTest.show();
+        toastCountDown.start();
+
+        gameBtn.setEnabled(false);
+        disposableHelpBtn.setEnabled(false);
+        moreInfo.setEnabled(false);
+      }//if
+      else {
+        Toast.makeText(getApplicationContext(), "You are now connected to the internet",
+            Toast.LENGTH_LONG).show();
+        gameBtn.setEnabled(true);
+        disposableHelpBtn.setEnabled(true);
+        moreInfo.setEnabled(true);
+      }
+    }//if
+  }//setWifiStatus
 
   /**
    * Finds the appropriate items to set animations to

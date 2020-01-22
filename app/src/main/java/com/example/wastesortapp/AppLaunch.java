@@ -11,8 +11,11 @@
  * onBackPressed(): When the presses on the back button on their phone navigation bar, there is a
  *                  confirmation message. If YES the exit the app, else don't
  *
- *-------------------------------------------------------------------------------------------------
+ *--------------------------------------------------------------------------------------------------
  *
+ * checkWifi(): At start of app launch checks if the user if connected to the internet or not
+ *
+ * -------------------------------------------------------------------------------------------------
  * @author Harshil Vyas
  * ID : 158162
  * Date:   2020 - 01 - 19
@@ -23,11 +26,7 @@ package com.example.wastesortapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.telephony.PhoneStateListener;
-import android.telephony.TelephonyManager;
-import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -48,6 +47,11 @@ public class AppLaunch extends AppCompatActivity {
     goToMainMenu();
   }//onCreate
 
+  /**
+   * We check if the user is connected to the internet and informs the user
+   *
+   * Note : The user needs to be connected to Wifi to use the application
+   */
   private void checkWifi() {
     WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
     if (wifiMgr.isWifiEnabled()) { // WiFi adapter is ON
@@ -89,7 +93,6 @@ public class AppLaunch extends AppCompatActivity {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
     confirmation.setMessage("Are you sure you want to go exit?")
-        //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
