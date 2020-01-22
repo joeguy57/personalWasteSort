@@ -45,7 +45,7 @@ public class AppLaunch extends AppCompatActivity {
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        Intent mainMenu = new Intent(getApplicationContext() , MainActivity.class);
+        Intent mainMenu = new Intent(getApplicationContext() , MainMenu.class);
         startActivity(mainMenu);
         finish();
       }//run

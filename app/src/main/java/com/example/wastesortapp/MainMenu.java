@@ -9,7 +9,7 @@
  *
  *-------------------------------------------------------------------------------------------------
  *
- * findItems(): Finds all views in MainActivity where animations will be applied
+ * findItems(): Finds all views in MainMenu where animations will be applied
  *
  *-------------------------------------------------------------------------------------------------
  *
@@ -53,7 +53,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainMenu extends AppCompatActivity {
 
   //Global Variables
   protected Intent goToActivity;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
    */
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_main_menu);
 
     //View Objects
     findItems();

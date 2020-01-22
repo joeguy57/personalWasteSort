@@ -85,7 +85,7 @@ public class HighScore extends AppCompatActivity {
     mainMenuBtn.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent goToMainMenu = new Intent(getApplicationContext(), MainActivity.class);
+        Intent goToMainMenu = new Intent(getApplicationContext(), MainMenu.class);
         startActivity(goToMainMenu);
       }//onClick
     });
@@ -131,7 +131,7 @@ public class HighScore extends AppCompatActivity {
     writeData.child(key).child("Date").setValue(formatter.format(date));
     writeData.child(key).child("Score").setValue(score);
     writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
-    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+    startActivity(new Intent(getApplicationContext(), MainMenu.class));
     if (isEmail){
       writeData.child(key).child("emailAddress").setValue(emailTextView.getText().toString());
     }
@@ -165,7 +165,7 @@ public class HighScore extends AppCompatActivity {
       //Sends all information saved.
       sendNameData(writeData, key, true);
       //goToMainActivity
-      startActivity(new Intent(getApplicationContext(), MainActivity.class));
+      startActivity(new Intent(getApplicationContext(), MainMenu.class));
     }//if
     //if email is not entered correctly an error is placed.
 

@@ -122,6 +122,8 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
   private ConstraintLayout dropLayoutBlack;
   private ConstraintLayout itemSpawnLocation;
   private TextView itemNameTextView;
+
+  private Boolean gameMode;
   private String color;
   private TextView scoreView;
   private int score = 0;
@@ -133,6 +135,8 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
   //-----------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
+    gameMode = true;
 
     timer = new CountDownTimer(45000, 1000) { //45 second timer to do ticking sound
       //which will inform user Game is coming to end
@@ -202,9 +206,13 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
         Intent highscore = new Intent(getApplicationContext(), HighScore.class);
         highscore.putExtra("Score", score);
         sound.playGameOverSound();
-        startActivity(highscore);
+        if(gameMode == false){
+           startActivity(new Intent(getApplicationContext(), MainMenu.class));
+        }//if
+        else {
+          startActivity(highscore);
+        }//else
         finish();
-
       }
 
       @Override
@@ -471,11 +479,16 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
+            gameMode = false;
+            sound.disableSound();
             mAnimation.cancel();
+            timer.cancel();
+            finish();
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            finish();
           }
         })
 
@@ -502,7 +515,7 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {
-            Intent goBack = new Intent(getApplicationContext(), MainActivity.class);
+            Intent goBack = new Intent(getApplicationContext(), MainMenu.class);
             sound.disableSound();
             mAnimation.cancel();
             timer.cancel();

@@ -1,7 +1,7 @@
 /**
  * instruction_activity.java
- * This class represents the transition between MainActivity.java and Game.java. When the user
- * chooses to play the Game in MainActivity, this activity will imitate a loading screen
+ * This class represents the transition between MainMenu.java and Game.java. When the user
+ * chooses to play the Game in MainMenu, this activity will imitate a loading screen
  * which will display brief instructions on how to play the Game.
  *
  * Methods:

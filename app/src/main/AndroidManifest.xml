@@ -38,7 +38,7 @@
       android:name=".Game"
       android:screenOrientation="landscape" />
     <activity
-      android:name=".MainActivity"
+      android:name=".MainMenu"
       android:screenOrientation="portrait"/>
 
     <meta-data

@@ -66,7 +66,7 @@ public class ContactUs extends AppCompatActivity {
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Intent goToMain = new Intent(getApplicationContext(), MainActivity.class);
+        Intent goToMain = new Intent(getApplicationContext(), MainMenu.class);
         startActivity(goToMain);
         finish();
       }
@@ -85,7 +85,7 @@ public class ContactUs extends AppCompatActivity {
           @Override
           public void onClick(DialogInterface dialog, int which) {
 
-            Intent goToHome = new Intent(getApplicationContext(), MainActivity.class);
+            Intent goToHome = new Intent(getApplicationContext(), MainMenu.class);
             startActivity(goToHome);
             finish();
 
