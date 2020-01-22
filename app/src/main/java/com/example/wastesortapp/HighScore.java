@@ -7,7 +7,8 @@
  * Methods:
  * checkEmail() - check to see if its a ualberta.ca email.
  * sendData()- Writes the data to google sheet to be viewed by the Client.
- * onBackPressed - When the back button on the interface is pressed, a Dialog (alert pops up)...
+ * animationDisplay() - Display all the animation during onCreate
+ * onBackPressed - When the back button on the interface is pressed, take them to the home page
  * created on: 13/01/2019
  * Completed and ready for MVP
  *
@@ -176,6 +177,7 @@ public class HighScore extends AppCompatActivity {
 
   }//sendData
 
+
   private String createKey(DatabaseReference writeData) {
     String key;
     if (!writeData.getKey().equals(String.valueOf(1))) {
@@ -217,5 +219,17 @@ public class HighScore extends AppCompatActivity {
 
 
   }//animationDisplay
+
+  /**
+   * Looks to see if the back button was pressed on the navigation bar, will close app if it was
+   * hit
+   */
+  public void onBackPressed() {
+
+            Intent goToMainMenu = new Intent(getApplicationContext(), MainMenu.class);
+            finish();
+            startActivity(goToMainMenu);
+
+  }//onBackPressed
 
 }//HighScore

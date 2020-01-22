@@ -501,7 +501,7 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
     AlertDialog alertDialog = confirmation.create();
     alertDialog.show();
 
-  }//onbackpressed
+  }//onBackPressed
 
   /**
    * Will bring the user to the Main Menu. This will be called if the back button at the top left of
