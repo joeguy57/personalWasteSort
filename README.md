@@ -21,3 +21,4 @@ shifted slightly to the left when the image being loaded in is small
 4.  Our last known bug potentially happens with users that have enabled developer mode. Since our progress bar at the top of the game
 is considered an animation, users can go into developer settings and make this animation run slowly. This effectivly causes users to have a game that
 lasts much longer than normal which they can exploit to get very high scores.
+5. During game play if the user click on the back button an alertbox appears but the timer & animation still runs in the background. (This can't we fixed as our API level is low).
