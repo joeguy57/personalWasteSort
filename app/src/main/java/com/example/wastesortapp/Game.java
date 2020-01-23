@@ -203,14 +203,14 @@ public class Game extends AppCompatActivity implements ImageView.OnDragListener,
       @Override
       public void onAnimationEnd(Animator animator) {
         mAnimation.cancel();
-        Intent highscore = new Intent(getApplicationContext(), HighScore.class);
-        highscore.putExtra("Score", score);
+        Intent highScore = new Intent(getApplicationContext(), HighScore.class);
+        highScore.putExtra("Score", score);
         sound.playGameOverSound();
-        if(gameMode == false){
-           startActivity(new Intent(getApplicationContext(), MainMenu.class));
+        if (!gameMode) {
+          startActivity(new Intent(getApplicationContext(), MainMenu.class));
         }//if
         else {
-          startActivity(highscore);
+          startActivity(highScore);
         }//else
         finish();
       }

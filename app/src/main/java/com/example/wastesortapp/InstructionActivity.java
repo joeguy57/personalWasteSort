@@ -60,7 +60,6 @@ public class InstructionActivity extends AppCompatActivity {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
 
     confirmation.setMessage("Are you sure you want to go exit?")
-        //.setCancelable(true)
         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
           @Override
           public void onClick(DialogInterface dialog, int which) {

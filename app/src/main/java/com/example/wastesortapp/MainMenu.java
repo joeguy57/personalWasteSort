@@ -95,16 +95,17 @@ public class MainMenu extends AppCompatActivity {
   /**
    * This methods find the wifi status and informs the user their status and the steps to take
    */
-  protected void setWifiStatus(){
+  protected void setWifiStatus() {
 
     Bundle wifiControl = getIntent().getExtras();
 
-    if(wifiControl!= null){
+    if (wifiControl != null) {
       wifiStatus = wifiControl.getBoolean("wifiStatus");
-      if (!wifiStatus){
+      if (!wifiStatus) {
         int toastDurationInMilliSeconds = 10000;
-        final Toast connectionTest = Toast.makeText(getApplicationContext(), "Connect to the internet, by turning it on "
-            + "in settings and relaunch the app", Toast.LENGTH_LONG);
+        final Toast connectionTest = Toast
+            .makeText(getApplicationContext(), "Connect to the internet, by turning it on "
+                + "in settings and relaunch the app", Toast.LENGTH_LONG);
         CountDownTimer toastCountDown;
         toastCountDown = new CountDownTimer(toastDurationInMilliSeconds, 3500) {
           @Override
@@ -129,7 +130,7 @@ public class MainMenu extends AppCompatActivity {
   /**
    * Finds the appropriate items to set animations to
    */
-  public void findItems(){
+  public void findItems() {
     mainMenuLogo = findViewById(R.id.mainMenuLogo);
     gameBtn = findViewById(R.id.gameBtn);
     disposableHelpBtn = findViewById(R.id.disposableHelpBtn);
@@ -138,10 +139,10 @@ public class MainMenu extends AppCompatActivity {
   }//findItems
 
   /**
-   * Initializes  fade in and from bottom animations, assigngs the items from findItems()
-   * one of these two animations
+   * Initializes  fade in and from bottom animations, assigngs the items from findItems() one of
+   * these two animations
    */
-  public void setAnimations(){
+  public void setAnimations() {
     //Animations Variables
     Animation fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
     Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
@@ -153,6 +154,7 @@ public class MainMenu extends AppCompatActivity {
     mainMenuLogo.setAnimation(fadeIn);
     title.setAnimation(fadeIn);
   }
+
   /**
    * Takes the user to a the Waste Sort Game
    */

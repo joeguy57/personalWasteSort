@@ -53,7 +53,8 @@ public class AppLaunch extends AppCompatActivity {
    * Note : The user needs to be connected to Wifi to use the application
    */
   private void checkWifi() {
-    WifiManager wifiMgr = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+    WifiManager wifiMgr = (WifiManager) getApplicationContext()
+        .getSystemService(Context.WIFI_SERVICE);
     if (wifiMgr.isWifiEnabled()) { // WiFi adapter is ON
       wifiStatus = true;
       Toast.makeText(getApplicationContext(), "Online",
@@ -71,23 +72,23 @@ public class AppLaunch extends AppCompatActivity {
   /**
    * From the boot up page to go to the Main Menu activity is has a 2.5 sec delay
    */
-  private void goToMainMenu(){
+  private void goToMainMenu() {
     Timer timer = new Timer();
     timer.schedule(new TimerTask() {
       @Override
       public void run() {
-        Intent mainMenu = new Intent(getApplicationContext() , MainMenu.class);
+        Intent mainMenu = new Intent(getApplicationContext(), MainMenu.class);
         mainMenu.putExtra("wifiStatus", wifiStatus);
         startActivity(mainMenu);
         finish();
       }//run
-    },2500);
+    }, 2500);
 
   }//goToMainMenu
 
   /**
-   * If the user pressed on the back button on the users phone from the navigation bar then the
-   * user will exit the application based on the users answer (YES / NO)
+   * If the user pressed on the back button on the users phone from the navigation bar then the user
+   * will exit the application based on the users answer (YES / NO)
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
@@ -113,6 +114,6 @@ public class AppLaunch extends AppCompatActivity {
     AlertDialog alertDialog = confirmation.create();
     alertDialog.show();
 
-  }//onbackpressed
+  }//onBackPressed
 
 }//class

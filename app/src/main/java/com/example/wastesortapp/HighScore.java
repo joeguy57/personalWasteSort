@@ -49,7 +49,6 @@ public class HighScore extends AppCompatActivity {
   private ImageView nameInputLocation;
   private ImageView emailInputLocation;
 
-  //--------------------------------------------------------------------------------------------
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -75,7 +74,6 @@ public class HighScore extends AppCompatActivity {
     animationDisplay();
 
     playerScore.setText(String.format("Your Score is: %d", score));
-
 
     submitBtn.setOnClickListener(new OnClickListener() {
       @Override
@@ -133,7 +131,7 @@ public class HighScore extends AppCompatActivity {
     writeData.child(key).child("Score").setValue(score);
     writeData.child(key).child("Name").setValue(nameTextView.getText().toString());
     startActivity(new Intent(getApplicationContext(), MainMenu.class));
-    if (isEmail){
+    if (isEmail) {
       writeData.child(key).child("emailAddress").setValue(emailTextView.getText().toString());
     }
   }
@@ -180,6 +178,7 @@ public class HighScore extends AppCompatActivity {
   /**
    * This Method will create a key from the next line required for the highScore in the google
    * sheets
+   *
    * @param writeData - The Database correction
    * @return - the parent in the database
    */
@@ -203,7 +202,6 @@ public class HighScore extends AppCompatActivity {
     Animation fromRight = AnimationUtils.loadAnimation(this, R.anim.fly_in_right);
     Animation fromLeft = AnimationUtils.loadAnimation(this, R.anim.fly_in_left);
     Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-
 
     //Animations
     submitBtn.setAnimation(fromBottom);
@@ -231,9 +229,9 @@ public class HighScore extends AppCompatActivity {
    */
   public void onBackPressed() {
 
-            Intent goToMainMenu = new Intent(getApplicationContext(), MainMenu.class);
-            finish();
-            startActivity(goToMainMenu);
+    Intent goToMainMenu = new Intent(getApplicationContext(), MainMenu.class);
+    finish();
+    startActivity(goToMainMenu);
 
   }//onBackPressed
 

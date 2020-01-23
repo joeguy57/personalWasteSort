@@ -42,31 +42,32 @@ public class WasteGuide extends AppCompatActivity {
   private ArrayList<GarbageInfo> garbageInfoArrayList;
   private ConstraintLayout creditsLay;
 //--------------------------------------------------------------------------------------------
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_waste_guide);
-    creditsLay = findViewById(R.id.creditsLayout);
-    creditsLay.setVisibility(View.INVISIBLE);
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+  super.onCreate(savedInstanceState);
+  setContentView(R.layout.activity_waste_guide);
+  creditsLay = findViewById(R.id.creditsLayout);
+  creditsLay.setVisibility(View.INVISIBLE);
 
-    backBtnPressed();
+  backBtnPressed();
 
-    //Assigning the Global variables.
-    garbageRecycleView = findViewById(R.id.recycleView);
-    searchView = findViewById(R.id.searchView);
-    garbageRecycleView.setHasFixedSize(true);
-    garbageRecycleView.setLayoutManager(new LinearLayoutManager(this));
-    //Creating the entry point to Firebase.
-    databaseReference = FirebaseDatabase.getInstance().getReference()
-        .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
-  }
+  //Assigning the Global variables.
+  garbageRecycleView = findViewById(R.id.recycleView);
+  searchView = findViewById(R.id.searchView);
+  garbageRecycleView.setHasFixedSize(true);
+  garbageRecycleView.setLayoutManager(new LinearLayoutManager(this));
+
+  //Creating the entry point to Firebase.
+  databaseReference = FirebaseDatabase.getInstance().getReference()
+      .child("1WTVDXleXTbtGu43obhTU9fwozWAtG0R1Cw464U3mvlk").child("Catalogue");
+}
 
   /**
-   * on start runs on the initialization of the app. Here we go through the Firebase database,
-   * in order to display the item information to the user.
+   * on start runs on the initialization of the app. Here we go through the Firebase database, in
+   * order to display the item information to the user.
    *
-   * if the user starts typing in the search bar, then a filtering on the recycler view is then
-   * made to get the closet answer to the search.
+   * if the user starts typing in the search bar, then a filtering on the recycler view is then made
+   * to get the closet answer to the search.
    */
   @Override
   protected void onStart() {
@@ -112,10 +113,11 @@ public class WasteGuide extends AppCompatActivity {
   }
 
   /**
-   * This method takes in a users input this then causes the recycler view to reduce
-   * the number of options viewed.
-   * @param newText - the text being typed by the user gets added in to this function to narrow
-   * down the the options
+   * This method takes in a users input this then causes the recycler view to reduce the number of
+   * options viewed.
+   *
+   * @param newText - the text being typed by the user gets added in to this function to narrow down
+   * the the options
    */
   private void search(String newText) {
     ArrayList<GarbageInfo> myList = new ArrayList<>();
@@ -134,8 +136,8 @@ public class WasteGuide extends AppCompatActivity {
   }//search
 
   /**
-   * Looks to see if the back button was pressed on the navigation bar, will go to home screen
-   * if it was hit
+   * Looks to see if the back button was pressed on the navigation bar, will go to home screen if it
+   * was hit
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
@@ -161,12 +163,12 @@ public class WasteGuide extends AppCompatActivity {
     AlertDialog alertDialog = confirmation.create();
     alertDialog.show();
 
-  }//onbackpressed
+  }//onBackPressed
 
   /**
    * Take the user to the Main Menu (Home) Screen
    */
-  public void backBtnPressed(){
+  public void backBtnPressed() {
     ImageView backBtn = findViewById(R.id.backBtn);
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override

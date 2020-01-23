@@ -61,7 +61,7 @@ public class ContactUs extends AppCompatActivity {
   /**
    * Take the user to the Main Menu (Home) Screen
    */
-  public void backBtnPressed(){
+  public void backBtnPressed() {
     ImageView backBtn = findViewById(R.id.backBtn);
     backBtn.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -74,8 +74,8 @@ public class ContactUs extends AppCompatActivity {
   }//backBtnPressed
 
   /**
-   * Looks to see if the back button was pressed on the navigation bar, will go to home screen
-   * if it was hit
+   * Looks to see if the back button was pressed on the navigation bar, will go to home screen if it
+   * was hit
    */
   public void onBackPressed() {
     AlertDialog.Builder confirmation = new AlertDialog.Builder(this);
@@ -101,6 +101,6 @@ public class ContactUs extends AppCompatActivity {
     AlertDialog alertDialog = confirmation.create();
     alertDialog.show();
 
-  }//onbackpressed
+  }//onBackPressed
 
 }//class
