@@ -177,7 +177,12 @@ public class HighScore extends AppCompatActivity {
 
   }//sendData
 
-
+  /**
+   * This Method will create a key from the next line required for the highScore in the google
+   * sheets
+   * @param writeData - The Database correction
+   * @return - the parent in the database
+   */
   private String createKey(DatabaseReference writeData) {
     String key;
     if (!writeData.getKey().equals(String.valueOf(1))) {
