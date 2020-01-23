@@ -122,15 +122,7 @@ public class MainMenu extends AppCompatActivity {
 
         gameBtn.setEnabled(false);
         disposableHelpBtn.setEnabled(false);
-        moreInfo.setEnabled(false);
       }//if
-      else {
-        Toast.makeText(getApplicationContext(), "You are now connected to the internet",
-            Toast.LENGTH_LONG).show();
-        gameBtn.setEnabled(true);
-        disposableHelpBtn.setEnabled(true);
-        moreInfo.setEnabled(true);
-      }
     }//if
   }//setWifiStatus
 
